@@ -12,9 +12,11 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Cabin', 'sans-serif'],
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('daisyui')
+    ],
 };
