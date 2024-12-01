@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Cabin', 'sans-serif'],
+                sans: ['Roboto', 'sans-serif'],
             },
         },
     },
