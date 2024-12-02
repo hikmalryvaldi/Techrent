@@ -58,5 +58,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
 
         $this->call(FeaturedProductSeeder::class);
+
+        $this->call(CarouselsSeeder::class);
     }
 }

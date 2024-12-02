@@ -106,28 +106,6 @@
                     </div>
                 </div>
             @endforeach
-            <div class="carousel-item hidden">
-                <img src="https://via.placeholder.com/1920x500" alt="Slide 2" class="w-full h-[850px]">
-                <div class="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
-                    <div class="text-left text-white ml-40">
-                        <h2 class="text-[40px] font-bold">Nikon Z6</h2>
-                        <button class="mt-10 px-6 py-2 bg-white text-black font-semibold rounded hover:bg-gray-300">
-                            Sewa Sekarang
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item hidden">
-                <img src="https://via.placeholder.com/1920x500" alt="Slide 3" class="w-full h-[850px]">
-                <div class="absolute inset-0 flex items-center justify-start bg-black bg-opacity-50">
-                    <div class="text-left text-white ml-40">
-                        <h2 class="text-[40px] font-bold">Sony A7 III</h2>
-                        <button class="mt-10 px-6 py-2 bg-white text-black font-semibold rounded hover:bg-gray-300">
-                            Sewa Sekarang
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- Navigation -->
