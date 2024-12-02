@@ -18,18 +18,21 @@ class ProductSeeder extends Seeder
             'brand' => 'Sony',
             'category_id' => 2,
             'rental_count' => 15,
+            'image_path' => 'img/halamanhome/barangunggulan/sony.png'
         ]);
         Product::create([
-            'product_name' => 'Sony Alpha 7 Mark II',
-            'brand' => 'Sonyyy',
+            'product_name' => 'Playstation5',
+            'brand' => 'Sony',
             'category_id' => 3,
             'rental_count' => 10,
+            'image_path' => 'img/halamanhome/barangunggulan/ps5.png'
         ]);
         Product::create([
-            'product_name' => 'Sony Alpha 7 Mark I',
-            'brand' => 'Sonyy',
+            'product_name' => 'Speaker',
+            'brand' => 'Polytron',
             'category_id' => 4,
             'rental_count' => 11,
+            'image_path' => 'img/halamanhome/promo/speaker.png'
         ]);
     }
 }

@@ -16,7 +16,8 @@ class Product extends Model
         'product_name',
         'brand',
         'category_id',
-        'rental_count'
+        'rental_count',
+        'image_path'
     ];
 
 

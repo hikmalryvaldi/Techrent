@@ -222,7 +222,7 @@
                     <div
                         class="card1 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                            <img src="{{ asset('img/halamanhome/barangunggulan/ps5.png') }}" alt=""
+                            <img src="{{ $product->image_path }}" alt=""
                                 class="w-full h-full object-contain">
                         </div>
                         <p class="text-black text-center text-xl font-bold mt-4">
@@ -233,7 +233,7 @@
                         </button>
                     </div>
                 @endforeach
-                <div class="card2 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
+                {{-- <div class="card2 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                     <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
                         <img src="{{ asset('img/halamanhome/barangunggulan/sony.png') }}" alt=""
                             class="w-full h-full object-contain">
@@ -254,7 +254,7 @@
                         class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
                         Sewa Sekarang
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
