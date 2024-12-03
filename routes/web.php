@@ -13,3 +13,7 @@ Route::get('/', function () {
         'topProduct' => Product::orderBy('rental_count', 'desc')->take(3)->get(), // Menampilkan 3 produk dengan rental_count tertinggi
     ]);
 });
+
+Route::get('/registrasi', function () {
+    return view('registrasi');
+});
