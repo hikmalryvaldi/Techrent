@@ -13,10 +13,12 @@ class Navbar extends Component
      */
 
     public $isRegistrationPage;
+    public $isProdukPage;
 
-    public function __construct($isRegistrationPage = false)
+    public function __construct($isRegistrationPage = false, $isProdukPage = false)
     {
         $this->isRegistrationPage = $isRegistrationPage;
+        $this->isProdukPage = $isProdukPage;
     }
 
     /**
