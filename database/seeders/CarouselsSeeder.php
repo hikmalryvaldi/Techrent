@@ -11,15 +11,18 @@ class CarouselsSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(): void 
     {
         Carousel::create([
-            'product_name' => "Sony Alpha 7",
-            'image_path' => "https://image.shutterstock.com/image-photo/camera-lens-on-black-gray-260nw-2512231733.jpg"
+            'product_name' => "Cannon EOS 1200 D",
+            'image_path' => "img/halamanhome/promo/BgCanon.jpg"
         ]);
+    
+        // Menyimpan gambar dari folder internal storage
         Carousel::create([
-            'product_name' => "Sonson",
-            'image_path' => "https://image.shutterstock.com/image-photo/camera-lens-on-black-gray-260nw-2512231733.jpg"
+            'product_name' => "SONY ALPHA 6000",
+            'image_path' => "img/halamanhome/promo/BgSony.jpg"  // Misalnya gambar ada di storage/app/public/images/sonson.jpg
         ]);
     }
+    
 }
