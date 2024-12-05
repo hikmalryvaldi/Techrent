@@ -8,109 +8,113 @@
     @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <title>Registrasi</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-white h-screen flex items-center justify-center pt-16">
-    <x-navbar :isRegistrationPage="true"></x-navbar>
+<body class="bg-white items-center">
+    <x-navbar></x-navbar>
 
-    <div
-        class="bungkus bg-[#B4BEC9] w-full md:w-[1200px] h-auto md:h-[700px] rounded-xl flex justify-center items-center">
-        <div class="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden w-full max-w-5xl">
-            <!-- Logo di sebelah kiri -->
-            <div class="w-full md:w-1/2 bg-[#B4BEC9] block items-center justify-start p-8"
-                style="margin-left: -30px flex-direction: column; align-items: flex-start;">
-                <img src="{{ asset('img/navbar/Logo.png') }}" alt="Logo Perusahaan" class="max-w-full max-h-full">
-                <!-- Kalimat tambahan di bawah gambar -->
-                <div class="text-center mt-4 text-lg font-semibold text-gray-700">
-                    Teknologi Canggih, Harga Terjangkau, <br>
-                    Sewa Sekarang!
-                </div>
-            </div>
+    <div class="bungkus bg-[#454545] w-full h-[650px] flex justify-center items-center mt-16">
+        <!-- Logo di sebelah kiri -->
+        <div class="hidden md:flex flex-col w-1/2 justify-center items-center ">
+            <img src="{{ asset('img/navbar/LogoPutih.png') }}" alt="Logo Perusahaan" class="w-[40%]">
+            <h1>ahmad mulia huda</h1>
+        </div>
 
-
-            <!-- Form Registrasi di sebelah kanan -->
-            <div class="w-full md:w-1/2 p-6 flex items-center justify-center">
-                <div class="w-full max-w-sm space-y-6">
-                    <h2 class="text-3xl font-semibold text-gray-800 text-center">Registrasi</h2>
-                    <form action="#" method="POST" class="space-y-4">
-                        <div class="relative">
-                            <label for="nama" class="block text-sm font-medium text-black">Nama</label>
-                            <input type="text" id="nama" name="nama" placeholder="Full Name" required
-                                class="w-full p-3 pl-10 border text-black border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white">
-                            <span class="absolute left-3 top-[65%] transform -translate-y-1/2 text-gray-400">
-                                <i class="fas fa-user"></i>
-                            </span>
+        <!-- Form Registrasi di sebelah kanan -->
+        <div class="flex flex-col items-center mx-3 justify-center">
+            <div class=" bg-white rounded-lg p-7 overflow-hidden w-full">
+            <div class="w-full max-w-sm space-y-6">
+                <div x-data="{
+                    tabSelected: 1,
+                    tabId: $id('tabs'),
+                    tabButtonClicked(tabButton){
+                        this.tabSelected = tabButton.id.replace(this.tabId + '-', '');
+                        this.tabRepositionMarker(tabButton);
+                    },
+                    tabRepositionMarker(tabButton){
+                        this.$refs.tabMarker.style.width=tabButton.offsetWidth + 'px';
+                        this.$refs.tabMarker.style.height=tabButton.offsetHeight + 'px';
+                        this.$refs.tabMarker.style.left=tabButton.offsetLeft + 'px';
+                    },
+                    tabContentActive(tabContent){
+                        return this.tabSelected == tabContent.id.replace(this.tabId + '-content-', '');
+                    }
+                }"
+                x-init="tabRepositionMarker($refs.tabButtons.firstElementChild);" class="relative w-full max-w-sm">
+                
+                    <div x-ref="tabButtons" class="relative inline-grid items-center justify-center w-full h-10 grid-cols-2 p-1 text-gray-500 bg-gray-100 rounded-lg select-none">
+                        <button :id="$id(tabId)" @click="tabButtonClicked($el);" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Registrasi</button>
+                        <button :id="$id(tabId)" @click="tabButtonClicked($el);" type="button" class="relative z-20 inline-flex items-center justify-center w-full h-8 px-3 text-sm font-medium transition-all rounded-md cursor-pointer whitespace-nowrap">Login</button>
+                        <div x-ref="tabMarker" class="absolute left-0 z-10 w-1/2 h-full duration-300 ease-out" x-cloak><div class="w-full h-full bg-white rounded-md shadow-sm"></div></div>
+                    </div>
+                    <div class="relative w-full mt-2 content">
+                        <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)" class="relative">
+                            <!-- Tab Content 1 - Account -->
+                            <div class="border rounded-lg shadow-sm bg-card text-neutral-900">
+                                <div class="flex flex-col space-y-1.5 p-6">
+                                    <h3 class="text-lg font-semibold leading-none tracking-tight">Registrasi</h3>
+                                    <p class="text-sm text-neutral-500">Lakukan Pembuatan Akun Anda Di sini</p>
+                                </div>
+                                <div class="p-6 pt-0 space-y-2">
+                                    <div class="space-y-1">
+                                        <label class="text-sm font-medium leading-none" for="name">Nama</label>
+                                        <input type="text" placeholder="Masukan Nama Lengkap" id="name" value="" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400" />
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                                        <input type="email" placeholder="Masukan Email" id="email" name="email" required
+                                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400">
+                                    </div>
+                                    <div>
+                                        <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                                        <input type="password" id="password" name="password" required
+                                            placeholder="Password" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400">
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:space-x-2">
+                                        <button type="Google" class="w-full  mt-2 sm:w-[50%] bg-white text-black p-3 border border-black shadow-md hover:bg-white focus:outline-none focus:ring-2 flex items-center justify-center">
+                                            <img src="img/RegistrasiLogin/Google.png" alt="Icon" class="w-8 h-8 mr-1" />Google
+                                        </button>
+                                        <button type="Google" class="w-full mt-2 sm:w-[50%] bg-white text-black p-3 ml-0 sm:ml-2 border border-black shadow-md hover:bg-white focus:outline-none focus:ring-2 flex items-center justify-center">
+                                            <img src="img/RegistrasiLogin/Facebook.png" alt="Icon" class="w-8 h-8 mr-1" />Facebook
+                                        </button>
+                                    </div>
+                                    
+                                        <button type="submit"
+                                        class="w-[40%] my-5 bg-blue-500 text-white p-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Daftar</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="relative">
-                            <label for="email" class="block text-sm font-medium text-black">Email</label>
-                            <input type="email" id="email" name="email" required placeholder="Email"
-                                class="w-full p-3 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black">
-                            <span class="absolute left-3 top-[65%] transform -translate-y-1/2 text-gray-400">
-                                <i class="fas fa-envelope"></i>
-                            </span>
+                        <div :id="$id(tabId + '-content')" x-show="tabContentActive($el)" class="relative" x-cloak>
+                            <!-- Tab Content 2 - Password -->
+                            
+                            <div class="border rounded-lg shadow-sm p-12 bg-card text-neutral-900">
+                                <div class="flex  flex-col space-y-1.5">
+                                    <h3 class="text-lg font-semibold leading-none tracking-tight">Login</h3>
+                                    <p class="text-sm text-neutral-500">Masukan Akun Email Anda Disini</p>
+                                </div>
+                                <div class=" space-y-2">
+                                    <div class="space-y-1"><label class="text-sm font-medium leading-none" for="password">Akun</label><input type="password" placeholder="Masukan Akun" id="password" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400" /></div>
+                                    <div class="space-y-1"><label class="text-sm font-medium leading-none" for="password_new">Password</label><input type="password" placeholder="Password" id="password_new" class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400" /></div>
+                                </div>
+                                <div class="flex items-center"><button type="button" class="w-[40%] my-2 bg-blue-500 text-white p-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Masuk</button></div>
+                            </div>
                         </div>
-
-                        <div class="relative">
-                            <label for="phone" class="block text-sm font-medium text-black">Nomor HP</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="Nomor HP"
-                                class="w-full p-3 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black">
-                            <span class="absolute left-3 top-[65%] transform -translate-y-1/2 text-gray-400">
-                                <i class="fas fa-phone-alt"></i>
-                            </span>
-                        </div>
-
-                        <div class="relative">
-                            <label for="password" class="block text-sm font-medium text-black">Password</label>
-                            <input type="password" id="password" name="password" required placeholder="Password"
-                                class="w-full p-3 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black">
-                            <span class="absolute left-3 top-[65%] transform -translate-y-1/2 text-gray-400">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </div>
-
-                        <div class="relative">
-                            <label for="confirmpassword" class="block text-sm font-medium text-black">Ulangi
-                                Password</label>
-                            <input type="password" id="confirmpassword" name="confirmpassword" required
-                                placeholder="Ulangi Password"
-                                class="w-full p-3 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-black">
-                            <span class="absolute left-3 top-[65%] transform -translate-y-1/2 text-gray-400">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </div>
-
-                        <button type="submit"
-                            class="w-full bg-blue-500 text-white p-3 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Daftar</button>
-                    </form>
-                    <div class="text-center mt-4">
-                        <p class="text-sm text-gray-600">Sudah punya akun?</p>
-                        <div class="flex justify-center space-x-4">
-                            <!-- Link ke halaman login -->
-                            <a href="/login" class="text-blue-500 hover:underline">Masuk ke Akun</a>
-                            <!-- Link ke halaman utama -->
-                            <a href="/" class="text-blue-500 hover:underline">Kembali ke Beranda</a>
                         </div>
                     </div>
-
-
+                </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-
-
+    <x-footer class="w-full"></x-footer>
 
 </body>
-
-
 
 </html>

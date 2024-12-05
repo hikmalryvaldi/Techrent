@@ -10,7 +10,7 @@ Route::get('/', function () {
     return view('home', [
         'title' => 'Home',
         'carousels' => Carousel::all(),
-        'topProduct' => Product::orderBy('rental_count', 'desc')->take(3)->get(), // Menampilkan 3 produk dengan rental_count tertinggi
+        'topProduct' => Product::orderBy('rental_count', 'desc')->take(5)->get(), // Menampilkan 3 produk dengan rental_count tertinggi
     ]);
 });
 
@@ -21,3 +21,4 @@ Route::get('/registrasi', function () {
 Route::get('/produk', function () {
     return view('produk');
 });
+
