@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="img/navbar/LogoPutih.png" class="w-24">
-    <title>Halaman Home</title>
-</head>
+<x-header>Halaman Home</x-header>
 
 <body style="height: 100%; background-color: #ffff">
 
@@ -240,7 +225,9 @@
     </div>
     
 
-{{-- pertanyaan --}}
+
+    {{-- FAQ --}}
+
     <div class="mt-24">
         <h1 class="font-bold text-center text-4xl text-black">FREQUENTLY ASKED QUESTION</h1>
         <div class=" flex justify-center mt-10">
@@ -274,9 +261,8 @@
 
 
     {{-- footer --}}
-
     <x-footer></x-footer>
-    
+
 
     <script>
        const carouselItems = document.querySelectorAll('.carousel-item');

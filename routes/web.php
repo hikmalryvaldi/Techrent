@@ -18,4 +18,7 @@ Route::get('/registrasi', function () {
     return view('registrasi');
 });
 
+Route::get('/produk', function () {
+    return view('produk');
+});
 
