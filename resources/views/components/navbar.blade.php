@@ -80,6 +80,16 @@
                 <img src="{{asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
 
+            {{-- Button Log Out Sementara --}}
+            @auth
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="block px-4 py-2 text-sm text-white">
+                    Log out
+                </button>
+              </form>
+            @endauth
+
         </div>
 
     </div>
