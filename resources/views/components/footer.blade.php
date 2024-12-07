@@ -2,7 +2,8 @@
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
             <!-- Informasi dan Penawaran -->
-            <div class="bg-gray-700 flex flex-col sm:flex-row items-center rounded-lg p-6 sm:p-12 text-center max-w-3xl mx-auto space-y-4 sm:space-y-0 sm:space-x-4">
+            <div
+                class="bg-gray-700 flex flex-col sm:flex-row items-center rounded-lg p-6 sm:p-12 text-center max-w-3xl mx-auto space-y-4 sm:space-y-0 sm:space-x-4">
                 <h2 class="text-lg sm:text-2xl font-bold">DAPATKAN INFORMASI DAN PENAWARAN DARI KAMI</h2>
                 <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full">
                     <div class="relative w-full sm:w-64">
@@ -32,12 +33,12 @@
 
             <!-- Media Sosial -->
             <div class="flex justify-center mt-4 space-x-4">
-                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Intagram.png') }}"
-                        alt="Instagram" class="h-6 object-contain"></a>
+                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Intagram.png') }}" alt="Instagram"
+                        class="h-6 object-contain"></a>
                 <a href="#" class="hover:opacity-75"><img src="{{ asset('img/x.png') }}" alt="Twitter"
                         class="h-6 object-contain"></a>
-                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Facebook.png') }}"
-                        alt="Facebook" class="h-6 object-contain"></a>
+                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Facebook.png') }}" alt="Facebook"
+                        class="h-6 object-contain"></a>
             </div>
 
             <!-- Credit -->

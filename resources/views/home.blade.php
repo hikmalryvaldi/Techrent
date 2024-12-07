@@ -16,89 +16,99 @@
 
 
     </div>
-<!-- Carousel -->
-<div class="relative w-full">
-    <div class="carousell">
-        @foreach ($carousels as $carousel)
-        <div class="carousel-item">
-            <img src="{{ $carousel->image_path }}" alt="Slide 1" class="w-full h-[70%] object-cover">
-            <div class="absolute inset-0 flex items-center justify-start bg-opacity-50">
-                <div class="text-left  text-white  px-4 sm:px-8 md:px-16 ml-6 sm:ml-8 md:ml-40">
-                    <!-- Ukuran font akan lebih kecil di perangkat mobile -->
-                    <h1 class="text-sm sm:text-lg  md:text-3xl lg:text-4xl font-bold">{{ $carousel->product_name }}</h1>
-                    <button class="mt-4 px-8 py-2 hidden sm:block bg-white text-black font-semibold rounded hover:bg-gray-300">
-                        SEWA SEKARANG
-                    </button>
+    <!-- Carousel -->
+    <div class="relative w-full">
+        <div class="carousell">
+            @foreach ($carousels as $carousel)
+                <div class="carousel-item">
+                    <img src="{{ $carousel->image_path }}" alt="Slide 1" class="w-full h-[70%] object-cover">
+                    <div class="absolute inset-0 flex items-center justify-start bg-opacity-50">
+                        <div class="text-left  text-white  px-4 sm:px-8 md:px-16 ml-6 sm:ml-8 md:ml-40">
+                            <!-- Ukuran font akan lebih kecil di perangkat mobile -->
+                            <h1 class="text-sm sm:text-lg  md:text-3xl lg:text-4xl font-bold">
+                                {{ $carousel->product_name }}</h1>
+                            <button
+                                class="mt-4 px-8 py-2 hidden sm:block bg-white text-black font-semibold rounded hover:bg-gray-300">
+                                SEWA SEKARANG
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
 
-    <!-- Navigation -->
-    <button id="prev"
-        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-300">
-        &lt;
-    </button>
-    <button id="next"
-        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-300">
-        &gt;
-    </button>
-</div>
+        <!-- Navigation -->
+        <button id="prev"
+            class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-300">
+            &lt;
+        </button>
+        <button id="next"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-300">
+            &gt;
+        </button>
+    </div>
 
     <!-- Banner -->
     <div class="flex-grow flex items-center justify-center mt-12 px-2">
         <div class="relative rounded-lg overflow-hidden w-[1375px] h-[320px]">
             <!-- Gambar pertama (background) -->
-            <img src="{{ asset('img/halamanhome/Banner/BgSlogan.jpg') }}" alt="Background" class=" object-cover w-full h-auto rounded-lg" >
-            
+            <img src="{{ asset('img/halamanhome/Banner/BgSlogan.jpg') }}" alt="Background"
+                class=" object-cover w-full h-auto rounded-lg">
+
             <!-- Teks Overlay -->
-            <div class="absolute top-0 inset-0 flex items-center justify-center bg-opacity-50 sm:text-white  text-black">
-                <p class=" text-xs sm:text-1xl md:text-2xl lg:text-3xl font-bold text-center">Dapatkan Teknologi Terbaru Tanpa Membeli</p>
+            <div
+                class="absolute top-0 inset-0 flex items-center justify-center bg-opacity-50 sm:text-white  text-black">
+                <p class=" text-xs sm:text-1xl md:text-2xl lg:text-3xl font-bold text-center">Dapatkan Teknologi Terbaru
+                    Tanpa Membeli</p>
             </div>
         </div>
     </div>
-    
-    
+
+
 
     <div class="flex justify-center items-center mt-16 px-2 py-5">
-        <div class="flex flex-col sm:flex-row sm:space-x-4 gap-4 mx-auto">
+        <div class="flex flex-col sm:flex-row sm:space-x-4 gap-4 mx-auto justify-center items-center flex-wrap">
             <!-- Card 1 -->
-            <div class="rounded-lg overflow-hidden w-full sm:w-[320px] md:w-[350px] lg:w-[680px]">
+            <div class="rounded-lg overflow-hidden w-full sm:w-[320px] md:w-[350px] lg:w-[680px] max-w-full">
                 <div class="relative">
-                    <img src="{{ asset('img/halamanhome/NewProduk/Gimbal.jpg') }}" alt="Image" class="w-full h-[200px] sm:h-[250px] md:h-[320px] object-cover">
+                    <img src="{{ asset('img/halamanhome/NewProduk/Gimbal.jpg') }}" alt="Image"
+                        class="w-full h-[200px] sm:h-[250px] md:h-[320px] object-cover">
                     <div class="absolute top-0 left-0 right-0 bottom-0  opacity-50"></div>
                 </div>
                 <div class="p-4 text-center">
                     <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mt-5 mb-2">SONY ALPHA 6400</h1>
-                    <button class="btn hover:scale-105 bg-black text-white hover:bg-black hover:text-white px-8 sm:px-12 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
+                    <button
+                        class="btn hover:scale-105 bg-black text-white hover:bg-black hover:text-white px-8 sm:px-12 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
                         SEWA SEKARANG
                     </button>
                 </div>
             </div>
-    
+
             <!-- Card 2 -->
-            <div class="rounded-lg overflow-hidden w-full sm:w-[320px] md:w-[350px] lg:w-[680px]">
+            <div
+                class="rounded-lg overflow-hidden w-full sm:w-[320px] md:w-[350px] lg:w-[680px]  xl:w-[650px] 2xl:w-[680px] max-w-full">
                 <div class="relative">
-                    <img src="{{ asset('img/halamanhome/NewProduk/Canon.jpg') }}" alt="Image" class="w-full h-[200px] sm:h-[250px] md:h-[320px] object-cover">
+                    <img src="{{ asset('img/halamanhome/NewProduk/Canon.jpg') }}" alt="Image"
+                        class="w-full h-[200px] sm:h-[250px] md:h-[320px] object-cover">
                     <div class="absolute top-0 left-0 right-0 bottom-0"></div>
                 </div>
                 <div class="p-4 text-center">
-                    <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mt-5 mb-2">CANON EOS 750 D</h1>
-                    <button class="btn hover:scale-105 bg-black text-white hover:bg-black hover:text-white px-8 sm:px-12 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
+                    <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mt-5 mb-2">CANON EOS 90D</h1>
+                    <button
+                        class="btn hover:scale-105 bg-black text-white hover:bg-black hover:text-white px-8 sm:px-12 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
                         SEWA SEKARANG
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    
 
-    
-    
 
-      
-    
+
+
+
+
+
 
     {{-- Kategori --}}
     <div class="flex justify-center items-center">
@@ -120,7 +130,8 @@
                 <div
                     class="card2 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
                     <div class="relative w-full h-full overflow-hidden">
-                        <p class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
+                        <p
+                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             LENSA</p>
                         <img src="{{ asset('img/halamanhome/kategori/Lensa.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg" style="object-position: 20% 30%;">
@@ -140,7 +151,8 @@
                 <div
                     class="card4 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
                     <div class="relative w-full h-full overflow-hidden">
-                        <p class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
+                        <p
+                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             SPEAKER</p>
                         <img src="{{ asset('img/halamanhome/kategori/Sound.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg">
@@ -154,18 +166,20 @@
         </div>
     </div>
 
-      <!-- Persegi Panjang -->
+    <!-- Persegi Panjang -->
 
-      <div class="flex-grow flex items-center justify-center mt-24 px-3">
+    <div class="flex-grow flex items-center justify-center mt-24 px-3">
         <div class="relative rounded-lg overflow-hidden w-[1375px] h-[320px]">
             <!-- Gambar pertama (background) -->
             <img src="{{ asset('img/BgProduk.png') }}" alt="Background" class=" object-cover rounded-lg">
-    
+
             <!-- Teks Overlay -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center sm:text-white mt-8 sm:mt-0 text-black bg-opacity-50">
+            <div
+                class="absolute inset-0 flex flex-col items-center justify-center sm:text-white mt-8 sm:mt-0 text-black bg-opacity-50">
                 <p class="text-1xl font-bold text-center">SONY ALPA + TRIPOD</p>
                 <h1 class="text-5xl font-bold text-center">SAVE UP TO 30%</h1>
-                <button class="btn hover:scale-105 bg-white text-black hover:bg-white hover:text-black px-4 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
+                <button
+                    class="btn hover:scale-105 bg-white text-black hover:bg-white hover:text-black px-4 py-2 rounded-lg text-xs sm:text-sm md:text-md lg:text-lg mt-6 transition duration-300">
                     SEWA SEKARANG
                 </button>
             </div>
@@ -223,7 +237,7 @@
 
 
     </div>
-    
+
 
 
     {{-- FAQ --}}
@@ -265,36 +279,35 @@
 
 
     <script>
-       const carouselItems = document.querySelectorAll('.carousel-item');
-let currentIndex = 0;
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
 
-function showSlide(index) {
-    carouselItems.forEach((item, i) => {
-        item.classList.toggle('hidden', i !== index);
-    });
-}
+        function showSlide(index) {
+            carouselItems.forEach((item, i) => {
+                item.classList.toggle('hidden', i !== index);
+            });
+        }
 
-// Tombol "prev" tidak akan mempengaruhi carousel, hanya dibiarkan ada
-document.getElementById('prev').addEventListener('click', () => {
-    // Tidak ada perubahan posisi untuk tombol "prev"
-    // Bisa mengosongkan atau melakukan logika lain jika diperlukan
-});
+        // Tombol "prev" tidak akan mempengaruhi carousel, hanya dibiarkan ada
+        document.getElementById('prev').addEventListener('click', () => {
+            // Tidak ada perubahan posisi untuk tombol "prev"
+            // Bisa mengosongkan atau melakukan logika lain jika diperlukan
+        });
 
-// Tombol "next" akan menggeser carousel ke slide berikutnya
-document.getElementById('next').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % carouselItems.length; // Hanya maju
-    showSlide(currentIndex);
-});
+        // Tombol "next" akan menggeser carousel ke slide berikutnya
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % carouselItems.length; // Hanya maju
+            showSlide(currentIndex);
+        });
 
-// Auto-slide setiap 5 detik
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % carouselItems.length; // Hanya maju
-    showSlide(currentIndex);
-}, 5000);
+        // Auto-slide setiap 5 detik
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % carouselItems.length; // Hanya maju
+            showSlide(currentIndex);
+        }, 5000);
 
-// Inisialisasi carousel
-showSlide(currentIndex);
-
+        // Inisialisasi carousel
+        showSlide(currentIndex);
     </script>
 
 
