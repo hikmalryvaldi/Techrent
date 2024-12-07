@@ -1,7 +1,7 @@
 @if ($isRegistrationPage)
-    <div class="navbar bg-[#B4BEC9] h-12 w-full fixed top-0 left-0 z-10">
+    <div class="navbar bg-[#282828] h-12">
         <div class="navbar-start">
-            <a href="/"><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto hidden sm:block"
+            <a href="/"><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto "
                     alt=""></a>
         </div>
     </div>
@@ -55,7 +55,8 @@
                     <li><a>Keranjang</a></li>
                 </ul>
             </div>
-            <a ><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto " alt=""></a>
+            <a href="/"><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto "
+                    alt=""></a>
         </div>
 
         <div class="navbar-center hidden lg:flex text-black">
@@ -74,10 +75,10 @@
                 <input type="text" placeholder="Search" class="input input-bordered h-8 w-24 md:w-auto bg-white" />
             </div>
             <a class="btn btn-ghost btn-circle ml-5">
-               <img src="{{ asset ('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
+                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
             <a class="btn btn-ghost btn-circle" href="registrasi">
-                <img src="{{asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
+                <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
 
             {{-- Button Log Out Sementara --}}
