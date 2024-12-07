@@ -26,15 +26,20 @@
                 </button>
             </div>
 
+            @if(session()->has('success'))<div class="mb-4 text-sm text-green-800 rounded-lg dark:text-green-400" role="alert"><span class="font-medium">{{ session('success') }}</div>
+            @endif
+
+            @if(session()->has('loginError'))<div class="mb-4 text-sm text-red-800 rounded-lg dark:text-red-400" role="alert"><span class="font-medium">{{ session('loginError') }}</div>@endif
+
             <!-- Form Login -->
             <div id="loginForm" class="form-container w-full">
-                <form action="#" method="POST" class="space-y-6" autocomplete="off">
-
+                <form action="/login" method="POST" class="space-y-6" autocomplete="off">
+                    @csrf
                     <div class="relative">
                         <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email:</label>
                         <input type="email" id="loginEmail" name="email"
                             class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm bg-white text-black"
-                            placeholder="Masukkan Email">
+                            placeholder="Masukkan Email" novalidate>
 
                         <i class="fas fa-envelope absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
@@ -77,15 +82,19 @@
 
             <!-- Form Register -->
             <div id="registerForm" class="form-container w-full hidden">
-                <form action="#" method="POST" class="space-y-6" autocomplete="off">
+                <form action="/registrasi" method="POST" class="space-y-6" autocomplete="off">
+                    @csrf
                     <div class="relative">
-                        <label for="fullName" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-                        <input type="text" id="fullName" name="full_name"
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama"
                             class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm bg-white text-black"
-                            placeholder="Masukkan Nama Lengkap" required>
+                            placeholder="Masukkan Nama Lengkap" >
                         <!-- Ikon Nama -->
                         <i class="fas fa-user absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
+                    @error('nama')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
                     <div class="relative">
                         <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" id="loginEmail" name="email"
@@ -94,6 +103,9 @@
 
                         <i class="fas fa-envelope absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
+                    @error('email')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
                     <div class="relative">
                         <label for="loginPhone" class="block text-sm font-medium text-gray-700">Nomor HP</label>
                         <input type="tel" id="loginPhone" name="phone"
@@ -103,6 +115,9 @@
                         <i
                             class="fas fa-phone-alt absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
+                    @error('phone')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
                     <div class="relative">
                         <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
                         <input type="password" id="loginPassword" name="password"
@@ -111,6 +126,9 @@
 
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
+                    @error('password')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
 
                     <!-- Konfirmasi Password -->
                     <div class="relative">
@@ -122,6 +140,9 @@
 
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
+                    @error('email')
+                        <p class="text-red-500">{{ $message }}</p>
+                    @enderror
                     <button type="submit"
                         class="w-full py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Daftar</button>
                 </form>

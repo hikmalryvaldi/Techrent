@@ -77,9 +77,19 @@
             <a class="btn btn-ghost btn-circle ml-5">
                 <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
-            <a class="btn btn-ghost btn-circle" href="login">
+            <a class="btn btn-ghost btn-circle" href="registrasi">
                 <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
+
+            {{-- Button Log Out Sementara --}}
+            @auth
+            <form action="/logout" method="post">
+                @csrf
+                <button type="submit" class="block px-4 py-2 text-sm text-white">
+                    Log out
+                </button>
+              </form>
+            @endauth
 
         </div>
 
