@@ -14,11 +14,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/registrasi', function () {
-    return view('registrasi');
+Route::get('/login', function () {
+    return view('login');
 });
 
 Route::get('/produk', function () {
     return view('produk');
 });
-
