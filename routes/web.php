@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\FeaturedProductController;
+use App\Http\Controllers\SocialiteController;
 
 Route::get('/', function () {
     return view('home', [
@@ -29,8 +30,8 @@ Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::controller(GoogleController::class)->group(function(){
-    Route::get('auth/google', 'googleLogin')->name('auth.google');
+Route::controller(SocialiteController::class)->group(function(){
+    Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
     
-    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback'); 
+    Route::get('auth/{provider}-callback', 'providerAuthentication'); 
 });

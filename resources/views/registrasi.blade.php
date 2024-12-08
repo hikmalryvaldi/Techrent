@@ -61,7 +61,7 @@
                     <!-- Opsi Login dengan Facebook dan Google -->
                     <div class="flex items-center space-x-4 mt-2">
                         <!-- Login with Facebook -->
-                        <a href="#"
+                        <a href="{{ route('auth.redirection', 'facebook') }}"
                             class="w-full flex items-center justify-center py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                             <i class="fab fa-facebook-f mr-2"></i> Login dengan Facebook
                         </a>
@@ -69,7 +69,7 @@
 
                     <div class="flex items-center space-x-4 mt-2">
                         <!-- Login with Google -->
-                        <a href="auth/google"
+                        <a href="{{ route('auth.redirection', 'google') }}"
                             class="w-full flex items-center justify-center py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">
                             <i class="fab fa-google mr-2"></i> Login dengan Google
                         </a>
