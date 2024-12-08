@@ -69,7 +69,7 @@
 
                     <div class="flex items-center space-x-4 mt-2">
                         <!-- Login with Google -->
-                        <a href="#"
+                        <a href="auth/google"
                             class="w-full flex items-center justify-center py-3 bg-red-600 text-white rounded-lg hover:bg-red-700">
                             <i class="fab fa-google mr-2"></i> Login dengan Google
                         </a>
