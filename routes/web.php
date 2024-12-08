@@ -5,6 +5,7 @@ use App\Models\Carousel;
 use App\Models\FeaturedProduct;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\FeaturedProductController;
 
@@ -27,3 +28,9 @@ Route::get('/produk', function () {
 Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'googleLogin')->name('auth.google');
+    
+    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback'); 
+});
