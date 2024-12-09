@@ -61,12 +61,12 @@
 
         <div class="navbar-center hidden lg:flex text-black">
             <ul class="menu menu-horizontal px-1">
-                <li><a class="text-xl text-white font-bold">KAMERA</a></li>
+                <li><a class="text-xl text-white font-bold" href="produkKamera">KAMERA</a></li>
                 <li>
-                    <a class="text-xl text-white font-bold" href="">PLAYSTATION</a>
+                    <a class="text-xl text-white font-bold" href="produkLensa">LENSA</a>
                 </li>
-                <li><a class="text-xl text-white font-bold" href="">SPEAKER</a></li>
-                <li><a class="text-xl text-white font-bold" href="">LENSA</a></li>
+                <li><a class="text-xl text-white font-bold" href="produkPlayStation">PLAYSTATION</a></li>
+                <li><a class="text-xl text-white font-bold" href="produkSound">SPEAKER</a></li>
             </ul>
         </div>
 
@@ -74,7 +74,7 @@
             <div class="form-control">
                 <input type="text" placeholder="Search" class="input input-bordered h-8 w-24 md:w-auto bg-white" />
             </div>
-            <a class="btn btn-ghost btn-circle ml-5">
+            <a class="btn btn-ghost btn-circle ml-5" href="keranjang">
                 <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
             </a>
             <a class="btn btn-ghost btn-circle" href="registrasi">
