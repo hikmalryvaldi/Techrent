@@ -26,6 +26,16 @@ Route::get('/produk', function () {
     return view('produk');
 });
 
+Route::get('/detailProduk', function () {
+    return view('detailProduk');
+});
+
+Route::get('/keranjang', function () {
+    return view('keranjang');
+});
+
+
+
 Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
