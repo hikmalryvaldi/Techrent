@@ -83,6 +83,15 @@
                             Login dengan X
                         </a>
                     </div>
+
+                    {{-- Button Login Dengan Github Sementara (Backend)--}}
+                    <div class="flex items-center space-x-4 mt-2">
+                        <!-- Login with Facebook -->
+                        <a href="{{ route('auth.redirection', 'github') }}"
+                            class="w-full flex items-center justify-center py-3 bg-gray-600 text-white rounded-lg hover:bg-blue-700">
+                            Login dengan Github
+                        </a>
+                    </div>
                 </form>
                 <div class="mt-2 text-center">
                     <a href="/" class="text-blue-500 hover:text-blue-700">Kembali ke Home</a>
