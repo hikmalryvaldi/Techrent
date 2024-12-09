@@ -24,6 +24,10 @@ Route::get('/produk', function () {
     return view('produk');
 });
 
+Route::get('/profile', function () {
+    return view('profile');
+});
+
 Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
