@@ -26,6 +26,10 @@ Route::get('/produk', function () {
     return view('produk');
 });
 
+Route::get('/profile', function () {
+    return view('profile');
+});
+
 Route::get('/detailProduk', function () {
     return view('detailProduk');
 });
@@ -33,8 +37,6 @@ Route::get('/detailProduk', function () {
 Route::get('/keranjang', function () {
     return view('keranjang');
 });
-
-
 
 Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
