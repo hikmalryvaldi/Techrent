@@ -26,9 +26,9 @@
                 <img src="{{ asset('img/Bni.png') }}" alt="BNI" class="h-24 object-contain">
                 <img src="{{ asset('img/bca.png') }}" alt="BCA" class="h-24 object-contain">
                 <img src="{{ asset('img/Bri.png') }}" alt="BRI" class="h-24 object-contain">
-                <img src="{{ asset('img/dana.jpg') }}" alt="DANA" class="w-24 h-[70px] rounded-lg object-contain">
+                <img src="{{ asset('img/dana.jpg') }}" alt="DANA" class="w-32 h-[68px] rounded-lg object-contain">
                 <img src="{{ asset('img/QRIS.png') }}" alt="QRIS" class="h-10 object-contain">
-                <img src="{{ asset('img/ovo.jpg') }}" alt="OVO" class="w-24 h-[70px] rounded-lg object-contain">
+                <img src="{{ asset('img/ovo.jpg') }}" alt="OVO" class="w-32 h-[68px] rounded-lg object-contain">
             </div>
 
             <!-- Media Sosial -->
@@ -43,7 +43,7 @@
 
             <!-- Credit -->
             <div class="mt-8 text-center text-gray-400">
-                © 2024 Techrent
+                Copyright © 2024 Techrent
             </div>
         </div>
     </footer>
