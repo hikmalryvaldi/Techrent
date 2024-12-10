@@ -4,11 +4,12 @@ use App\Models\Product;
 use App\Models\Carousel;
 use App\Models\FeaturedProduct;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\FeaturedProductController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\FeaturedProductController;
 
 Route::get('/', function () {
     return view('home', [
@@ -17,6 +18,9 @@ Route::get('/', function () {
         'topProduct' => Product::orderBy('rental_count', 'desc')->take(5)->get(), // Menampilkan 3 produk dengan rental_count tertinggi
     ]);
 });
+
+Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
+Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show');  // Halaman detail produk
 
 Route::get('/registrasi', function () {
     return view('registrasi');
