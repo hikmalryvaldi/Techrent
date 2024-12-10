@@ -32,6 +32,6 @@ class HomeController extends Controller
         $product = Product::findOrFail($id);
 
         // Mengembalikan view produk detail
-        return view('detailProduk', compact('product'));
+        return view('produk.detail-produk', compact('product'));
     }
 }

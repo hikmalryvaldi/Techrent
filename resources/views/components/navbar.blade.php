@@ -98,14 +98,7 @@
                         <li>
                             <a href="/profile">Profile</a> <!-- Halaman profil langsung -->
                         </li>
-                        <li>
-                            @auth
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left">Logout</button>
-                                </form>
-                            @endauth
-                        </li>
+
                     </ul>
                 </div>
 
@@ -168,7 +161,7 @@
                 <a class="btn btn-ghost btn-circle ml-5">
                     <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
                 </a>
-                <a class="btn btn-ghost btn-circle" href="registrasi">
+                <a class="btn btn-ghost btn-circle" href="{{ route('auth') }}">
                     <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
                 </a>
 
