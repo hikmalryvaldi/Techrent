@@ -26,6 +26,8 @@ Route::get('/detailProduk', [ProdukController::class, 'detailProduk']);
 Route::get('/profile', [UserController::class, 'index']);
 Route::get('/keranjang', [CartController::class, 'index']);
 
+Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middleware('guest');
+Route::post('/registrasi', [RegisterController::class, 'store'])->name('register');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout']);
