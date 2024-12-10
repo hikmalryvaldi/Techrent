@@ -72,8 +72,15 @@
             </div>
 
             <div class="navbar-end hidden lg:flex">
-                <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered h-8 w-24 md:w-auto bg-white" />
+                <div class="form-control relative">
+                    <!-- Input Pencarian -->
+                    <input type="text" id="search-input" placeholder="Search"
+                        class="input input-bordered h-8 w-24 md:w-auto bg-white" autocomplete="off" onkeyup="liveSearch()">
+
+                    <!-- Dropdown untuk hasil pencarian -->
+                    <div id="dropdown"
+                        class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                    </div>
                 </div>
                 <a class="btn btn-ghost btn-circle ml-5">
                     <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
@@ -147,9 +154,16 @@
             </div>
 
             <div class="navbar-end hidden lg:flex">
-                <div class="form-control">
-                    <input type="text" placeholder="Search"
-                        class="input input-bordered h-8 w-24 md:w-auto bg-white" />
+                <div class="form-control relative">
+                    <!-- Input Pencarian -->
+                    <input type="text" id="search-input" placeholder="Search"
+                        class="input input-bordered h-8 w-24 md:w-auto bg-white" autocomplete="off"
+                        onkeyup="liveSearch()">
+
+                    <!-- Dropdown untuk hasil pencarian -->
+                    <div id="dropdown"
+                        class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                    </div>
                 </div>
                 <a class="btn btn-ghost btn-circle ml-5">
                     <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
@@ -165,3 +179,49 @@
         </div>
     @endauth
 @endif
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function liveSearch() {
+        var searchQuery = document.getElementById('search-input').value;
+
+        // Menyembunyikan dropdown jika input kosong
+        if (searchQuery === '') {
+            document.getElementById('dropdown').classList.add('hidden');
+            return;
+        }
+
+        // Lakukan request AJAX untuk mendapatkan hasil pencarian
+        $.ajax({
+            url: '/search', // Rute untuk pencarian
+            type: 'GET',
+            data: {
+                search: searchQuery // Mengirimkan parameter pencarian
+            },
+            success: function(response) {
+                var dropdown = $('#dropdown');
+                dropdown.empty(); // Kosongkan dropdown sebelum mengisi
+
+                // Jika ada produk yang ditemukan
+                if (response.length > 0) {
+                    response.forEach(function(product) {
+                        // Menambahkan produk ke dalam dropdown
+                        dropdown.append(`
+                            <a href="/produk/${product.id}" class="mt-2 block px-4 py-2 text-gray-700 hover:bg-gray-200">
+                                ${product.product_name}
+                            </a>
+                        `);
+                    });
+
+                    // Menampilkan dropdown
+                    dropdown.removeClass('hidden');
+                } else {
+                    // Menampilkan pesan jika tidak ada produk ditemukan
+                    dropdown.append(`
+                        <div class="px-4 py-2 text-gray-500">No results found</div>
+                    `);
+                    dropdown.removeClass('hidden');
+                }
+            }
+        });
+    }
+</script>
