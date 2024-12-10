@@ -98,7 +98,14 @@
                         <li>
                             <a href="/profile">Profile</a> <!-- Halaman profil langsung -->
                         </li>
-
+                        <li>
+                            @auth
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left">Logout</button>
+                                </form>
+                            @endauth
+                        </li>
                     </ul>
                 </div>
 
