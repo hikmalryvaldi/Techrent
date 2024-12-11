@@ -99,14 +99,14 @@
                         <li>
                             <a href="{{ route('profile') }}">Profile </a>
                         </li>
-                        <li>
                             @auth
                                 <form action="/logout" method="POST">
                                     @csrf
+                                    <li>
                                     <button type="submit" class="w-full text-left">Logout</button>
+                                    </li>
                                 </form>
                             @endauth
-                        </li>
                     </ul>
                 </div>
 
