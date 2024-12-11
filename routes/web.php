@@ -38,12 +38,16 @@ Route::get('/keranjang', function () {
     return view('keranjang');
 });
 
+Route::get('/ubahPassword', function () {
+    return view('ubahPassword');
+});
+
 Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::controller(SocialiteController::class)->group(function(){
+Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
-    
-    Route::get('auth/{provider}-callback', 'providerAuthentication'); 
+
+    Route::get('auth/{provider}-callback', 'providerAuthentication');
 });

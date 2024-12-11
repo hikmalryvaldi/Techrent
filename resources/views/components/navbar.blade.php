@@ -49,11 +49,16 @@
                                     class="input input-bordered h-8 w-40 md:w-100% bg-white" />
                             </div>
                         </li>
-                        <li><a>Akun</a></li>
+                        <li><a href="profile">Profile</a></li>
                         <li>
-                            <a href=""></a>
+                            <a href="">Keranjang</a>
                         </li>
-                        <li><a>Keranjang</a></li>
+                        <li>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="w-full text-left">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 <a href="/"><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto "
@@ -62,12 +67,12 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
                 </ul>
             </div>
 
@@ -83,7 +88,7 @@
                 <div class="dropdown">
                     <div tabindex="0" role="button" class="btn m-1">
                         <a class="btn btn-circle">
-                            <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="Profile">
+                            Nama user
                         </a>
                     </div>
                     <ul tabindex="0"
@@ -124,11 +129,11 @@
                                     class="input input-bordered h-8 w-40 md:w-100% bg-white" />
                             </div>
                         </li>
-                        <li><a>Akun</a></li>
+                        <li><a href="registrasi">Login</a></li>
                         <li>
                             <a href=""></a>
                         </li>
-                        <li><a>Keranjang</a></li>
+
                     </ul>
                 </div>
                 <a href="/"><img src="{{ asset('img/navbar/LogoPutih.png') }}" class="max-h-20 h-auto w-auto "
@@ -137,12 +142,12 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
+                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
                 </ul>
             </div>
 
