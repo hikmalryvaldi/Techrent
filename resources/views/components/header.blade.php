@@ -15,5 +15,14 @@
     <link rel="icon" href="img/navbar/LogoPutih.png" class="w-24">
     <script src="https://unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+
+    {{-- FROM BACKEND --}}
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- Leaflet Geocoding -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    {{-- END FROM BACKEND --}}
     <title>{{ $slot }}</title>
 </head>
