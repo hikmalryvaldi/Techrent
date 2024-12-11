@@ -97,10 +97,7 @@
                     <ul tabindex="0"
                         class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
                         <li>
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <button type="submit" class="w-full text-left">Logout</button>
-                            </form>
+                            <a href="{{ route('profile') }}">Profile </a>
                         </li>
                         <li>
                             @auth

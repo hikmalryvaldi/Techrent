@@ -23,7 +23,7 @@ Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show')
 Route::get('/', [CarouselController::class, 'carousel']);
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/detailProduk', [ProdukController::class, 'detailProduk']);
-Route::get('/profile', [UserController::class, 'index']);
+Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::get('/keranjang', [CartController::class, 'index']);
 
 Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middleware('guest');
