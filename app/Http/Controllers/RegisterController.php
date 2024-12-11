@@ -20,7 +20,7 @@ class RegisterController extends Controller
                 'nama' => 'required|max:255',
                 'email' => 'required|email|unique:users',
                 'phone' => 'required|numeric|unique:users',
-                'password' => 'required|min:5|max:255',
+                'password' => 'required|min:5|max:255|confirmed',
                 'confirm_password' => 'required|same:password'
             ]);
 
