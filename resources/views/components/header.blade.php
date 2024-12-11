@@ -15,5 +15,6 @@
     <link rel="icon" href="img/navbar/LogoPutih.png" class="w-24">
     <script src="https://unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <title>{{ $slot }}</title>
 </head>
