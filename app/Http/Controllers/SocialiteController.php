@@ -27,11 +27,14 @@ class SocialiteController extends Controller
     
     if ($existingUser) {
         // Jika email sudah terdaftar dan provider_id terisi (not null)
-        if (is_null($existingUser->provider_id)) {
-            // Mengarahkan ke rute /register dengan session emailTerdaftar
-            return to_route('auth')->with('emailTerdaftar', 'Email sudah terdaftar dengan metode login lain');
+        if($existingUser->provider_id === $user->id){
+            Auth::login($existingUser);
+            return redirect()->intended('/');
+        } else {
+        // Mengarahkan ke rute /register dengan session emailTerdaftar
+        return to_route('auth')->with('emailTerdaftar', 'Email sudah terdaftar dengan metode login lain');
         }
-        
+
         // Jika email terdaftar tapi belum menggunakan metode login lain (misalnya, belum ada provider_id)
         // Proses login biasa, bisa diarahkan ke halaman dashboard atau lainnya
         Auth::login($existingUser);
