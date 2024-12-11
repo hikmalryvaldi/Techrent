@@ -206,8 +206,8 @@
             if (sessionSuccess) {
                 // Menjalankan showLoginForm jika session success ada
                 showRegisterForm();
-            } else if (sessionEmail){
-                showForm();
+            }else{
+                showLoginForm();
             }
             
 
