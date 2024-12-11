@@ -89,14 +89,18 @@
 
                 <div class="dropdown">
                     <div tabindex="0" role="button" class="btn m-1">
-                        <a class="btn btn-circle">
-                            <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="Profile">
-                        </a>
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <button type="submit" class="w-full text-left">Logout</button>
+                        </form>
                     </div>
                     <ul tabindex="0"
                         class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
                         <li>
-                            <a href="/profile">Profile</a> <!-- Halaman profil langsung -->
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="w-full text-left">Logout</button>
+                            </form>
                         </li>
                         <li>
                             @auth

@@ -32,6 +32,7 @@
                 <div class="flex justify-center items-center">
                     @if(session()->has('success'))<div class="mb-4 text-sm text-green-800 rounded-lg dark:text-green-400" role="alert"><span class="font-medium">{{ session('success') }}</div>@endif
                     @if(session()->has('loginError'))<div class="mb-4 text-sm text-red-800 rounded-lg dark:text-red-400" role="alert"><span class="font-medium">{{ session('loginError') }}</div>@endif
+                    @if(session()->has('emailTerdaftar'))<div class="mb-4 text-sm text-red-800 rounded-lg dark:text-red-400" role="alert"><span class="font-medium">{{ session('emailTerdaftar') }}</div>@endif
                 </div>
 
                 <form action="{{ route('login') }}" method="POST" class="space-y-6" autocomplete="off">
@@ -205,8 +206,8 @@
             if (sessionSuccess) {
                 // Menjalankan showLoginForm jika session success ada
                 showRegisterForm();
-            } else{
-                showLoginForm();
+            } else if (sessionEmail){
+                showForm();
             }
             
 

@@ -16,34 +16,42 @@ class SocialiteController extends Controller
     //     return Socialite::driver('facebook')->redirect();
     // }
 
-    public function providerAuthentication($provider){
-        // $User = Socialite::driver('google')->user();
-
-        // dd($User);
-        try {
-            if ($provider){
-                $provider_user = Socialite::driver($provider)->user();
-                $user = User::where('email', $provider_user->email)->first();
-            if ($user){
-                Auth::login($user);
-                return redirect('/');
-            } else {
-                $new_user = User::create([
-                    'nama' => ucwords($provider_user->name),
-                    'email' => $provider_user->email,
-                    'phone' => '0987654321',
-                    'password' => 'password',
-                    'confirm_password' => 'password' ,
-                ]);
-
-                Auth::login($new_user);
-                return redirect('/');
-            }
-        } abort(404);
-        } catch (\Throwable $th){
-            abort(404);
+    public function providerAuthentication($provider)
+{
+    // Mengambil data user dari provider (misalnya, Google)
+    $user = Socialite::driver($provider)->user();
+    
+    // Cek apakah email sudah terdaftar di database
+    $existingUser = User::where('email', $user->email)->first();
+    
+    if ($existingUser) {
+        // Jika email sudah terdaftar dan provider_id terisi (not null)
+        if (is_null($existingUser->provider_id)) {
+            // Mengarahkan ke rute /register dengan session emailTerdaftar
+            return to_route('auth')->with('emailTerdaftar', 'Email sudah terdaftar dengan metode login lain');
         }
+        
+        // Jika email terdaftar tapi belum menggunakan metode login lain (misalnya, belum ada provider_id)
+        // Proses login biasa, bisa diarahkan ke halaman dashboard atau lainnya
+        Auth::login($existingUser);
+        return redirect()->intended('/');
     }
+    
+    // Jika email belum terdaftar, buat user baru
+    $newUser = User::create([
+        'name' => $user->getName(),
+        'email' => $user->getEmail(),
+        'phone' => '0987654321',
+        'id_provider' => $user->getId(),
+        // kolom lain yang diperlukan seperti 'password' jika dibutuhkan
+    ]);
+    
+    // Login otomatis setelah registrasi
+    auth::login($newUser);
+    
+    return redirect()->intended('/');
+}
+
     // public function facebookAuthentication($provider){
     //     $User = Socialite::driver($provider)->user();
 
