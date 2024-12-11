@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -39,10 +40,11 @@ class SocialiteController extends Controller
     
     // Jika email belum terdaftar, buat user baru
     $newUser = User::create([
-        'name' => $user->getName(),
-        'email' => $user->getEmail(),
-        'phone' => '0987654321',
+        'nama' => $user->name,
+        'email' => $user->email,
+        // 'phone' => '0987654321',
         'id_provider' => $user->getId(),
+        'password' => bcrypt(Str::random(10)),
         // kolom lain yang diperlukan seperti 'password' jika dibutuhkan
     ]);
     
