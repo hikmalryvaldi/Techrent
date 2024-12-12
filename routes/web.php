@@ -31,9 +31,9 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // admin
-Route::get('/Admin/dasboard', function () {
-    return view('/Admin/dasboard');
-});
+Route::get('/Admin/dashboard', function () {
+    return view('/Admin/dashboard');
+})->name('admin.dashboard')->middleware('admin');
 
 Route::get('/Admin/produk', function(){
     return view ('/Admin/produk');
