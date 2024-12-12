@@ -37,6 +37,15 @@ Route::get('/Admin/dasboard', function(){
     return view ('/Admin/dasboard');
 });
 
+Route::get('/Admin/produk', function(){
+    return view ('/Admin/produk');
+});
+
+Route::get('/Admin/tambahProduk', function(){
+    return view ('/Admin/tambahProduk');
+});
+
+
 
 
 Route::controller(SocialiteController::class)->group(function () {
