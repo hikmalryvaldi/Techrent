@@ -19,7 +19,6 @@ use Symfony\Component\Routing\Router;
 Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
 Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show');  // Halaman detail produk
 
-
 Route::get('/', [CarouselController::class, 'carousel']);
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/detailProduk', [ProdukController::class, 'detailProduk']);
@@ -28,13 +27,12 @@ Route::get('/keranjang', [CartController::class, 'index']);
 
 Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middleware('guest');
 Route::post('/registrasi', [RegisterController::class, 'store'])->name('register');
-
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // admin
-Route::get('/Admin/dasboard', function(){
-    return view ('/Admin/dasboard');
+Route::get('/Admin/dasboard', function () {
+    return view('/Admin/dasboard');
 });
 
 Route::get('/Admin/produk', function(){
@@ -45,8 +43,9 @@ Route::get('/Admin/tambahProduk', function(){
     return view ('/Admin/tambahProduk');
 });
 
-
-
+Route::get('/ubahPassword', function () {
+    return view('ubahPassword');
+});
 
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
