@@ -1,4 +1,4 @@
-<x-header>Login</x-header>
+<x-header>auth</x-header>
 
 <body class="bg-white items-center">
     <x-navbar :isRegistrationPage="true"></x-navbar>
@@ -32,9 +32,10 @@
                 <div class="flex justify-center items-center">
                     @if(session()->has('success'))<div class="mb-4 text-sm text-green-800 rounded-lg dark:text-green-400" role="alert"><span class="font-medium">{{ session('success') }}</div>@endif
                     @if(session()->has('loginError'))<div class="mb-4 text-sm text-red-800 rounded-lg dark:text-red-400" role="alert"><span class="font-medium">{{ session('loginError') }}</div>@endif
+                    @if(session()->has('emailTerdaftar'))<div class="mb-4 text-sm text-red-800 rounded-lg dark:text-red-400" role="alert"><span class="font-medium">{{ session('emailTerdaftar') }}</div>@endif
                 </div>
 
-                <form action="/login" method="POST" class="space-y-6" autocomplete="off">
+                <form action="{{ route('login') }}" method="POST" class="space-y-6" autocomplete="off">
                     @csrf
                     <div class="relative">
                         <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email:</label>
@@ -101,7 +102,7 @@
 
             <!-- Form Register -->
             <div id="registerForm" class="form-container w-full hidden">
-                <form action="/registrasi" method="POST" class="space-y-6" autocomplete="off">
+                <form action="{{ route('register') }}" method="POST" class="space-y-6" autocomplete="off">
                     @csrf
                     <div class="relative">
                         <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
@@ -205,7 +206,7 @@
             if (sessionSuccess) {
                 // Menjalankan showLoginForm jika session success ada
                 showRegisterForm();
-            } else{
+            }else{
                 showLoginForm();
             }
             

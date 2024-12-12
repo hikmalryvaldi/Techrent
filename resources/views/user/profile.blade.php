@@ -1,5 +1,14 @@
 <x-header>Profile</x-header>
 
+{{-- FROM BACKEND --}}
+<style>
+    #map { 
+        height: 200px; 
+        width: 300px;    
+    }
+</style>
+{{-- END FROM BACKEND --}}
+
 <body>
     <x-navbar :isRegistrationPage="true"></x-navbar>
 
@@ -75,10 +84,14 @@
                             </button>
                         </div>
 
+                        {{-- FROM BACKEND --}}
+                        <div id="map"></div>
+                        {{-- END FROM BACKEND --}}
+
                         {{-- Alamat --}}
                         <div class="flex items-center gap-2 mt-8 -ml-2 sm:w-[50%] w-full">
                             <textarea placeholder="Alamat" class="textarea textarea-bordered textarea-lg w-full max-w-xs bg-[#282828] text-white"
-                                disabled></textarea>
+                                disabled id="address"></textarea>
                             <button class="mt-2 ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"
                                     viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -114,3 +127,57 @@
         </div>
     </div>
 </body>
+
+{{-- FROM BACKEND --}}
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([ -6.914744, 107.609810], 13);  // Default center (London)
+
+    // Add OpenStreetMap tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Create a marker variable
+    var marker;
+
+    // When the user clicks on the map, place a marker
+    map.on('click', function(e) {
+        // Get the clicked position (lat, lon)
+        var latLng = e.latlng;
+
+        // If there is an existing marker, remove it
+        if (marker) {
+            map.removeLayer(marker);
+        }
+
+        // Place a new marker at the clicked location
+        marker = L.marker(latLng).addTo(map);
+
+        // Call geocoding service to get the address for the clicked location
+        getAddressFromLatLng(latLng);
+    });
+
+    // Function to get address from lat/lng using Nominatim API
+    function getAddressFromLatLng(latLng) {
+        var lat = latLng.lat;
+        var lon = latLng.lng;
+
+        // Use Nominatim API to reverse geocode the coordinates
+        var url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Get the address from the API response
+                var address = data.display_name;
+                // Set the address in the input field
+                document.getElementById('address').value = address;
+            })
+            .catch(error => {
+                console.error('- Error saat menerima alamat -', error);
+                document.getElementById('address').value = 'Address not found';
+            });
+    }
+</script>
+{{-- END FROM BACKEND --}}
