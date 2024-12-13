@@ -28,7 +28,7 @@ class SocialiteController extends Controller
 
         if ($existingUser) {
             // Jika email sudah terdaftar dan provider_id terisi (not null)
-            if ($existingUser->id_provider === $user->id) {
+            if ($existingUser->id_provider == $user->id) {
                 Auth::login($existingUser);
                 return redirect()->intended('/');
             } else {

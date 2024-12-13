@@ -101,6 +101,11 @@
                     </div>
                     <ul tabindex="0"
                         class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
+                        @if(Auth::check() && Auth::user()->is_admin !== null)
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}">Dashboard </a>
+                        </li>
+                        @endif
                         <li>
                             <a href="{{ route('profile') }}">Profile </a>
                         </li>
