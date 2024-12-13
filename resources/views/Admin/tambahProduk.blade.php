@@ -61,7 +61,7 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">masukan 1-5 number</p>
+                                    <p id="helper-text-explanation" class="mt-2 text-sm text-gray-500 dark:text-gray-400">Please select a 5 digit number from 0 to 9.</p>
                                 </form>
                             </div>
                             {{-- textarea --}}
