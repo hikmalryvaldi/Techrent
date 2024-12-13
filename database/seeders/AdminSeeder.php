@@ -15,8 +15,8 @@ class AdminSeeder extends Seeder
     {
         User::create([
             'nama' => 'Techrent Admin',
-            'email' => 'techrent@electrorent.com',
-            'password' => 'admin1234',
+            'email' => 'admin@gmail.com',
+            'password' => 'admin',
             'is_admin' => 'yes',
         ]);
     }
