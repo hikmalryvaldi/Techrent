@@ -6,6 +6,7 @@
 
   
   <div class="p-4 my-16 sm:ml-64">
+    <h1 class="text-black text-2xl font-bold">Halaman Dasboard</h1>
     {{-- search --}}
         {{-- <form class="max-w-md ">   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -25,7 +26,7 @@
 
   {{-- data dasboard --}}
    <!-- Default View (Dashboard) -->
-    <div id="dashboardContent" class="block mt-4">
+    <div id="dashboardContent" class="block mt-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <!-- Card 1 -->
                 <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
