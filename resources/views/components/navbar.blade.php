@@ -173,7 +173,7 @@
 
                     <!-- Dropdown untuk hasil pencarian -->
                     <div id="dropdown"
-                        class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto">
+                        class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto top-6">
                     </div>
                 </div>
                 <a class="btn btn-ghost btn-circle ml-5">

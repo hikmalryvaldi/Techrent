@@ -15,9 +15,10 @@ class Product extends Model
     protected $fillable = [
         'product_name',
         'brand',
+        'price',
+        'stock',
         'category_id',
-        'rental_count',
-        'image_path'
+        'description',
     ];
 
 
@@ -29,5 +30,10 @@ class Product extends Model
     public function featuredProduct()
     {
         return $this->hasOne(FeaturedProduct::class, 'product_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'product_id');
     }
 }

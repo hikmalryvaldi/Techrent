@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\CarouselController;
-use App\Http\Controllers\CartController;
 use App\Models\Product;
 use App\Models\Carousel;
 use App\Models\FeaturedProduct;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Router;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\FeaturedProductController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\UserController;
-use Symfony\Component\Routing\Router;
+use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\FeaturedProductController;
 
 Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
 Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show');  // Halaman detail produk
@@ -42,6 +43,13 @@ Route::get('/Admin/produk', function () {
 Route::get('/Admin/tambahProduk', function () {
     return view('/Admin/tambahProduk');
 });
+
+Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
+
+Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
+
+// Menyimpan produk
+Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->name('Admin.produk.store');
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
