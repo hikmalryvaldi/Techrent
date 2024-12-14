@@ -33,8 +33,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // admin
 Route::get('/Admin/dashboard', function () {
     return view('/Admin/dashboard');
-});
-// ->name('admin.dashboard')->middleware('admin');
+})->name('admin.dashboard')->middleware('admin');
 
 Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
