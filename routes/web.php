@@ -33,7 +33,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // admin
 Route::get('/Admin/dashboard', function () {
     return view('/Admin/dashboard');
-})->name('admin.dashboard')->middleware('admin');
+});
+// ->name('admin.dashboard')->middleware('admin');
 
 Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
@@ -46,6 +47,12 @@ Route::get('/Admin/tambahProduk', function () {
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
 });
+
+Route::get('/Admin/users', function () {
+    return view('/Admin/users');
+});
+
+// 
 
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
