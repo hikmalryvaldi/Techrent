@@ -244,33 +244,46 @@
 
     <div class="mt-24">
         <h1 class="font-bold text-center text-4xl text-black">FREQUENTLY ASKED QUESTION</h1>
-        <div class=" flex justify-center mt-10">
-
+        <div class="flex justify-center mt-10">
             <div class="w-[66%] flex flex-col">
-                <div class="collapse collapse-arrow bg-base-200 ">
-                    <input type="checkbox" class="peer" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content peer-checked:block hidden">
+                <!-- Accordion Item 1 -->
+                <div class="collapse collapse-arrow bg-base-200">
+                    <input type="checkbox" id="collapse1" class="hidden peer" />
+                    <label for="collapse1" class="collapse-title text-xl font-medium cursor-pointer">Click to open
+                        this one and close others</label>
+                    <div
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
                         <p>hello</p>
                     </div>
                 </div>
+
+                <!-- Accordion Item 2 -->
                 <div class="collapse collapse-arrow bg-base-200 mt-3">
-                    <input type="checkbox" class="peer" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content peer-checked:block hidden">
+                    <input type="checkbox" id="collapse2" class="hidden peer" />
+                    <label for="collapse2" class="collapse-title text-xl font-medium cursor-pointer">Click to open
+                        this one and close others</label>
+                    <div
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
                         <p>hello</p>
                     </div>
                 </div>
+
+                <!-- Accordion Item 3 -->
                 <div class="collapse collapse-arrow bg-base-200 mt-3">
-                    <input type="checkbox" class="peer" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content peer-checked:block hidden">
+                    <input type="checkbox" id="collapse3" class="hidden peer" />
+                    <label for="collapse3" class="collapse-title text-xl font-medium cursor-pointer">Click to open
+                        this one and close others</label>
+                    <div
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
                         <p>hello</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 
 
 
