@@ -96,7 +96,9 @@
                     <div tabindex="0" role="button" class="btn m-1">
                         <div>{{ Auth::user()->nama }}</div>
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <ul tabindex="0"
@@ -104,14 +106,14 @@
                         <li>
                             <a href="{{ route('profile') }}">Profile </a>
                         </li>
-                            @auth
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <li>
+                        @auth
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <li>
                                     <button type="submit" class="w-full text-left">Logout</button>
-                                    </li>
-                                </form>
-                            @endauth
+                                </li>
+                            </form>
+                        @endauth
                     </ul>
                 </div>
 
@@ -171,7 +173,7 @@
                         class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto">
                     </div>
                 </div>
-                <a class="btn btn-ghost btn-circle ml-5">
+                <a href="keranjang" class="btn btn-ghost btn-circle ml-5">
                     <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
                 </a>
                 <a class="btn btn-ghost btn-circle" href="{{ route('auth') }}">
