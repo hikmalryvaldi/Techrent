@@ -14,6 +14,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\FeaturedProductController;
 
@@ -38,6 +39,10 @@ Route::get('/Admin/dashboard', function () {
 
 Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
+});
+
+Route::get('/Admin/newsletter', function () {
+    return view('/Admin/newsletter');
 });
 
 Route::get('/Admin/tambahProduk', function () {
@@ -66,3 +71,7 @@ Route::controller(SocialiteController::class)->group(function () {
 
     Route::get('auth/{provider}-callback', 'providerAuthentication');
 });
+
+Route::post('/addemail', [NewsletterController::class, 'subscribe']);
+
+Route::post('/send-custom-email', [NewsletterController::class, 'newsletter']);
