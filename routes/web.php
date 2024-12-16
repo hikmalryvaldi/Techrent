@@ -44,6 +44,10 @@ Route::get('/Admin/tambahProduk', function () {
     return view('/Admin/tambahProduk');
 });
 
+Route::get('/Admin/diskon', function () {
+    return view('/Admin/diskon');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
