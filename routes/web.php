@@ -16,6 +16,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\DashboardContorller;
 use App\Http\Controllers\FeaturedProductController;
 
 Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
@@ -31,6 +32,8 @@ Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middlew
 Route::post('/registrasi', [RegisterController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 
 // admin
 Route::get('/Admin/dashboard', function () {
@@ -67,6 +70,8 @@ Route::get('/ubahPassword', function () {
 Route::get('/Admin/users', function () {
     return view('/Admin/users');
 });
+
+Route::get('/Admin/users', [DashboardContorller::class, 'index']);
 
 // 
 
