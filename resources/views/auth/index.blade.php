@@ -39,7 +39,7 @@
                     @csrf
                     <div class="relative">
                         <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email:</label>
-                        <input type="email" id="loginEmail" name="email"
+                        <input type="text" id="loginEmail" name="email" novalidate
                             class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm bg-white text-black"
                             placeholder="Masukkan Email" novalidate>
 

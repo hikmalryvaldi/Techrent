@@ -37,7 +37,7 @@
                 <div class="border-b pb-4">
                     <div
                         class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <img src="https://via.placeholder.com/80" alt="Produk 2"
+                        <img src="{{ asset('img/bca.png') }}" alt="Produk 2"
                             class="w-20 h-20 object-cover rounded-md">
                         <div class="flex flex-col w-full">
                             <h3 class="text-lg font-semibold text-gray-800">Produk 2</h3>
