@@ -5,7 +5,9 @@
     <x-sidebar></x-sidebar>
 
     {{-- menu --}}
-    <div class="p-4 my-16 sm:ml-64">
+    <div class="p-6 my-16 sm:ml-64 ">
+        <div class="mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+        <div class="">
         <h1 class="text-black text-2xl font-bold">Halaman Produk</h1>
         {{-- search --}}
         <form class="flex max-w-md  mt-10">   
@@ -293,8 +295,10 @@
             </div>
 
             <x-speedDeal></x-speedDeal>
-
         </div>
+        </div>
+    </div>
+    
 
 {{-- js --}}
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

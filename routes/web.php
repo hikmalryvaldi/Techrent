@@ -24,7 +24,7 @@ Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show')
 
 Route::get('/', [CarouselController::class, 'carousel']);
 Route::get('/produk', [ProdukController::class, 'index']);
-Route::get('/detailProduk', [ProdukController::class, 'detailProduk']);
+// Route::get('/produk/detailProduk', [ProdukController::class, 'detailProduk']);
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::get('/keranjang', [CartController::class, 'index']);
 
@@ -56,6 +56,10 @@ Route::get('/Admin/diskon', function () {
     return view('/Admin/diskon');
 });
 
+Route::get('/detailProduk', function () {
+    return view('/produk/detailProduk');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
@@ -67,8 +71,12 @@ Route::get('/ubahPassword', function () {
     return view('ubahPassword');
 });
 
-Route::get('/Admin/users', function () {
-    return view('/Admin/users');
+Route::get('/Admin/pesananSemua', function () {
+    return view('/Admin/pesananSemua');
+});
+
+Route::get('/Admin/pesananSaya/pesananBelumBayar', function () {
+    return view('/Admin/pesananSaya/pesananBelumBayar');
 });
 
 Route::get('/Admin/users', [DashboardContorller::class, 'index']);

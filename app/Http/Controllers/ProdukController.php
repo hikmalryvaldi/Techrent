@@ -12,8 +12,8 @@ class ProdukController extends Controller
         return view('produk.index');
     }
 
-    public function detailProduk()
-    {
-        return view('produk.detail-produk');
-    }
+    // public function detailProduk()
+    // {
+    //     return view('produk.detailProduk');
+    // }
 }
