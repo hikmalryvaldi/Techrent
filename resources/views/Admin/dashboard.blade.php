@@ -5,7 +5,8 @@
     <x-sidebar></x-sidebar>
 
 
-    <div class="p-4 my-16 sm:ml-64">
+    <div class="p-4 my-16 sm:ml-64 ">
+        <div class="mx-auto p-8 bg-gray-100 rounded-lg shadow-lg">
         <h1 class="text-black text-2xl font-bold">Halaman Dasboard</h1>
         {{-- search --}}
         {{-- <form class="max-w-md ">   
@@ -27,7 +28,7 @@
         {{-- data dasboard --}}
 
         <!-- Default View (Dashboard) -->
-        <div id="dashboardContent" class="block mt-10">
+        <div id="dashboardContent" class="block mt-10 ">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {{-- Menu Produk --}}
                 <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
@@ -156,6 +157,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
     {{-- speed dial  --}}
