@@ -84,12 +84,16 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'kamera']) }}">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'lensa']) }}">LENSA</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'konsol']) }}">CONSOL</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'speaker']) }}">SPEAKER</a></li>
                 </ul>
             </div>
 
@@ -174,12 +178,16 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'kamera']) }}">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'lensa']) }}">LENSA</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'konsol']) }}">CONSOL</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'speaker']) }}">SPEAKER</a></li>
                 </ul>
             </div>
 
