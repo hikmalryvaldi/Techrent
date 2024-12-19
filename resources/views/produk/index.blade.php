@@ -3,7 +3,7 @@
 <body class="bg-gray-100">
 
     <!-- Navbar -->
-    <x-navbar></x-navbar>
+    <x-navbar :isProdukPage="true"></x-navbar>
 
     <!-- Content -->
     <div class="container mx-auto p-6 mt-20">

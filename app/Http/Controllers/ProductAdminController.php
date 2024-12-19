@@ -14,10 +14,15 @@ class ProductAdminController extends Controller
     public function index()
     {
         // Mengambil semua data produk dari database
-        $products = Product::all();
+        $products = Product::with(['images' => function ($query) {
+            $query->select('product_id', 'image_path1', 'image_path2', 'image_path3', 'image_path4'); // Hanya ambil kolom yang diperlukan
+        }])->get();
+        // Ambil semua kategori untuk dropdown
+        $categories = Category::all();
+
 
         // Mengirim data produk ke view 'Admin.produk'
-        return view('Admin.produk', compact('products'));
+        return view('Admin.produk', compact('products', 'categories'));
     }
 
 
@@ -39,10 +44,11 @@ class ProductAdminController extends Controller
     public function store(Request $request)
     {
 
-
-
         $request->validate([
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'product_name' => 'required|string|max:50',
             'price' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
@@ -59,17 +65,26 @@ class ProductAdminController extends Controller
             'description' => $request->description,
         ]);
 
-        // Menyimpan gambar di tabel 'images' satu per satu
-        if ($request->hasFile('images')) {
-            $imagePaths = [];
-            foreach ($request->file('images') as $index => $image) {
-                $imagePath = $image->storeAs('public/images', 'image_' . time() . '_' . $index . '.' . $image->getClientOriginalExtension());
-                $imagePaths['image_path' . ($index + 1)] = $imagePath;
-            }
-
-            // Menyimpan gambar ke dalam tabel 'images' sesuai dengan produk
-            $product->images()->create($imagePaths);
+        // Simpan gambar ke tabel `images`
+        $imageData = [];
+        if ($request->hasFile('image_path1')) {
+            $imageData['image_path1'] = $request->file('image_path1')->store('images', 'public');
         }
+        if ($request->hasFile('image_path2')) {
+            $imageData['image_path2'] = $request->file('image_path2')->store('images', 'public');
+        }
+        if ($request->hasFile('image_path3')) {
+            $imageData['image_path3'] = $request->file('image_path3')->store('images', 'public');
+        }
+        if ($request->hasFile('image_path4')) {
+            $imageData['image_path4'] = $request->file('image_path4')->store('images', 'public');
+        }
+
+        // Hubungkan gambar ke produk
+        if (!empty($imageData)) {
+            $product->images()->create($imageData);
+        }
+
 
         return redirect()->route('Admin.produk')->with('success', 'Produk berhasil ditambahkan.');
     }

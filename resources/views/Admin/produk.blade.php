@@ -78,24 +78,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($products as $index => $product)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="w-4 p-4">
-                                    1
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td class="w-4 p-4">
-                                    <img src="{{ asset ('img/halamanhome/kategori/Kamera.jpg') }}" alt="">
+                                    @foreach ($product->images as $image)
+                                    <img src="{{ asset('storage/' . $image->image_path1) }}" alt="Product Image"
+                                        class="w-20 h-20 object-cover">
+                                @endforeach
                                 </td>
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
+                                    {{ $product->product_name }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    Kamera
+                                    {{ $product->category->name }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    RP 30.000
+                                    Rp {{ number_format($product->price) }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    25
+                                    {{ $product->stock }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{-- button hijau --}}
@@ -263,6 +267,7 @@
                                             
 
                                 </td>
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>
