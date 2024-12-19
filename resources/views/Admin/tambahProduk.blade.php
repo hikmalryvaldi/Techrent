@@ -1,4 +1,5 @@
 <x-header>Halaman Tambah Produk Baru</x-header>
+
 <body>
     {{-- side bar --}}
     <x-sidebar></x-sidebar>
@@ -11,69 +12,96 @@
                 @csrf
 
                 <div class="col-span-2">
-                    <label for="deskripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Image</label>
+                    <label for="deskripsi"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Image</label>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {{-- Image ke 1 --}}
-                        <label for="image_1" class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            <img id="preview_image_1" src="#" alt="Preview" class="hidden absolute w-full h-full object-cover rounded-lg" />
+                        <label for="image_1"
+                            class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <img id="preview_image_1" src="#" alt="Preview"
+                                class="hidden absolute w-full h-full object-cover rounded-lg" />
                             <div id="placeholder_1" class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="image_1" name="images[]" type="file" class="hidden" onchange="previewImage(event, 'preview_image_1', 'placeholder_1')" />
+                            <input id="image_1" name="image_path1" type="file" class="hidden"
+                                onchange="previewImage(event, 'preview_image_1', 'placeholder_1')" />
                         </label>
 
                         {{-- image ke 2 --}}
-                        <label for="image_2" class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            <img id="preview_image_2" src="#" alt="Preview" class="hidden absolute w-full h-full object-cover rounded-lg" />
+                        <label for="image_2"
+                            class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <img id="preview_image_2" src="#" alt="Preview"
+                                class="hidden absolute w-full h-full object-cover rounded-lg" />
                             <div id="placeholder_2" class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="image_2" name="images[]" type="file" class="hidden" onchange="previewImage(event, 'preview_image_2', 'placeholder_2')" />
+                            <input id="image_2" name="image_path2" type="file" class="hidden"
+                                onchange="previewImage(event, 'preview_image_2', 'placeholder_2')" />
                         </label>
 
                         {{-- image ke 3 --}}
-                        <label for="image_3" class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            <img id="preview_image_3" src="#" alt="Preview" class="hidden absolute w-full h-full object-cover rounded-lg" />
+                        <label for="image_3"
+                            class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <img id="preview_image_3" src="#" alt="Preview"
+                                class="hidden absolute w-full h-full object-cover rounded-lg" />
                             <div id="placeholder_3" class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="image_3" name="images[]" type="file" class="hidden" onchange="previewImage(event, 'preview_image_3', 'placeholder_3')" />
+                            <input id="image_3" name="image_path3" type="file" class="hidden"
+                                onchange="previewImage(event, 'preview_image_3', 'placeholder_3')" />
                         </label>
 
                         {{-- image ke 4 --}}
-                        <label for="image_4" class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                            <img id="preview_image_4" src="#" alt="Preview" class="hidden absolute w-full h-full object-cover rounded-lg" />
+                        <label for="image_4"
+                            class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <img id="preview_image_4" src="#" alt="Preview"
+                                class="hidden absolute w-full h-full object-cover rounded-lg" />
                             <div id="placeholder_4" class="flex flex-col items-center justify-center pt-5 pb-6">
-                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span>
+                                </p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="image_4" name="images[]" type="file" class="hidden" onchange="previewImage(event, 'preview_image_4', 'placeholder_4')" />
+                            <input id="image_4" name="image_path4" type="file" class="hidden"
+                                onchange="previewImage(event, 'preview_image_4', 'placeholder_4')" />
                         </label>
 
                     </div>
                 </div>
-                
-                
+
+
 
                 <div class="grid gap-4 mb-4 grid-cols-2 my-3">
                     {{-- Nama Produk --}}
                     <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama
+                        <label for="name"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama
                             Produk</label>
                         <input type="text" name="product_name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -204,33 +232,32 @@
             </form>
         </div>
 
-{{-- js --}}
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script>
-    function previewImage(event, previewId, placeholderId) {
-    const input = event.target; // Input file element
-    const file = input.files[0]; // File yang dipilih
-    const preview = document.getElementById(previewId); // Elemen img untuk preview
-    const placeholder = document.getElementById(placeholderId); // Placeholder teks/icon
+        {{-- js --}}
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+        <script>
+            function previewImage(event, previewId, placeholderId) {
+                const input = event.target; // Input file element
+                const file = input.files[0]; // File yang dipilih
+                const preview = document.getElementById(previewId); // Elemen img untuk preview
+                const placeholder = document.getElementById(placeholderId); // Placeholder teks/icon
 
-    if (file) {
-        const reader = new FileReader();
+                if (file) {
+                    const reader = new FileReader();
 
-        // Ketika file selesai dibaca
-        reader.onload = function (e) {
-            preview.src = e.target.result; // Set sumber gambar dari hasil baca file
-            preview.classList.remove('hidden'); // Tampilkan gambar preview
-            placeholder.classList.add('hidden'); // Sembunyikan placeholder
-        };
+                    // Ketika file selesai dibaca
+                    reader.onload = function(e) {
+                        preview.src = e.target.result; // Set sumber gambar dari hasil baca file
+                        preview.classList.remove('hidden'); // Tampilkan gambar preview
+                        placeholder.classList.add('hidden'); // Sembunyikan placeholder
+                    };
 
-        reader.readAsDataURL(file); // Baca file sebagai URL
-    } else {
-        // Jika tidak ada file, kembalikan ke state awal
-        preview.src = "#";
-        preview.classList.add('hidden');
-        placeholder.classList.remove('hidden');
-    }
-}
-
-</script>
+                    reader.readAsDataURL(file); // Baca file sebagai URL
+                } else {
+                    // Jika tidak ada file, kembalikan ke state awal
+                    preview.src = "#";
+                    preview.classList.add('hidden');
+                    placeholder.classList.remove('hidden');
+                }
+            }
+        </script>
 </body>

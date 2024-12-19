@@ -23,7 +23,8 @@ Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
 Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show');  // Halaman detail produk
 
 Route::get('/', [CarouselController::class, 'carousel']);
-Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
+Route::get('/produk/index/search', [ProdukController::class, 'search'])->name('produk.search');
 // Route::get('/produk/detailProduk', [ProdukController::class, 'detailProduk']);
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::get('/keranjang', [CartController::class, 'index']);
@@ -64,8 +65,13 @@ Route::get('/Admin/perluDikirim', function () {
     return view('/Admin/perluDikirim');
 });
 
+
 Route::get('/Admin/dikirim', function () {
     return view('/Admin/dikirim');
+});
+
+Route::get('/Admin/voucher', function () {
+    return view('/Admin/voucher');
 });
 
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
