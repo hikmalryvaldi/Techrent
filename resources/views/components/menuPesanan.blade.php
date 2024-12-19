@@ -8,7 +8,7 @@
                         </a>
                  </li>
                  <li>
-                     <a href="pesananPerluDikirim" class="block py-2 px-3 text-black border-b border-black hover:bg-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
+                     <a href="perluDikirim" class="block py-2 px-3 text-black border-b border-black hover:bg-black md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700">
                          Perlu Dikirim</a>
                  </li>
                  <li>

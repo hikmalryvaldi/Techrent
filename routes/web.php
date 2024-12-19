@@ -60,6 +60,10 @@ Route::get('/detailProduk', function () {
     return view('/produk/detailProduk');
 });
 
+Route::get('/Admin/perluDikirim', function () {
+    return view('/Admin/perluDikirim');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
