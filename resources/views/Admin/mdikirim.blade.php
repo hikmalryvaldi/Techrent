@@ -50,13 +50,25 @@
                                 00001
                             </td>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="flex items-center w-[140px]">
-                                    <img src="{{ asset('img/halamanhome/kategori/Kamera.jpg') }}" alt="" class="w-[30px] mr-4 rounded-full">
-                                    <div>
+                                <div class="flex flex-col items-start space-y-4 w-[140px]">
+                                        <!-- Item 1 buat mempeli 1 perangkat-->    
+                                    <div class="flex items-center">
+                                      <img src="{{ asset('img/halamanhome/kategori/Kamera.jpg') }}" alt="Kamera" class="w-[30px] mr-4 rounded-full">
+                                      <div>
                                         <span class="font-semibold text-white">Canon 700D</span>
                                         <p class="text-sm text-gray-500">Peminjaman: 1 minggu</p>
+                                      </div>
                                     </div>
-                                </div>
+                                    
+                                    <!-- Item 2 membeli lebih dari beberapa perangkat-->
+                                    {{-- <div class="flex items-center">
+                                      <img src="{{ asset('img/halamanhome/kategori/Kamera.jpg') }}" alt="Kamera" class="w-[30px] mr-4 rounded-full">
+                                      <div>
+                                        <span class="font-semibold text-white">Canon 800D</span>
+                                        <p class="text-sm text-gray-500">Peminjaman: 1 minggu</p>
+                                      </div>
+                                    </div> --}}
+                                  </div>
                             </th>                            
                             <td class="px-6 py-4">
                                 Ahmad
@@ -65,7 +77,7 @@
                                 Rp 30000
                             </td>
                             <td class="px-6 py-4">
-                                Perlu Dikirim
+                                Dikirim
                             </td>
                             <td class="px-6 py-4">
                                 Gojek/Gosen
@@ -73,7 +85,7 @@
                             <td class="px-6 py-4">
                                 {{-- button konfirmasi --}}
                                     <button type="button" data-modal-target="default-modal" data-modal-toggle="default-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                        Konfirmasi
+                                        Informasi
                                     </button>
                     
                                     {{-- modal --}}
@@ -94,22 +106,35 @@
                                                         </button>
                                                     </div>
                                                     <!-- Modal body -->
-                                                    <div class="p-4 md:p-5 space-y-4">
-                                                        <p class="text-2xl text-center leading-relaxed text-gray-500 dark:text-gray-400">
-                                                           No Resi
-                                                        </p>
-                                                        <p class=" text-4xl font-bold text-center leading-relaxed text-gray-500 dark:text-gray-400">
+                                                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                                                        <!-- Steps Section -->
+                                                        <ul class="steps p-5 w-full md:w-auto overflow-hidden">
+                                                          <li class="step step-primary">Konfirmasi</li>
+                                                          <li class="step step-primary">Perlu Dikirim</li>
+                                                          <li class="step step-primary">Dikirim</li>
+                                                          <li class="step">Selesai</li>
+                                                        </ul>
+                                                      
+                                                        <!-- Resi Section -->
+                                                        <div class="p-4 md:p-5 space-y-4 text-center">
+                                                          <p class="text-2xl leading-relaxed text-gray-500 dark:text-gray-400">
+                                                            No Resi
+                                                          </p>
+                                                          <p class="text-4xl font-bold leading-relaxed text-gray-500 dark:text-gray-400">
                                                             20139284480417
-                                                         </p>
-                                                        <p class="text-base text-center leading-relaxed text-gray-500 dark:text-gray-400">
-                                                           Dimohon untuk mencetak nomor resi ini sebelum pengiriman 
-                                                        </p>
-                                                    </div>
+                                                          </p>
+                                                          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                            Dimohon untuk mencetak nomor resi ini sebelum pengiriman
+                                                          </p>
+                                                        </div>
+                                                      </div>
+                                                      
+
                                                     <!-- Modal footer -->
                                                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                                        <a href="perluDikirim">
+                                                        <a href="mdikirim">
                                                             <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                                Proses
+                                                                informasi pesanan
                                                             </button>
                                                         </a>
                                                         <button data-modal-hide="default-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancle</button>

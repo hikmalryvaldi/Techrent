@@ -35,6 +35,10 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 
+Route::get('/detailProduk', function () {
+    return view('/produk/detailProduk');
+});
+
 // admin
 Route::get('/Admin/dashboard', function () {
     return view('/Admin/dashboard');
@@ -56,16 +60,20 @@ Route::get('/Admin/diskon', function () {
     return view('/Admin/diskon');
 });
 
-Route::get('/detailProduk', function () {
-    return view('/produk/detailProduk');
+Route::get('/Admin/mperluDikirim', function () {
+    return view('/Admin/mperluDikirim');
 });
 
-Route::get('/Admin/perluDikirim', function () {
-    return view('/Admin/perluDikirim');
+Route::get('/Admin/mdikirim', function () {
+    return view('/Admin/mdikirim');
 });
 
-Route::get('/Admin/dikirim', function () {
-    return view('/Admin/dikirim');
+Route::get('/Admin/mpesananSemua', function () {
+    return view('/Admin/mpesananSemua');
+});
+
+Route::get('/Admin/mSelesai', function () {
+    return view('/Admin/mSelesai');
 });
 
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
@@ -77,10 +85,6 @@ Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->na
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
-});
-
-Route::get('/Admin/pesananSemua', function () {
-    return view('/Admin/pesananSemua');
 });
 
 Route::get('/Admin/pesananSaya/pesananBelumBayar', function () {
