@@ -64,6 +64,10 @@ Route::get('/Admin/perluDikirim', function () {
     return view('/Admin/perluDikirim');
 });
 
+Route::get('/Admin/dikirim', function () {
+    return view('/Admin/dikirim');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
