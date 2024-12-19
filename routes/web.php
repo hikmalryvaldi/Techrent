@@ -65,6 +65,11 @@ Route::get('/Admin/perluDikirim', function () {
     return view('/Admin/perluDikirim');
 });
 
+
+Route::get('/Admin/dikirim', function () {
+    return view('/Admin/dikirim');
+});
+
 Route::get('/Admin/voucher', function () {
     return view('/Admin/voucher');
 });
