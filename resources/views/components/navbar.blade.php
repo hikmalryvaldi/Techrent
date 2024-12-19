@@ -108,6 +108,7 @@
                         class="absolute w-full mt-2 rounded-lg bg-white shadow-lg z-10 hidden max-h-60 overflow-y-auto">
                     </div>
                 </div>
+                {{-- navbar kranjang --}}
                 <a class="btn btn-ghost btn-circle ml-5">
                     <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
                 </a>

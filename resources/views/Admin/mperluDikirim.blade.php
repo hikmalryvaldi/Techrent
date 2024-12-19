@@ -110,7 +110,7 @@
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                                        <a href="dikirim">
+                                                        <a href="mdikirim">
                                                             <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                                 Kirim
                                                             </button>
@@ -128,7 +128,7 @@
                                                 <div class="relative p-4 w-full max-w-md max-h-full">
                                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                         <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-                                                            <a href="perluDikirim">
+                                                            <a href="mperluDikirim">
                                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                                                             </svg>
@@ -140,7 +140,7 @@
                                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                                             </svg>
                                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah anda yakin ingin memuat ulang pesanan ini</h3>
-                                                            <a href="pesananSemua"><button data-modal-hide="modal-cancel" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                                            <a href="mpesananSemua"><button data-modal-hide="modal-cancel" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                                                 Yes, Muat Ulang
                                                             </button></a>
                                                             <button data-modal-hide="modal-cancel" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No, Kembali</button>
@@ -163,4 +163,49 @@
 
 {{-- js --}}
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script>
+    const tabsElement = document.getElementById('tabs-example');
+
+// create an array of objects with the id, trigger element (eg. button), and the content element
+const tabElements = [
+    {
+        id: 'profile',
+        triggerEl: document.querySelector('#profile-tab-example'),
+        targetEl: document.querySelector('#profile-example'),
+    },
+    {
+        id: 'dashboard',
+        triggerEl: document.querySelector('#dashboard-tab-example'),
+        targetEl: document.querySelector('#dashboard-example'),
+    },
+    {
+        id: 'settings',
+        triggerEl: document.querySelector('#settings-tab-example'),
+        targetEl: document.querySelector('#settings-example'),
+    },
+    {
+        id: 'contacts',
+        triggerEl: document.querySelector('#contacts-tab-example'),
+        targetEl: document.querySelector('#contacts-example'),
+    },
+];
+
+// options with default values
+const options = {
+    defaultTabId: 'settings',
+    activeClasses:
+        'text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-400 border-blue-600 dark:border-blue-500',
+    inactiveClasses:
+        'text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300',
+    onShow: () => {
+        console.log('tab is shown');
+    },
+};
+
+// instance options with default values
+const instanceOptions = {
+  id: 'tabs-example',
+  override: true
+};
+</script>
 </body>
