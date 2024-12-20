@@ -95,6 +95,10 @@ Route::get('/Admin/voucher', function () {
     return view('/Admin/voucher');
 });
 
+Route::get('/Admin/detailPesanan', function () {
+    return view('/Admin/detailPesanan');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
