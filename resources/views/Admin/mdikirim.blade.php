@@ -1,4 +1,4 @@
-<x-header>Halaman Pesanan</x-header>
+<x-header>Halaman Dikirim</x-header>
 <body style="height: 100%;">
     {{--Navbar--}}
     <x-sidebar></x-sidebar>
