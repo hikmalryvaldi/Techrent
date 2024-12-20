@@ -12,21 +12,38 @@
                     class="max-h-20 h-auto w-auto hidden sm:block" alt=""></a>
         </div>
         <div class="navbar-end hidden lg:flex">
-            <button class="btn btn-ghost btn-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5"
-                    viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path fill="#FFFFFF"
-                        d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
-                </svg>
-            </button>
-            <button class="btn btn-ghost btn-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21"
-                    viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                    <path fill="#FFFFFF"
-                        d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-            </button>
-
+            <a href="keranjang" class="btn btn-ghost btn-circle ml-5">
+                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
+            </a>
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn m-1">
+                    <div>{{ Auth::user()->nama }}</div>
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <ul tabindex="0"
+                    class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
+                    @if (Auth::check() && Auth::user()->is_admin !== null)
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}">Dashboard </a>
+                        </li>
+                    @endif
+                    <li>
+                        <a href="{{ route('profile') }}">Profile </a>
+                    </li>
+                    @auth
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <li>
+                                <button type="submit" class="w-full text-left">Logout</button>
+                            </li>
+                        </form>
+                    @endauth
+                </ul>
+            </div>
         </div>
     </div>
 @else
@@ -67,12 +84,16 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'kamera']) }}">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'lensa']) }}">LENSA</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'konsol']) }}">CONSOL</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'speaker']) }}">SPEAKER</a></li>
                 </ul>
             </div>
 
@@ -104,10 +125,10 @@
                     </div>
                     <ul tabindex="0"
                         class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
-                        @if(Auth::check() && Auth::user()->is_admin !== null)
-                        <li>
-                            <a href="{{ route('admin.dashboard') }}">Dashboard </a>
-                        </li>
+                        @if (Auth::check() && Auth::user()->is_admin !== null)
+                            <li>
+                                <a href="{{ route('admin.dashboard') }}">Dashboard </a>
+                            </li>
                         @endif
                         <li>
                             <a href="{{ route('profile') }}">Profile </a>
@@ -158,12 +179,16 @@
 
             <div class="navbar-center hidden lg:flex text-black">
                 <ul class="menu menu-horizontal px-1">
-                    <li><a class="text-xl text-white font-bold" href="produk">KAMERA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'kamera']) }}">KAMERA</a></li>
                     <li>
-                        <a class="text-xl text-white font-bold" href="produk">PLAYSTATION</a>
+                        <a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'lensa']) }}">LENSA</a>
                     </li>
-                    <li><a class="text-xl text-white font-bold" href="produk">SPEAKER</a></li>
-                    <li><a class="text-xl text-white font-bold" href="produk">LENSA</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'konsol']) }}">CONSOL</a></li>
+                    <li><a class="text-xl text-white font-bold"
+                            href="{{ route('produk.index', ['category' => 'speaker']) }}">SPEAKER</a></li>
                 </ul>
             </div>
 
