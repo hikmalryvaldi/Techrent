@@ -1,4 +1,4 @@
-<x-header>Halaman Dasboard</x-header>
+<x-header>Halaman Dashboard</x-header>
 
 <body style="height: 100%; ">
 
@@ -7,7 +7,7 @@
 
     <div class="p-4 my-16 sm:ml-64 ">
         <div class="mx-auto p-8 bg-gray-100 rounded-lg shadow-lg">
-        <h1 class="text-black text-2xl font-bold">Halaman Dasboard</h1>
+        <h1 class="text-black text-2xl font-bold">Halaman Dashboard</h1>
         {{-- search --}}
         {{-- <form class="max-w-md ">   
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -30,6 +30,35 @@
         <!-- Default View (Dashboard) -->
         <div id="dashboardContent" class="block mt-10 ">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                {{-- menu Order --}}
+                <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+                    <div class="flex justify-between">
+                        <div>
+                            <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2">Pesanan</h5>
+                            <div class="mt-5">
+                                <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2"><span
+                                        class="font-bold">100</span> <span class="text-xl">Pcs</span></h5>
+                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Semua Pesanan</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="area-chart"></div>
+                    <div
+                        class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                        <div class="flex justify-between items-center mx-36 pt-5">
+                            <a href="mpesananSemua"
+                                class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+                                pesanan
+                                <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 {{-- Menu Produk --}}
                 <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                     <div class="flex justify-between">
@@ -40,15 +69,6 @@
                                         class="font-bold">100</span> <span class="text-xl">Pcs</span></h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Produk</p>
                             </div>
-                        </div>
-                        <div
-                            class="flex mt-8 items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                            12%
-                            <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
-                            </svg>
                         </div>
                     </div>
                     <div id="area-chart"></div>
@@ -68,45 +88,8 @@
                     </div>
                 </div>
 
-                {{-- menu Order --}}
-                <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-                    <div class="flex justify-between">
-                        <div>
-                            <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2">Order</h5>
-                            <div class="mt-5">
-                                <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2"><span
-                                        class="font-bold">100</span> <span class="text-xl">Pcs</span></h5>
-                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Semua Order</p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex mt-8 items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                            12%
-                            <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div id="area-chart"></div>
-                    <div
-                        class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                        <div class="flex justify-between items-center mx-40 pt-5">
-                            <a href="User"
-                                class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                                Order
-                                <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Menu Order --}}
+            
+                {{-- Menu User --}}
                 <div class="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                     <div class="flex justify-between">
                         <div>
@@ -117,30 +100,10 @@
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Semua User</p>
                             </div>
                         </div>
-                        <div
-                            class="flex mt-8 items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                            12%
-                            <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                fill="none" viewBox="0 0 10 14">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
-                            </svg>
-                        </div>
                     </div>
                     <div id="area-chart"></div>
                     <div
                         class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                        <div class="flex justify-between items-center mx-40 pt-5">
-                            <a href="User"
-                                class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                                Users
-                                <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                            </a>
-                        </div>
                     </div>
                 </div>
 

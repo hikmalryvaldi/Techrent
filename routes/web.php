@@ -49,8 +49,12 @@ Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
 });
 
-Route::get('/Admin/newsletter', function () {
-    return view('/Admin/newsletter');
+Route::get('/Admin/nNewsletterDiskon', function () {
+    return view('/Admin/nNewsletterDiskon');
+});
+
+Route::get('/Admin/nNewsletterCustom', function () {
+    return view('/Admin/nNewsletterCustom');
 });
 
 Route::get('/Admin/tambahProduk', function () {
@@ -76,6 +80,11 @@ Route::get('/Admin/mpesananSemua', function () {
 
 Route::get('/Admin/mSelesai', function () {
     return view('/Admin/mSelesai');
+});
+
+
+Route::get('/Admin/mpengembalian', function () {
+    return view('/Admin/mpengembalian');
 });
 
 Route::get('/Admin/dikirim', function () {
