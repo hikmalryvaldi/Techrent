@@ -9,20 +9,24 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\DashboardContorller;
-use App\Http\Controllers\FeaturedProductController;
 
-Route::get('/search', [HomeController::class, 'search']);  // AJAX Search route
-Route::get('/produk/{id}', [HomeController::class, 'show'])->name('produk.show');  // Halaman detail produk
 
-Route::get('/', [CarouselController::class, 'carousel']);
+// Home
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/search', 'search');  // AJAX Search route
+
+    Route::get('/produk/{id}', 'show')->name('produk.show');  // Halaman detail produk
+
+    Route::get('/', 'homeFeatures');
+});
+
+
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
 Route::get('/produk/index/search', [ProdukController::class, 'search'])->name('produk.search');
 // Route::get('/produk/detailProduk', [ProdukController::class, 'detailProduk']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Product;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,4 +35,22 @@ class HomeController extends Controller
         // Mengembalikan view produk detail
         return view('produk.detail-produk', compact('product'));
     }
+
+    public function homeFeatures()
+    {
+        // Produk Unggulan
+        $topProducts = Product::with('images')
+            ->orderBy('rental_count', 'desc')
+            ->take(3)
+            ->get();
+
+            // Carousels
+            return view('home', [
+                'title' => 'Home',
+                'carousels' => Carousel::all(),
+                'topProducts' => $topProducts,
+            ]);
+
+    }
+
 }
