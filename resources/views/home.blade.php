@@ -193,13 +193,15 @@
             <p class="font-bold text-center text-4xl text-black">BARANG UNGGULAN</p>
 
             <div class="cards flex flex-wrap justify-center gap-[110px] mt-10">
-                @foreach ($topProduct->slice(0, 5) as $product)
+                @foreach ($topProducts as $topProduct)
                     <div class="card1 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                            <img src="{{ $product->image_path }}" alt="" class="w-full h-full object-contain">
+                            @foreach($topProduct->images as $image)
+                                <img src="{{ $image->image_path1 }}" alt="Image of {{ $topProduct->name }}" class="w-full h-full object-contain">>
+                            @endforeach
                         </div>
                         <p class="text-black text-center text-xl font-bold mt-4">
-                            {{ $product->product_name }}</p>
+                            {{ $topProduct->product_name }}</p>
                         <button
                             class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
                             SEWA SEKARANG
