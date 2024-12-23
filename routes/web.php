@@ -104,6 +104,7 @@ Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->na
 Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->name('Admin.produk.store');
 Route::get('/Admin/produk/{id}', [ProductAdminController::class, 'edit'])->name('produk.edit');
 Route::put('/Admin/produk/{id}', [ProductAdminController::class, 'update'])->name('produk.update');
+Route::delete('/Admin/produk/{id}', [ProductAdminController::class, 'destroy'])->name('produk.destroy');
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');

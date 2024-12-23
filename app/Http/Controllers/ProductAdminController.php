@@ -206,4 +206,29 @@ class ProductAdminController extends Controller
 
         return redirect()->route('Admin.produk')->with('success', 'Produk berhasil diperbarui.');
     }
+
+    public function destroy($id)
+    {
+        $product = Product::with('images')->findOrFail($id);
+
+        foreach ($product->images as $image) {
+            if ($image->image_path1 && Storage::disk('public')->exists($image->image_path1)) {
+                Storage::disk('public')->delete($image->image_path1);
+            }
+            if ($image->image_path2 && Storage::disk('public')->exists($image->image_path2)) {
+                Storage::disk('public')->delete($image->image_path2);
+            }
+            if ($image->image_path3 && Storage::disk('public')->exists($image->image_path3)) {
+                Storage::disk('public')->delete($image->image_path3);
+            }
+            if ($image->image_path4 && Storage::disk('public')->exists($image->image_path4)) {
+                Storage::disk('public')->delete($image->image_path4);
+            }
+        }
+
+        $product->images()->delete();
+        $product->delete();
+
+        return redirect()->route('Admin.produk')->with('success', 'Produk berhasil dihapus beserta gambar terkait.');
+    }
 }
