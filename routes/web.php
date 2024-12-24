@@ -15,7 +15,7 @@ use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\DashboardContorller;
-
+use App\Http\Controllers\detailProdukController;
 
 // Home
 Route::controller(HomeController::class)->group(function () {
@@ -43,6 +43,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 Route::get('/detailProduk', function () {
     return view('/produk/detailProduk');
 });
+
+Route::get('/detailProduk/{product:id}', [detailProdukController::class, 'show']);
 
 // admin
 Route::get('/Admin/dashboard', function () {

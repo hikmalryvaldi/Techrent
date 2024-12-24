@@ -71,16 +71,16 @@ class ProductAdminController extends Controller
         // Simpan gambar ke tabel `images`
         $imageData = [];
         if ($request->hasFile('image_path1')) {
-            $imageData['image_path1'] = $request->file('image_path1')->store('images', 'public');
+            $imageData['image_path1'] = '/' . $request->file('image_path1')->store('images', 'public');
         }
         if ($request->hasFile('image_path2')) {
-            $imageData['image_path2'] = $request->file('image_path2')->store('images', 'public');
+            $imageData['image_path2'] = '/' . $request->file('image_path2')->store('images', 'public');
         }
         if ($request->hasFile('image_path3')) {
-            $imageData['image_path3'] = $request->file('image_path3')->store('images', 'public');
+            $imageData['image_path3'] = '/' . $request->file('image_path3')->store('images', 'public');
         }
         if ($request->hasFile('image_path4')) {
-            $imageData['image_path4'] = $request->file('image_path4')->store('images', 'public');
+            $imageData['image_path4'] = '/' . $request->file('image_path4')->store('images', 'public');
         }
 
         // Hubungkan gambar ke produk
