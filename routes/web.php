@@ -29,7 +29,7 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
 Route::get('/produk/index/search', [ProdukController::class, 'search'])->name('produk.search');
-// Route::get('/produk/detailProduk', [ProdukController::class, 'detailProduk']);
+Route::get('/produk/detailProduk', [ProdukController::class, 'detailProduk']);
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::get('/keranjang', [CartController::class, 'index']);
 
@@ -40,8 +40,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 
-Route::get('/detailProduk', function () {
+Route::get('/produk/detailProduk', function () {
     return view('/produk/detailProduk');
+});
+
+Route::get('/produk/detail', function () {
+    return view('/produk/detail');
 });
 
 Route::get('/detailProduk/{product:id}', [detailProdukController::class, 'show']);
