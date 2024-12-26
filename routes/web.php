@@ -11,12 +11,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\ProductAdminController;
-use App\Http\Controllers\DashboardContorller;
 use App\Http\Controllers\detailProdukController;
 use App\Http\Controllers\LupaPasswordController;
+use App\Http\Controllers\ProductAdminController;
 
 // Home
 Route::controller(HomeController::class)->group(function () {
@@ -53,6 +53,8 @@ Route::get('/detailProduk/{product:id}', [detailProdukController::class, 'show']
 Route::get('/Admin/dashboard', function () {
     return view('/Admin/dashboard');
 })->name('admin.dashboard')->middleware('admin');
+
+Route::get('/Admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
@@ -109,6 +111,7 @@ Route::get('/Admin/detailPesanan', function () {
 });
 
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
+Route::get('/Admin/produk/search', [ProductAdminController::class, 'search'])->name('produk.search');
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
 Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->name('Admin.produk.store');
 Route::get('/Admin/produk/{id}', [ProductAdminController::class, 'edit'])->name('produk.edit');
@@ -136,7 +139,6 @@ Route::get('/Admin/pesananSaya/pesananBelumBayar', function () {
     return view('/Admin/pesananSaya/pesananBelumBayar');
 });
 
-Route::get('/Admin/users', [DashboardContorller::class, 'index']);
 
 // 
 

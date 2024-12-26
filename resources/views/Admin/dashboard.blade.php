@@ -66,7 +66,7 @@
                             <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2">Produk</h5>
                             <div class="mt-5">
                                 <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2"><span
-                                        class="font-bold">100</span> <span class="text-xl">Pcs</span></h5>
+                                        class="font-bold">{{ $produkCount }}</span> <span class="text-xl">Pcs</span></h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Produk</p>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2">Users</h5>
                             <div class="mt-5">
                                 <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2"><span
-                                        class="font-bold">100</span> <span class="text-xl">Users</span></h5>
+                                        class="font-bold">{{ $userCount }}</span> <span class="text-xl">Users</span></h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Semua User</p>
                             </div>
                         </div>
