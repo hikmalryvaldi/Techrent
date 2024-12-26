@@ -56,6 +56,10 @@
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
                     </div>
 
+                    {{-- lupa password --}}
+                    <div class="text-center">
+                        <a href="/lupaPassword" class="text-blue-500 hover:text-blue-700">Lupa password ? klik disini</a>
+                    </div>
 
                     <button type="submit"
                         class="w-full py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Login</button>
