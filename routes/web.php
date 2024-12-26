@@ -16,6 +16,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\DashboardContorller;
 use App\Http\Controllers\detailProdukController;
+use App\Http\Controllers\LupaPasswordController;
 
 // Home
 Route::controller(HomeController::class)->group(function () {
@@ -36,6 +37,8 @@ Route::get('/keranjang', [CartController::class, 'index']);
 Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middleware('guest');
 Route::post('/registrasi', [RegisterController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/lupaPassword', [RegisterController::class, 'lupaPassword'])->name('lupa.password');
+
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
@@ -114,7 +117,20 @@ Route::delete('/Admin/produk/{id}', [ProductAdminController::class, 'destroy'])-
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
+})->name('password.reset');
+
+Route::get('/lupaPassword', function () {
+    return view('auth.lupaPassword');
 });
+
+Route::get('/ubahLupaPassword', function () {
+    return view('auth.ubahLupaPassword');
+});
+
+Route::post('/updateLupaPassword', [LupaPasswordController::class, 'updatePassword'])->name('update.password');
+
+Route::post('/send-otp', [LupaPasswordController::class, 'sendOtp'])->name('send.otp');
+Route::post('/verify-otp', [LupaPasswordController::class, 'verifyOtp'])->name('verify.otp');
 
 Route::get('/Admin/pesananSaya/pesananBelumBayar', function () {
     return view('/Admin/pesananSaya/pesananBelumBayar');

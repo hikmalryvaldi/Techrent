@@ -24,6 +24,8 @@ class User extends Authenticatable
         'id_provider',
         'password',
         'is_admin',
+        'otp',
+        'otp_expires_at',
  
     ];
 
