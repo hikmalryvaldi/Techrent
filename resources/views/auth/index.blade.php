@@ -50,10 +50,18 @@
                     <div class="relative">
                         <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password:</label>
                         <input type="password" id="loginPassword" name="password"
-                            class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
+                            class="input-password mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
                             placeholder="Masukkan Password" required>
 
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-show hidden w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-hide w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                          </svg>
+                          
                     </div>
 
                     {{-- lupa password --}}
@@ -145,10 +153,17 @@
                     <div class="relative">
                         <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
                         <input type="password" id="loginPassword" name="password"
-                            class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
+                            class="input-password mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
                             placeholder="Masukkan Password">
 
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-show hidden w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-hide w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                          </svg>
                         @error('password')
                             <p class="absolute text-sm text-red-500 mt-1 mb-4 left-0">{{ $message }}</p>
                         @enderror
@@ -159,10 +174,17 @@
                         <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Konfirmasi
                             Password</label>
                         <input type="password" id="confirmPassword" name="confirm_password"
-                            class="mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
+                            class="input-password mt-1 block w-full pl-10 pr-4 py-2 border rounded-md shadow-sm text-black bg-white"
                             placeholder="Konfirmasi Password">
 
                         <i class="fas fa-lock absolute left-3 top-2/3 transform -translate-y-1/2 text-gray-500"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-show hidden w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-hide w-8 absolute right-3 top-2/3 transform -translate-y-1/2 cursor-pointer text-gray-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                          </svg>
                         @error('confirm_password')
                             <p class="absolute text-sm text-red-500 mt-1 mb-4 left-0">{{ $message }}</p>
                         @enderror
@@ -181,6 +203,25 @@
 
     <x-footer class="w-full"></x-footer>
     <script>
+        const iconShow = document.querySelectorAll('.icon-show');
+        const iconHide = document.querySelectorAll('.icon-hide');
+        const inputPassword = document.querySelectorAll('.input-password');
+
+        for (let i = 0;i < iconShow.length; i++) {
+            iconShow[i].addEventListener('click', function () {
+                iconShow[i].classList.add('hidden');
+                iconHide[i].classList.remove('hidden');
+                inputPassword[i].type = 'password';
+            });
+        }
+
+        for (let i = 0;i < iconHide.length; i++) {
+            iconHide[i].addEventListener('click', function () {
+                iconHide[i].classList.add('hidden');
+                iconShow[i].classList.remove('hidden');
+                inputPassword[i].type = 'text';
+            })
+        }
         document.addEventListener("DOMContentLoaded", function() {
             // Menampilkan form login secara default
             const loginForm = document.getElementById("loginForm");
