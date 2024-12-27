@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('brand')->nullable();
+            $table->decimal('discount', 5, 2)->nullable();
             $table->integer('price');
             $table->integer('stock');
             $table->foreignId('category_id')->constrained(

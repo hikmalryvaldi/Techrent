@@ -15,6 +15,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\detailProdukController;
+use App\Http\Controllers\DiskonAdminController;
 use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ProductAdminController;
 
@@ -75,6 +76,8 @@ Route::get('/Admin/tambahProduk', function () {
 Route::get('/Admin/diskon', function () {
     return view('/Admin/diskon');
 });
+
+Route::get('/Admin/diskon', [DiskonAdminController::class, 'show']);
 
 Route::get('/Admin/mperluDikirim', function () {
     return view('/Admin/mperluDikirim');

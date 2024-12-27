@@ -21,7 +21,11 @@ class Product extends Model
         'description',
     ];
 
-
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
+    }
+    
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
