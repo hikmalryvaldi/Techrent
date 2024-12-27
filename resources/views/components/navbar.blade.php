@@ -123,34 +123,39 @@
                 
                     <!-- Konten Dropdown -->
                     <ul
-                        id="dropdownCart"
-                        class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3"
-                        onmouseover="keepDropdownVisible()"
-                        onmouseleave="hideDropdown()"
+                    id="dropdownCart"
+                    class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3"
+                    onmouseover="keepDropdownVisible()"
+                    onmouseleave="hideDropdown()"
                     >
-                        <li>
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                <!-- Checkbox -->
-                                <input
-                                    id="checkbox-item-4"
-                                    type="checkbox"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                                />
-                                <!-- Gambar -->
-                                <img src="{{ asset('img/canon5D/depan.png') }}" class="h-8 w-8 rounded ml-2" alt="Produk">
-                                <!-- Label -->
-                                <label
-                                    for="checkbox-item-4"
-                                    class="ms-2 ml-auto text-sm font-medium text-gray-900 dark:text-gray-300"
-                                >
-                                    Canon 5D Mark IV
-                                </label>
-                                <span class="ml-16 text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
-                            </div>
-                        </li>
-                        <hr class="my-2">
-                        <div class="py-2 flex justify-between items-center">
-                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
+                    
+                    @foreach ($keranjang->items as $item)
+                    <li>
+                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                            <!-- Checkbox -->
+                            <input
+                            id="checkbox-item-4"
+                            type="checkbox"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <!-- Gambar -->
+                            @foreach ($item->product->images as $image)
+                            <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
+                            @endforeach
+                            <!-- Label -->
+                            <label
+                            for="checkbox-item-4"
+                            class="ms-2 ml-auto text-sm font-medium text-gray-900 dark:text-gray-300"
+                            >
+                            {{ $item->product->product_name }}
+                        </label>
+                        <span class="ml-16 text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
+                        </div>
+                    </li>
+                @endforeach
+                <hr class="my-2">
+                <div class="py-2 flex justify-between items-center">
+                    <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
                             <button class="btn btn-primary">Sewa Sekarang</button>
                         </div>
                     </ul>

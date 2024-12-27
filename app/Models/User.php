@@ -53,4 +53,9 @@ class User extends Authenticatable
             'confirm_password' => 'hashed',
         ];
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
 }
