@@ -1,6 +1,6 @@
 <!-- Product Details -->
 <div class="w-full lg:w-1/2">
-    <h1 class="text-2xl font-bold text-gray-800 mb-2">Kamera Canon EOS 5D Mark IV</h1>
+    <h1 class="text-2xl font-bold text-gray-800 mb-2">{{ $product->product_name }}</h1>
     <div class="flex items-center mb-4">
         <span class="text-yellow-500 text-lg">★ 4.5</span>
         <span class="text-gray-500 text-sm ml-2">(19 rating)</span>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="text-3xl font-bold text-gray-900 mb-4">Rp95.000</div>
+    <div class="text-3xl font-bold text-gray-900 mb-4">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
 
     <!-- Color Options -->
     <div class="mb-4">
@@ -57,8 +57,11 @@
             <div class="text-sm text-gray-500 mt-2">Stok: 83</div>
         </div>
         <div class="flex flex-col lg:flex-row gap-4 mt-6">
-            <button class="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 w-full lg:w-auto">Keranjang</button>
-            <button class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg shadow hover:bg-gray-200 w-full lg:w-auto">Sewa Sekarang</button>
+            <form action="{{ route('keranjang.add', $product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 w-full lg:w-auto">Keranjang</button>
+                <button class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg shadow hover:bg-gray-200 w-full lg:w-auto">Sewa Sekarang</button>
+            </form>
         </div>
     </div>
 
@@ -66,14 +69,9 @@
     <div>
         
         <h2 class="text-gray-700 font-medium mb-2">Detail</h2>
-        <p class="text-sm text-gray-600 mb-2">Tipe Kamera : Canon EOS 5D Mark IV</p>
-        <p class="text-sm text-gray-600 mb-2">Min. Pemesanan: 1 Buah</p>
-        <p class="text-sm text-gray-600 mb-2">Etalase: Canon</p>
-        <p class="text-sm text-gray-600">HARAP BACA SEBELUM ORDER YAH</p>
-        <p class="text-sm text-gray-600">Estimas Peminjaman Camera: 1 sampai 3 hari</p>
-        <p class="text-sm text-gray-600">READY STOCK</p>
+        <p class="text-sm text-gray-600">{{ $product->description }}</p>
         
     </div>
 </div>
 </div>
-</div>
+</div> 
