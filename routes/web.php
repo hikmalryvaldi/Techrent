@@ -79,11 +79,7 @@ Route::get('/Admin/tambahProduk', function () {
     return view('/Admin/tambahProduk');
 });
 
-Route::get('/Admin/diskon', function () {
-    return view('/Admin/diskon');
-});
 
-Route::get('/Admin/diskon', [DiskonAdminController::class, 'show']);
 
 Route::get('/Admin/mperluDikirim', function () {
     return view('/Admin/mperluDikirim');
@@ -126,6 +122,13 @@ Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->na
 Route::get('/Admin/produk/{id}', [ProductAdminController::class, 'edit'])->name('produk.edit');
 Route::put('/Admin/produk/{id}', [ProductAdminController::class, 'update'])->name('produk.update');
 Route::delete('/Admin/produk/{id}', [ProductAdminController::class, 'destroy'])->name('produk.destroy');
+
+Route::get('/Admin/diskon', function () {
+    return view('/Admin/diskon');
+});
+
+Route::get('/Admin/diskon', [DiskonAdminController::class, 'index'])->name('Admin.diskon');
+Route::get('/Admin/diskon/search', [DiskonAdminController::class, 'search'])->name('diskon.search');
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
