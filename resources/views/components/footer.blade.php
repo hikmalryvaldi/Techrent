@@ -5,19 +5,18 @@
             <div
                 class="bg-gray-700 flex flex-col sm:flex-row items-center rounded-lg p-6 sm:p-12 text-center max-w-3xl mx-auto space-y-4 sm:space-y-0">
                 <h2 class="text-lg sm:text-2xl font-bold">DAPATKAN INFORMASI DAN PENAWARAN DARI KAMI</h2>
-                <div class="w-full">
-                    <form action="/addemail" method="post"
-                        class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full">
+                    <form action="/addemail" method="post" class="flex w-full sm:w-auto">
                         @csrf
-                        <div class="relative flex-grow w-full">
+                        <div class="relative w-full">
                             <input type="email" name="email" placeholder="Masukkan Email Anda"
-                                class="bg-gray-800 text-white rounded-lg pl-12 pr-4 py-2 w-full focus:outline-none">
+                                class="bg-gray-800 text-white rounded-l-lg pl-10 pr-4 py-2 w-full focus:outline-none mx-2">
                             <span class="absolute left-3 top-2.5 text-gray-400">
-                                <img src="{{ asset('img/email.png') }}" alt="Email Icon" class="h-5 w-7">
+                                <img src="{{ asset('img/email.png') }}" alt="Email Icon" class="h-5">
                             </span>
                         </div>
                         <button type="submit"
-                            class="bg-gray-300 text-gray-900 font-bold px-6 py-2 rounded-lg hover:bg-gray-400 transition w-full sm:w-auto">
+                            class="bg-gray-300 text-gray-900 font-bold px-6 py-2 rounded-r-lg hover:bg-gray-400 transition">
                             Kirim
                         </button>
                     </form>
