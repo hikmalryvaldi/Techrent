@@ -19,7 +19,21 @@
                 </div>
                 {{-- kategoti --}}
                 <div class="mb-5">
-                <button id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Pilih Produk Promosi <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search Produk"
+                            class="input input-bordered h-8 mb-3 bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            autocomplete="off" onkeyup="liveSearch()" />
+
+                        <!-- Dropdown hasil pencarian -->
+                        <div id="dropdown"
+                            class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md hidden">
+                            <!-- Hasil pencarian akan dimasukkan di sini secara dinamis -->
+                        </div>
+                    </div>
+
+                    <!-- Hidden input untuk menyimpan ID produk yang dipilih -->
+                    <input type="hidden" id="selected-product-id" name="product_id" />
+                {{-- <button id="dropdownBgHoverButton" data-dropdown-toggle="dropdownBgHover" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Pilih Produk Promosi <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                     </svg>
                     </button>
@@ -41,7 +55,7 @@
                         </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 
                 <div class="flex items-start mb-5">
                 <div class="flex items-center h-5">
@@ -108,5 +122,62 @@
         }
     });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function liveSearch() {
+                var searchQuery = document.getElementById('search-input').value;
+
+                // Sembunyikan dropdown jika input kosong
+                if (searchQuery === '') {
+                    document.getElementById('dropdown').classList.add('hidden');
+                    return;
+                }
+
+                // AJAX request untuk pencarian
+                $.ajax({
+                    url: '/search', // Route untuk pencarian
+                    type: 'GET',
+                    data: {
+                        search: searchQuery
+                    }, // Kirim parameter pencarian
+                    success: function(response) {
+                        var dropdown = $('#dropdown');
+                        dropdown.empty(); // Kosongkan dropdown sebelum mengisi
+
+                        if (response.length > 0) {
+                            response.forEach(function(product) {
+                                dropdown.append(`
+                            <div class="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-200"
+                                onclick="selectProduct(${product.id}, '${product.product_name}')">
+                                ${product.product_name}
+                            </div>
+                        `);
+                            });
+                        } else {
+                            dropdown.append(`
+                        <div class="px-4 py-2 text-gray-500">No results found</div>
+                    `);
+                        }
+
+                        dropdown.removeClass('hidden'); // Tampilkan dropdown
+                    }
+                });
+            }
+
+            // Fungsi untuk menangani klik produk
+            function selectProduct(id, productName) {
+                // Isi input dengan nama produk
+                document.getElementById('search-input').value = productName;
+
+                // Simpan ID produk ke dalam hidden input
+                document.getElementById('selected-product-id').value = id;
+
+                // Sembunyikan dropdown
+                document.getElementById('dropdown').classList.add('hidden');
+
+                // (Opsional) Log ID produk yang dipilih untuk debugging
+                console.log('Produk terpilih: ', id, productName);
+            }
+        </script>
 
 </body>
