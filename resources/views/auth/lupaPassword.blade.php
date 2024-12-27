@@ -3,7 +3,6 @@
 <body>
     <x-navbar :isRegistrationPage="true"></x-navbar>
 
-
     <div class="max-w-4xl mx-auto py-12 px-6 sm:px-6 lg:px-8">
         <div class="bg-white shadow-xl rounded-lg overflow-hidden">
 
