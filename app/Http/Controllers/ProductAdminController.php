@@ -14,18 +14,36 @@ class ProductAdminController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        // Mengambil semua data produk dari database
-        $products = Product::with(['images' => function ($query) {
-            $query->select('product_id', 'image_path1', 'image_path2', 'image_path3', 'image_path4'); // Hanya ambil kolom yang diperlukan
-        }])->get();
+        $search = $request->input('search'); // Ambil query pencarian
+        $categorySlug = $request->input('category', ''); // Ambil parameter kategori
+
+
+        // Query produk dengan relasi gambar dan kategori
+        $productsQuery = Product::with(['images' => function ($query) {
+            $query->select('product_id', 'image_path1', 'image_path2', 'image_path3', 'image_path4'); // Hanya kolom yang diperlukan
+        }, 'category']);
+
+        // Filter berdasarkan kategori jika slug kategori diberikan
+        if (!empty($categorySlug)) {
+            $productsQuery->whereHas('category', function ($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug);
+            });
+        }
+
+        // Filter berdasarkan pencarian dalam lingkup kategori
+        if ($search) {
+            $productsQuery->where('product_name', 'like', '%' . $search . '%');
+        }
+
+
+        $products = $productsQuery->paginate(10)->appends($request->query());
+
         // Ambil semua kategori untuk dropdown
         $categories = Category::all();
 
-
-        // Mengirim data produk ke view 'Admin.produk'
-        return view('Admin.produk', compact('products', 'categories'));
+        return view('Admin.produk', compact('products', 'categories', 'categorySlug', 'search'));
     }
 
 
@@ -230,5 +248,42 @@ class ProductAdminController extends Controller
         $product->delete();
 
         return redirect()->route('Admin.produk')->with('success', 'Produk berhasil dihapus beserta gambar terkait.');
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search', ''); // Kata kunci pencarian
+        $categorySlug = $request->input('category', ''); // Slug kategori, jika ada
+
+        // Query produk dengan relasi gambar dan kategori
+        $productsQuery = Product::with(['images' => function ($query) {
+            $query->select('product_id', 'image_path1', 'image_path2', 'image_path3', 'image_path4'); // Hanya kolom yang diperlukan
+        }, 'category']);
+
+        // Filter berdasarkan kategori jika slug kategori diberikan
+        if (!empty($categorySlug)) {
+            $productsQuery->whereHas('category', function ($query) use ($categorySlug) {
+                $query->where('slug', $categorySlug);
+            });
+        }
+
+        // Filter berdasarkan kata kunci pencarian
+        if (!empty($searchTerm)) {
+            $productsQuery->where('product_name', 'LIKE', '%' . $searchTerm . '%');
+        }
+
+        $products = $productsQuery->paginate(10)->appends($request->query()); // Ambil data produk
+
+        // Jika produk kosong, kembalikan pesan
+        if ($products->isEmpty()) {
+            $html = '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <td class="text-center py-4" colspan="7">Produk Tidak Ditemukan.</td>
+    </tr>';
+        } else {
+            $categories = Category::all(); // Ambil semua kategori
+            $html = view('Admin/partials.partialproduk', compact('products', 'categories'))->render();
+        }
+
+        return response()->json(['html' => $html]);
     }
 }

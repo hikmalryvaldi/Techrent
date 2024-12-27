@@ -11,11 +11,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\ProductAdminController;
-use App\Http\Controllers\DashboardContorller;
 use App\Http\Controllers\detailProdukController;
+use App\Http\Controllers\LupaPasswordController;
+use App\Http\Controllers\ProductAdminController;
 
 // Home
 Route::controller(HomeController::class)->group(function () {
@@ -36,6 +37,8 @@ Route::get('/keranjang', [CartController::class, 'index']);
 Route::get('/auth', [RegisterController::class, 'index'])->name('auth')->middleware('guest');
 Route::post('/registrasi', [RegisterController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/lupaPassword', [RegisterController::class, 'lupaPassword'])->name('lupa.password');
+
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
 Route::post('/logout', [LoginController::class, 'logout'])->name('adminLogout');
@@ -54,6 +57,8 @@ Route::get('/detailProduk/{product:id}', [detailProdukController::class, 'show']
 Route::get('/Admin/dashboard', function () {
     return view('/Admin/dashboard');
 })->name('admin.dashboard')->middleware('admin');
+
+Route::get('/Admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/Admin/produk', function () {
     return view('/Admin/produk');
@@ -110,6 +115,7 @@ Route::get('/Admin/detailPesanan', function () {
 });
 
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
+Route::get('/Admin/produk/search', [ProductAdminController::class, 'search'])->name('produk.search');
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
 Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->name('Admin.produk.store');
 Route::get('/Admin/produk/{id}', [ProductAdminController::class, 'edit'])->name('produk.edit');
@@ -118,13 +124,25 @@ Route::delete('/Admin/produk/{id}', [ProductAdminController::class, 'destroy'])-
 
 Route::get('/ubahPassword', function () {
     return view('ubahPassword');
+})->name('password.reset');
+
+Route::get('/lupaPassword', function () {
+    return view('auth.lupaPassword');
 });
+
+Route::get('/ubahLupaPassword', function () {
+    return view('auth.ubahLupaPassword');
+});
+
+Route::post('/updateLupaPassword', [LupaPasswordController::class, 'updatePassword'])->name('update.password');
+
+Route::post('/send-otp', [LupaPasswordController::class, 'sendOtp'])->name('send.otp');
+Route::post('/verify-otp', [LupaPasswordController::class, 'verifyOtp'])->name('verify.otp');
 
 Route::get('/Admin/pesananSaya/pesananBelumBayar', function () {
     return view('/Admin/pesananSaya/pesananBelumBayar');
 });
 
-Route::get('/Admin/users', [DashboardContorller::class, 'index']);
 
 // 
 

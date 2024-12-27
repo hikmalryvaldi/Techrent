@@ -3,7 +3,7 @@
         <div class="container mx-auto px-4">
             <!-- Informasi dan Penawaran -->
             <div
-                class="bg-gray-700 flex flex-col sm:flex-row items-center rounded-lg p-6 sm:p-12 text-center max-w-3xl mx-auto space-y-4 sm:space-y-0 sm:space-x-4">
+                class="bg-gray-700 flex flex-col sm:flex-row items-center rounded-lg p-6 sm:p-12 text-center max-w-3xl mx-auto space-y-4 sm:space-y-0">
                 <h2 class="text-lg sm:text-2xl font-bold">DAPATKAN INFORMASI DAN PENAWARAN DARI KAMI</h2>
                 <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 w-full">
                     <form action="/addemail" method="post" class="flex w-full sm:w-auto">
@@ -22,6 +22,9 @@
                     </form>
                 </div>
             </div>
+
+
+
 
             <!-- Metode Pembayaran -->
             <div class="flex flex-wrap justify-center items-center mt-8 gap-4">

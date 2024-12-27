@@ -12,21 +12,22 @@
                     <h1 class="text-black text-2xl font-bold">Halaman Produk</h1>
                     {{-- search --}}
                     <form class="flex max-w-md  mt-10">
-                        <label for="default-search"
-                            class="mb-2  text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            <input type="search" id="default-search"
-                                class="block px-24 w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search....." required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        <label for="search-input"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                            </svg>
+                        </div>
+                        <input type="hidden" name="category" value="{{ request('category') }}" />
+                        <input type="search" id="search-input" name="search"
+                            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Cari Product" value="{{ request('search') }}" />
+                        <button type="submit"
+                            class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                         </div>
 
                         {{-- Dropdown kategori  --}}
@@ -45,21 +46,19 @@
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownDefaultButton">
                                 <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Kamera</a>
+                                    <a href="{{ route('Admin.produk') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Semua Product
+                                    </a>
                                 </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Lensa</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Playstation</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sound</a>
-                                </li>
+                                @foreach ($categories as $category)
+                                    <li>
+                                        <a href="{{ route('Admin.produk', ['category' => $category->slug]) }}"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
 
@@ -95,14 +94,14 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="product-table-body">
                                 @foreach ($products as $index => $product)
                                     <tr
                                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <td class="w-4 p-4">
+                                        <td class="p-4">
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td class="w-4 p-4">
+                                        <td class="p-4">
                                             @foreach ($product->images as $image)
                                                 <img src="{{ asset('storage/' . $image->image_path1) }}"
                                                     alt="Product Image" class="w-20 h-20 object-cover">
@@ -529,7 +528,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav class="flex justify-center items-center flex-column flex-wrap md:flex-row  pt-4"
+                    {{-- <nav class="flex justify-center items-center flex-column flex-wrap md:flex-row  pt-4"
                         aria-label="Table navigation">
                         <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
                             <li>
@@ -561,7 +560,8 @@
                                     class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> --}}
+                    {{ $products->links() }}
                 </div>
 
                 <x-speedDeal></x-speedDeal>
@@ -572,4 +572,52 @@
 
     {{-- js --}}
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search-input').on('keyup', function() {
+                let keyword = $(this).val();
+                let category = '{{ $categorySlug ?? '' }}'; // Slug kategori dari server-side
+
+                // Jika input kosong, hapus parameter dari URL dan tampilkan ulang data default
+                if (keyword === '') {
+                    let url = new URL(window.location.href);
+                    url.searchParams.delete('search'); // Hapus parameter search
+                    window.history.pushState({}, '', url); // Perbarui URL tanpa reload halaman
+
+                    // Ambil data default (tanpa pencarian)
+                    $.ajax({
+                        url: "{{ route('produk.search') }}",
+                        type: "GET",
+                        data: {
+                            category: category // Kirim kategori saja jika ada
+                        },
+                        success: function(data) {
+                            $('#product-table-body').html(data.html); // Update tabel produk
+                        },
+                        error: function(xhr) {
+                            console.error("Gagal memuat data produk: ", xhr.responseText);
+                        }
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{ route('produk.search') }}",
+                    type: "GET",
+                    data: {
+                        search: keyword,
+                        category: category // Kirim slug kategori yang sedang aktif
+                    },
+                    success: function(data) {
+                        console.log(data.html); // Periksa isi respon
+                        $('#product-table-body').html(data.html);
+                    },
+                    error: function(xhr) {
+                        console.error("Gagal memuat data produk: ", xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>

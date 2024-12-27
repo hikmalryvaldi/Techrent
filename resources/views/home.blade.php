@@ -196,8 +196,9 @@
                 @foreach ($topProducts as $topProduct)
                     <div class="card1 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                            @foreach($topProduct->images as $image)
-                                <img src="{{ $image->image_path1 }}" alt="Image of {{ $topProduct->name }}" class="w-full h-full object-contain">>
+                            @foreach ($topProduct->images as $image)
+                                <img src="{{ $image->image_path1 }}" alt="Image of {{ $topProduct->name }}"
+                                    class="w-full h-full object-contain">>
                             @endforeach
                         </div>
                         <p class="text-black text-center text-xl font-bold mt-4">
@@ -251,33 +252,40 @@
                 <!-- Accordion Item 1 -->
                 <div class="collapse collapse-arrow bg-base-200">
                     <input type="checkbox" id="collapse1" class="hidden peer" />
-                    <label for="collapse1" class="collapse-title text-xl font-medium cursor-pointer">Click to open
-                        this one and close others</label>
+                    <label for="collapse1" class="collapse-title text-xl font-medium cursor-pointer text-white">Apa
+                        yang harus
+                        dilakukan jika barang yang disewa mengalami kerusakan?</label>
                     <div
-                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
-                        <p>hello</p>
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto text-white text-opacity-70">
+                        <p>Jika barang rusak saat dalam masa sewa, segera hubungi kami. Kerusakan akibat pemakaian yang
+                            tidak sesuai dengan panduan akan menjadi tanggung jawab penyewa.</p>
                     </div>
                 </div>
 
                 <!-- Accordion Item 2 -->
                 <div class="collapse collapse-arrow bg-base-200 mt-3">
                     <input type="checkbox" id="collapse2" class="hidden peer" />
-                    <label for="collapse2" class="collapse-title text-xl font-medium cursor-pointer">Click to open
-                        this one and close others</label>
+                    <label for="collapse2" class="collapse-title text-xl font-medium cursor-pointer text-white">Apakah
+                        barang
+                        yang disewa dijamin berfungsi dengan baik?</label>
                     <div
-                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
-                        <p>hello</p>
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto text-white text-opacity-70">
+                        <p>Kami selalu memastikan bahwa semua barang telah melalui pemeriksaan dan uji kualitas sebelum
+                            disewakan. Jika ada masalah saat penggunaan, Anda dapat menghubungi layanan pelanggan kami
+                            untuk mendapatkan bantuan.</p>
                     </div>
                 </div>
 
                 <!-- Accordion Item 3 -->
                 <div class="collapse collapse-arrow bg-base-200 mt-3">
                     <input type="checkbox" id="collapse3" class="hidden peer" />
-                    <label for="collapse3" class="collapse-title text-xl font-medium cursor-pointer">Click to open
-                        this one and close others</label>
+                    <label for="collapse3" class="collapse-title text-xl font-medium cursor-pointer text-white">Apakah
+                        saya bisa
+                        menyewa barang untuk digunakan di luar kota?</label>
                     <div
-                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto">
-                        <p>hello</p>
+                        class="collapse-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out peer-checked:max-h-96 peer-checked:overflow-auto text-white text-opacity-70">
+                        <p>Tentu, barang dapat dibawa keluar kota selama Anda memenuhi persyaratan yang telah
+                            ditentukan. Pastikan untuk menginformasikan kami sebelumnya.</p>
                     </div>
                 </div>
             </div>
