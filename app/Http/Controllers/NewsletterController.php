@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Mail\Newsletter;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
@@ -38,5 +39,22 @@ class NewsletterController extends Controller
         ]);
 
     }
+
+    public function search(Request $request)
+{
+
+    $search = $request->input('search');
+
+    if (empty($search)) {
+        return response()->json([]);
+    }
+
+    // Cari produk berdasarkan nama
+    $products = Product::where('product_name', 'like', '%' . $search . '%')
+        ->limit(5)
+        ->get();
+
+    return response()->json($products);
+}
 
 }

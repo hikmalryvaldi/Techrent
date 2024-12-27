@@ -68,6 +68,8 @@ Route::get('/Admin/nNewsletterDiskon', function () {
     return view('/Admin/nNewsletterDiskon');
 });
 
+Route::get('/search', [NewsletterController::class, 'search'])->name('newsletter.search');
+
 Route::get('/Admin/nNewsletterCustom', function () {
     return view('/Admin/nNewsletterCustom');
 });
