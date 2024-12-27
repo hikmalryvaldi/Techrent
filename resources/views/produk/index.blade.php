@@ -43,11 +43,12 @@
                     <div class="p-4">
                         <h2 class="text-xl font-semibold">{{ $product->product_name }}</h2>
                         <p class="text-gray-600 mt-2">{{ $product->description }}</p>
-                        <p class="text-lg font-semibold text-green-600 mt-2">Rp
-                            {{ number_format($product->price) }}/hari</p>
+                        <div class="flex items-center mt-2">
+                            <p class="text-lg font-semibold text-green-600">Rp {{ number_format($product->price) }} /hari</p>
+                            <span class="text-gray-500 text-sm ml-24">Penyewa 30+</span>
+                        </div>
                         <a href="/detailProduk/{{ $product->id }}"
-                            class="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Sewa
-                            Sekarang</a>
+                            class="inline-block mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Sewa Sekarang</a>
                     </div>
                 </div>
             @endforeach
