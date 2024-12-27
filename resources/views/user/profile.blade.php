@@ -279,60 +279,69 @@
 
 <script>
     // Initialize the map
-    var map = L.map('map').setView([-6.914744, 107.609810], 13); // Default center (London)
+    var map;
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize the map when the DOM is fully loaded
+        map = L.map('map').setView([-6.914744, 107.609810], 13); // Default center(London)
 
-    // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
 
-    // Create a marker variable
-    var marker;
+        // Create a marker variable
+        var marker;
 
-    // When the user clicks on the map, place a marker
-    map.on('click', function(e) {
-        // Get the clicked position (lat, lon)
-        var latLng = e.latlng;
+        // When the user clicks on the map, place a marker
+        map.on('click', function(e) {
+            var latLng = e.latlng;
 
-        // If there is an existing marker, remove it
-        if (marker) {
-            map.removeLayer(marker);
+            // If there is an existing marker, remove it
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            // Place a new marker at the clicked location
+            marker = L.marker(latLng).addTo(map);
+
+            // Call geocoding service to get the address for the clicked location
+            getAddressFromLatLng(latLng);
+        });
+
+        // Function to get address from lat/lng using Nominatim API
+        function getAddressFromLatLng(latLng) {
+            var lat = latLng.lat;
+            var lon = latLng.lng;
+
+            // Use Nominatim API to reverse geocode the coordinates
+            const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    // Get the address from the API response
+                    const address = data.display_name;
+                    // Set the address in the input field
+                    document.getElementById('address').value = address;
+                })
+                .catch(error => {
+                    console.error('-Error saat menerima alamat -', error);
+                    document.getElementById('address').value = 'Address not found';
+                });
         }
-
-        // Place a new marker at the clicked location
-        marker = L.marker(latLng).addTo(map);
-
-        // Call geocoding service to get the address for the clicked location
-        getAddressFromLatLng(latLng);
     });
-
-    // Function to get address from lat/lng using Nominatim API
-    function getAddressFromLatLng(latLng) {
-        var lat = latLng.lat;
-        var lon = latLng.lng;
-
-        // Use Nominatim API to reverse geocode the coordinates
-        var url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
-
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Get the address from the API response
-                var address = data.display_name;
-                // Set the address in the input field
-                document.getElementById('address').value = address;
-            })
-            .catch(error => {
-                console.error('- Error saat menerima alamat -', error);
-                document.getElementById('address').value = 'Address not found';
-            });
-    }
 
     function tabs() {
         return {
             activeTab: 'tab1', // Default active tab
             setActive(tab) {
                 this.activeTab = tab;
+
+                if (tab === 'tab1' && typeof map !== 'undefined') {
+                    setTimeout(() => {
+                        map.invalidateSize();
+                    }, 200);
+                }
             },
         };
     }
