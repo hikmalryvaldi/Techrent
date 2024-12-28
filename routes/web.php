@@ -117,6 +117,7 @@ Route::get('/Admin/detailPesanan', function () {
 
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 Route::get('/Admin/produk/search', [ProductAdminController::class, 'search'])->name('produk.search');
+Route::get('/Admin/produk/pdf', [ProductAdminController::class, 'pdf'])->name('produk.pdf');
 Route::get('/Admin/tambahProduk', [ProductAdminController::class, 'create'])->name('Admin.produk.create');
 Route::post('/Admin/tambahProduk', [ProductAdminController::class, 'store'])->name('Admin.produk.store');
 Route::get('/Admin/produk/{id}', [ProductAdminController::class, 'edit'])->name('produk.edit');
