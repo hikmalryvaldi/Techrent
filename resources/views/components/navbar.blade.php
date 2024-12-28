@@ -129,30 +129,31 @@
                     onmouseleave="hideDropdown()"
                     >
                     
+                    @if ($keranjang && $keranjang->items->isNotEmpty())
                     @foreach ($keranjang->items as $item)
-                    <li>
-                        <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                            <!-- Checkbox -->
-                            <input
-                            id="checkbox-item-4"
-                            type="checkbox"
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                            />
-                            <!-- Gambar -->
-                            @foreach ($item->product->images as $image)
-                            <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
-                            @endforeach
-                            <!-- Label -->
-                            <label
-                            for="checkbox-item-4"
-                            class="ms-2 ml-auto text-sm font-medium text-gray-900 dark:text-gray-300"
-                            >
-                            {{ $item->product->product_name }}
-                        </label>
-                        <span class="ml-16 text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
-                        </div>
-                    </li>
-                @endforeach
+                        <li>
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <!-- Checkbox -->
+                                <input
+                                    id="checkbox-item-4"
+                                    type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                />
+                                <!-- Gambar -->
+                                @foreach ($item->product->images as $image)
+                                    <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
+                                @endforeach
+                                <!-- Label -->
+                                <label for="checkbox-item-4" class="ms-2 ml-auto text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    {{ $item->product->product_name }}
+                                </label>
+                                <span class="ml-16 text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
+                            </div>
+                        </li>
+                    @endforeach
+                @else
+                    <p>Keranjang Anda kosong</p>
+                @endif
                 <hr class="my-2">
                 <div class="py-2 flex justify-between items-center">
                     <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
