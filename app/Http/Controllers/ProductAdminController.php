@@ -286,4 +286,102 @@ class ProductAdminController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+    function pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+
+        // Query produk dengan relasi gambar dan kategori
+        $products = Product::with(['images', 'category'])->get();
+
+        // Generate HTML secara langsung
+        $html = '<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Daftar Produk</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 20px;
+                    background-color: #f9f9f9;
+                }
+                h1 {
+                    text-align: center;
+                    color: #333;
+                    margin-bottom: 20px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 0 auto;
+                    background-color: #fff;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 14px;
+                }
+                th {
+                    background-color: #424242;
+                    color: white;
+                    font-weight: bold;
+                }
+                td img {
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    border-radius: 5px;
+                }
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                tr:hover {
+                    background-color: #ddd;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Daftar Produk</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Image</th>
+                        <th>Nama Produk</th>
+                        <th>Kategori</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+        foreach ($products as $index => $product) {
+            $html .= '<tr>
+                    <td>' . ($index + 1) . '</td>
+                    <td>';
+            foreach ($product->images as $image) {
+                $html .= '<img src="' . public_path('storage/' . $image->image_path1) . '" alt="Product Image">';
+            }
+            $html .= '</td>
+                    <td>' . $product->product_name . '</td>
+                    <td>' . ($product->category->name ?? 'N/A') . '</td>
+                    <td>Rp ' . number_format($product->price, 0, ',', '.') . '</td>
+                    <td>' . $product->stock . '</td>
+                </tr>';
+        }
+
+        $html .= '</tbody>
+            </table>
+        </body>
+        </html>';
+
+        // Generate PDF
+        $mpdf->WriteHTML($html);
+        $mpdf->Output('daftar-produk-techrent.pdf', \Mpdf\Output\Destination::INLINE);
+    }
 }
