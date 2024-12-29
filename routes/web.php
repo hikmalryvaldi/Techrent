@@ -10,12 +10,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
-use App\Http\Controllers\detailProdukController;
 use App\Http\Controllers\DiskonAdminController;
+use App\Http\Controllers\detailProdukController;
 use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ProductAdminController;
 
@@ -169,4 +171,8 @@ Route::post('/keranjang/tambah/{product}', [CartController::class, 'add'])->name
 
 Route::get('/navbar/cart', [CartController::class, 'getCartItems'])->name('navbar.cart');
 
+Route::get('/keranjang/checkout', [CheckoutController::class, 'keranjangCheckout']);
 
+Route::post('/payment', [PaymentController::class, 'createTransaction']);
+
+Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount']);

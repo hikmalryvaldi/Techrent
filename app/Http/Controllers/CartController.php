@@ -15,33 +15,38 @@ class CartController extends Controller
         return view('keranjang');
     }
 
-    public function add($productId)
+    public function add(Request $request, $productId)
     {
         $product = Product::findOrFail($productId);
-
+    
         // Ambil keranjang yang sudah ada, atau buat yang baru jika belum ada
         $keranjang = Cart::firstOrCreate([
             'user_id' => Auth::id(),  // Gunakan ID pengguna yang sedang login
         ]);
-
+    
+        // Ambil data dari request (quantity dan rental_duration)
+        $quantity = $request->input('quantity'); // Default ke 1 jika tidak ada input quantity
+        $rentalDuration = $request->input('rental_duration'); // Default ke 1 hari jika tidak ada pilihan
+    
         // Cek jika produk sudah ada di keranjang
         $keranjangItem = $keranjang->items()->where('product_id', $product->id)->first();
-
+    
         if ($keranjangItem) {
             // Jika produk sudah ada, update quantity-nya
-            $keranjangItem->quantity += 1;
+            $keranjangItem->quantity += $quantity;
             $keranjangItem->save();
         } else {
             // Jika produk belum ada di keranjang, tambahkan item baru
             $keranjang->items()->create([
                 'product_id' => $product->id,
-                'quantity' => 1,
+                'quantity' => $quantity,
                 'price' => $product->price,  // Simpan harga produk saat ditambahkan
+                'rental_duration' => $rentalDuration, // Simpan durasi peminjaman
             ]);
         }
-
+    
         session()->flash('added_to_cart', $product);
-
+    
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 

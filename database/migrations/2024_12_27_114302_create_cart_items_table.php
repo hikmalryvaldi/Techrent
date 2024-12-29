@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->integer('quantity')->default(1);
             $table->decimal('price', 10, 2);
+            $table->integer('rental_duration')->default(1);  // Menambahkan kolom rental_duration untuk menyimpan durasi rental
             $table->timestamps();
         });
     }

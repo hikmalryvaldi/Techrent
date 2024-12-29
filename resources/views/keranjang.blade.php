@@ -23,17 +23,17 @@
                 <!-- Nama -->
                 <div>
                     <p class="text-gray-700 font-semibold mt-3">Nama Lengkap:</p>
-                    <p class="text-gray-800">[AHMAD MURBERRY]</p>
+                    <p class="text-gray-800">[{{ Auth::user()->nama }}]</p>
                 </div>
                 <!-- Nomor Telepon -->
                 <div>
                     <p class="text-gray-700 font-semibold">Nomor Telepon:</p>
-                    <p class="text-gray-800">[007]</p>
+                    <p class="text-gray-800">[{{ Auth::user()->phone }}]</p>
                 </div>
                 <!-- Alamat -->
                 <div>
                     <p class="text-gray-700 font-semibold">Alamat:</p>
-                    <p class="text-gray-800">[ASTANA ANYAR]</p>
+                    <p class="text-gray-800">[{{ Auth::user()->phone }}]</p>
                 </div>
             </div>
         </div>
@@ -42,51 +42,30 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <div class="space-y-6">
                 <!-- Produk 1 -->
+                @foreach ($cartItems as $cartItem)
                 <div class="border-b pb-4">
                     <div
                         class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
                         <img src="https://via.placeholder.com/80" alt="Produk 1"
                             class="w-20 h-20 object-cover rounded-md">
                         <div class="flex flex-col w-full">
-                            <h3 class="text-lg font-semibold text-gray-800">Produk 1</h3>
+                            <h3 class="text-lg font-semibold text-gray-800">{{ $cartItem->product->product_name }}</h3>
                             <p class="text-gray-600">Deskripsi produk.</p>
                             <div class="flex justify-between mt-2 w-full">
                                 <div class="flex items-center space-x-2">
                                     <button class="bg-gray-300 text-gray-800 px-2 py-1 rounded-full">-</button>
-                                    <span class="text-gray-700">1</span>
+                                    <span class="text-gray-700">{{ $cartItem->quantity }}</span>
                                     <button class="bg-gray-300 text-gray-800 px-2 py-1 rounded-full">+</button>
                                 </div>
                                 <div class="flex flex-col text-right">
                                     <p class="text-gray-700">Durasi: 6 Hari</p>
-                                    <p class="text-gray-700 font-semibold">Rp 100.000</p>
+                                    <p class="text-gray-700 font-semibold">Rp {{ number_format($cartItem->product->price, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Produk 2 -->
-                <div class="border-b pb-4">
-                    <div
-                        class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                        <img src="{{ asset('img/bca.png') }}" alt="Produk 2" class="w-20 h-20 object-cover rounded-md">
-                        <div class="flex flex-col w-full">
-                            <h3 class="text-lg font-semibold text-gray-800">Produk 2</h3>
-                            <p class="text-gray-600">Deskripsi produk.</p>
-                            <div class="flex justify-between mt-2 w-full">
-                                <div class="flex items-center space-x-2">
-                                    <button class="bg-gray-300 text-gray-800 px-2 py-1 rounded-full">-</button>
-                                    <span class="text-gray-700">1</span>
-                                    <button class="bg-gray-300 text-gray-800 px-2 py-1 rounded-full">+</button>
-                                </div>
-                                <div class="flex flex-col text-right">
-                                    <p class="text-gray-700">Durasi: 2 Hari</p>
-                                    <p class="text-gray-700 font-semibold">Rp 150.000</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <!-- Dropdown Voucher -->
@@ -110,9 +89,9 @@
                 <!-- Subtotal Produk -->
                 <div class="flex justify-between">
                     <p class="text-gray-700">Subtotal Produk:</p>
-                    <p class="text-gray-800 font-semibold">Rp 250.000</p>
+                    <p class="text-gray-800 font-semibold">Rp {{number_format($totalPrice, 0, ',', '.')}}</p>
                 </div>
-                <!-- Subtotal Pengiriman -->
+                {{-- <!-- Subtotal Pengiriman -->
                 <div class="flex justify-between">
                     <p class="text-gray-700">Subtotal Pengiriman:</p>
                     <p class="text-gray-800 font-semibold">Rp 20.000</p>
@@ -121,27 +100,120 @@
                 <div class="flex justify-between">
                     <p class="text-gray-700">Voucher Diskon:</p>
                     <p class="text-gray-800 font-semibold">- Rp 25.000</p>
-                </div>
+                </div> --}}
                 <hr class="my-2 border-gray-300">
                 <!-- Total Pembayaran -->
                 <div class="flex justify-between text-lg font-semibold">
                     <p class="text-gray-800">Total Pembayaran:</p>
-                    <p class="text-red-600">Rp 245.000</p>
+                    <p class="text-red-600">Rp {{number_format($totalPrice, 0, ',', '.')}}</p>
                 </div>
             </div>
         </div>
 
+        {{-- Midtrans Transaksi --}}
+        <form id="payment-form">
+            @csrf
+            {{-- <label for="gross_amount">Gross Amount:</label> --}}
+            <input type="hidden" value="{{ $totalPrice }}" id="gross_amount" name="gross_amount" readonly>
 
+            {{-- <label for="first_name">First Name:</label> --}}
+            <input type="hidden" id="first_name" name="first_name" value="{{ Auth::user()->nama }}" required>
+          
 
         <!-- Total dan Checkout -->
         <div class="mt-6 flex flex-col sm:flex-row justify-end items-center space-y-4 sm:space-y-0">
             <div class="tombol">
                 <a href="produk"
                     class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
-                <a href="#"
-                    class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</a>
+                <button href="#" type="submit"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>
             </div>
         </div>
+
+        </form>
+
+        {{-- <form id="payment-form">
+            @csrf
+            <label for="gross_amount">Gross Amount:</label>
+            <input type="number" value="{{ $totalPrice }}" id="gross_amount" name="gross_amount" readonly>
+
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="John" required>
+          
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="Doe" required>
+          
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="johndoe@example.com" required>
+          
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="08123456789" required>
+          
+            <button type="submit">Pay Now</button>
+          </form> --}}
+        
+        
+        
+        
     </section>
+    
+
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-Hvs6JvDsHpoAs8kG"></script>
+
+<script type="text/javascript">
+  document.querySelector('#payment-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Mencegah form submit secara default
+
+      // Ambil CSRF token
+      let csrfToken = document.querySelector('input[name="_token"]').value;
+
+      // Kirim Ajax Request ke server untuk mendapatkan Snap Token
+      fetch('/payment', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': csrfToken, // Kirim CSRF token
+          },
+          body: JSON.stringify({
+              gross_amount: document.querySelector('#gross_amount').value,
+              first_name: document.querySelector('#first_name').value,
+          }),
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log(data); // Debug untuk melihat data yang diterima
+          if (data.snap_token) {
+              // Panggil Snap Popup
+              snap.pay(data.snap_token, {
+                  onSuccess: function(result) {
+                      console.log('Payment Success:', result);
+                      alert('Payment Success! Transaction ID: ' + result.transaction_id);
+                  },
+                  onPending: function(result) {
+                      console.log('Payment Pending:', result);
+                      alert('Payment Pending! Please complete the payment.');
+                  },
+                  onError: function(result) {
+                      console.error('Payment Error:', result);
+                      alert('Payment Error! Please try again.');
+                  },
+                  onClose: function() {
+                      console.log('Payment popup closed.');
+                      alert('You closed the payment popup.');
+                  }
+              });
+          } else {
+              alert('Failed to retrieve Snap Token');
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while processing the payment.');
+      });
+  });
+</script>
+    
 
 </body>
