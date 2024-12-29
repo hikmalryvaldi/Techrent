@@ -113,5 +113,44 @@
             });
         </script>
 
+<script>
+    
+    // Fungsi untuk mengatur rental duration (durasi sewa)
+    function selectVariant(duration) {
+        console.log('Fungsi selectVariant dipanggil dengan durasi:', duration);
+        let rentalDuration;
+        if (duration === 'Satu') {
+            rentalDuration = 1; // 1 Hari
+        } else if (duration === 'Dua') {
+            rentalDuration = 2; // 2 Hari
+        } else if (duration === 'Tiga') {
+            rentalDuration = 3; // 3 Hari
+        }
+    
+        // Perbarui input hidden untuk rental_duration
+        document.getElementById('rental_duration').value = rentalDuration;
+        console.log('Durasi sewa dipilih:', rentalDuration, 'hari');
+        // Highlight tombol yang dipilih
+        document.querySelectorAll('.variant-button').forEach(button => {
+            button.classList.remove('bg-gray-100', 'font-bold');
+            button.classList.add('text-gray-700');
+        });
+    
+        // Set style untuk tombol yang dipilih
+        document.getElementById(duration).classList.add('bg-gray-100', 'font-bold');
+    }
+    
+    // Pastikan form mengirimkan nilai yang tepat (quantity dan rental_duration)
+    document.getElementById('cart-form').onsubmit = function() {
+        let quantity = document.getElementById('quantityInput').value;
+        let rentalDuration = document.getElementById('rental_duration').value;
+    
+        // Update hidden input value for quantity
+        document.getElementById('quantityInputHidden').value = quantity;
+    
+        console.log('Quantity:', quantity);
+        console.log('Rental Duration:', rentalDuration);
+    };
+    </script>
 
 </body>

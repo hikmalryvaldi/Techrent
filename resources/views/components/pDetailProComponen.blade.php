@@ -50,17 +50,24 @@
         <div>
             <h2 class="text-gray-700 font-medium mb-2">Atur jumlah dan catatan</h2>
             <div class="flex items-center space-x-2">
-                <button onclick="adjustQuantity(-1)" class="px-4 py-2 border rounded-lg">-</button>
-                <input id="quantityInput" type="text" value="1" class="w-12 text-center border rounded-lg">
-                <button onclick="adjustQuantity(1)" class="px-4 py-2 border rounded-lg">+</button>
+                <button type="button" onclick="adjustQuantity(-1)" class="px-4 py-2 border rounded-lg">-</button>
+                <input id="quantityInput" name="quantity" type="number" value="1" class="w-12 text-center border rounded-lg">
+                <button type="button" onclick="adjustQuantity(1)" class="px-4 py-2 border rounded-lg">+</button>
             </div>
             <div class="text-sm text-gray-500 mt-2">Stok: 83</div>
         </div>
         <div class="flex flex-col lg:flex-row gap-4 mt-6">
-            <form action="{{ route('keranjang.add', $product->id) }}" method="POST">
+            <form id="cart-form" action="{{ route('keranjang.add', $product->id) }}" method="POST">
                 @csrf
+                <!-- Input untuk jumlah produk -->
+                <input type="hidden" id="quantityInputHidden" name="quantity" value="1">
+                
+                <!-- Input hidden untuk rental_duration -->
+                <input type="hidden" id="rental_duration" name="rental_duration" value="1">
+            
+                <!-- Tombol untuk submit form -->
                 <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 w-full lg:w-auto">Keranjang</button>
-                <button class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg shadow hover:bg-gray-200 w-full lg:w-auto">Sewa Sekarang</button>
+                <button type="submit" class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg shadow hover:bg-gray-200 w-full lg:w-auto">Sewa Sekarang</button>
             </form>
         </div>
     </div>
