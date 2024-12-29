@@ -159,22 +159,20 @@
     
 
     <script type="text/javascript"
-      src="https://app.sandbox.midtrans.com/snap/snap.js"
-      data-client-key="SB-Mid-client-Hvs6JvDsHpoAs8kG"></script>
+        src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 
 <script type="text/javascript">
   document.querySelector('#payment-form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Mencegah form submit secara default
+      event.preventDefault(); 
 
-      // Ambil CSRF token
       let csrfToken = document.querySelector('input[name="_token"]').value;
 
-      // Kirim Ajax Request ke server untuk mendapatkan Snap Token
       fetch('/payment', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': csrfToken, // Kirim CSRF token
+              'X-CSRF-TOKEN': csrfToken, 
           },
           body: JSON.stringify({
               gross_amount: document.querySelector('#gross_amount').value,
@@ -183,9 +181,9 @@
       })
       .then(response => response.json())
       .then(data => {
-          console.log(data); // Debug untuk melihat data yang diterima
+          console.log(data);
           if (data.snap_token) {
-              // Panggil Snap Popup
+
               snap.pay(data.snap_token, {
                   onSuccess: function(result) {
                       console.log('Payment Success:', result);

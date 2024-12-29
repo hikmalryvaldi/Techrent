@@ -10,8 +10,8 @@ class PaymentController extends Controller
 {
     public function createTransaction(Request $request)
     {
-        Config::$serverKey = 'SB-Mid-server-Rqanz3cJrqC9pslQVdmXY7tT';
-        Config::$clientKey = 'SB-Mid-client-Hvs6JvDsHpoAs8kG';
+        Config::$serverKey = config('services.midtrans.server_key');
+        Config::$clientKey = config('services.midtrans.client_key');
         Config::$isProduction = false;
 
         // Ambil data dari request
