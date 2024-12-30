@@ -33,7 +33,7 @@ class HomeController extends Controller
         $product = Product::findOrFail($id);
 
         // Mengembalikan view produk detail
-        return view('produk.detail-produk', compact('product'));
+        return view('produk.detailProduk', compact('product'));
     }
 
     public function homeFeatures()
@@ -44,13 +44,11 @@ class HomeController extends Controller
             ->take(3)
             ->get();
 
-            // Carousels
-            return view('home', [
-                'title' => 'Home',
-                'carousels' => Carousel::all(),
-                'topProducts' => $topProducts,
-            ]);
-
+        // Carousels
+        return view('home', [
+            'title' => 'Home',
+            'carousels' => Carousel::all(),
+            'topProducts' => $topProducts,
+        ]);
     }
-
 }
