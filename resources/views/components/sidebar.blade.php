@@ -47,7 +47,7 @@
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white text-center"
                                     role="menuitem">Home</a>
                             </li>
-                            <form action="{{ route('adminLogout') }}" method="POST">
+                            <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <li>
                                     <button type="submit"
