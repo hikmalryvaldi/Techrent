@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 
 class DiskonAdminController extends Controller
@@ -15,11 +16,14 @@ class DiskonAdminController extends Controller
         $lastDays = $request->input('last_days', null); // Ambil parameter "last days"
 
         // Query produk dengan relasi gambar dan kategori
-        $productsQuery = Product::with(['images' => function ($query) {
-            $query->select('product_id', 'image_path1', 'image_path2', 'image_path3', 'image_path4'); // Hanya kolom yang diperlukan
-        }, 'category']);
-
+        $productsQuery = Product::with([
+            'images',
+            'category',
+            'discount',
+        ])->whereHas('discount');
+        
         // Filter berdasarkan kategori jika slug kategori diberikan
+
         if (!empty($categorySlug)) {
             $productsQuery->whereHas('category', function ($query) use ($categorySlug) {
                 $query->where('slug', $categorySlug);
@@ -82,4 +86,50 @@ class DiskonAdminController extends Controller
 
         return response()->json(['html' => $html]);
     }
+
+    public function searchProduct(Request $request)
+    {
+    
+        $search = $request->input('search');
+    
+        if (empty($search)) {
+            return response()->json([]);
+        }
+    
+        // Cari produk berdasarkan nama
+        $products = Product::where('product_name', 'like', '%' . $search . '%')
+            ->limit(5)
+            ->get();
+    
+        return response()->json($products);
+    }
+
+    public function store(Request $request)
+    {
+        try{
+            // Validasi data yang diterima dari form
+            $validated = $request->validate([
+                'selected-product-id' => 'required|exists:products,id', // Validasi ID produk
+                'discount-value' => 'required|numeric',
+                'discount-expiry' => 'required|date|after:today', // Validasi tanggal diskon
+            ]);
+        
+            // Menemukan produk berdasarkan ID
+            $product = Product::find($request->input('selected-product-id'));
+        
+            // Menyimpan diskon ke tabel discounts
+            $discount = new Discount();
+            $discount->product_id = $product->id;
+            $discount->discount_value = $request->input('discount-value');
+            $discount->start_date = now(); // Waktu mulai sekarang
+            $discount->end_date = $request->input('discount-expiry');
+            $discount->save();
+        
+            // Redirect atau memberikan respon sukses
+            return redirect()->back()->with('success', 'Diskon berhasil diterapkan!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->with("diskonError", "Registrasi gagal. Coba lagi.")->withErrors($e->errors())->withInput();
+        }
+    }
+    
 }

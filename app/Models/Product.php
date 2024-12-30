@@ -21,9 +21,9 @@ class Product extends Model
         'description',
     ];
 
-    public function discounts()
+    public function discount()
     {
-        return $this->hasMany(Discount::class);
+    return $this->hasOne(Discount::class, 'product_id');
     }
     
     public function category()
