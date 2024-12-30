@@ -46,3 +46,8 @@ Route::get('/navbar/cart', [CartController::class, 'getCartItems'])->name('navba
 Route::get('/keranjang/checkout', [CheckoutController::class, 'keranjangCheckout']);
 Route::post('/payment', [PaymentController::class, 'createTransaction']);
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount']);
+
+Route::controller(DiskonAdminController::class)->group(function () {
+    Route::get('/searchh', 'searchProduct')->name('diskon.search');
+    Route::post('/apply-discount', 'store')->name('discount.store');
+});
