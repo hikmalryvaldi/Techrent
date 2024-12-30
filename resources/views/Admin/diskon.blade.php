@@ -8,6 +8,10 @@
     z-index: 999;
     width: 100%
 }
+#editDiscountModal {
+    z-index: 9999 !important; /* Memastikan modal berada di atas elemen lain */
+}
+
 </style>
 <body style="height: 100%; ">
     {{-- navbar dan sedbar --}}
@@ -24,6 +28,17 @@
                         <span class="sr-only">Info</span>
                         <div>
                           <span class="font-medium">{{ session('success') }}
+                        </div>
+                      </div>
+                    @endif
+                    @if (session('diskonError2'))
+                    <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+                        <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                        </svg>
+                        <span class="sr-only">Info</span>
+                        <div>
+                          <span class="font-medium">{{ session('diskonError2') }}
                         </div>
                       </div>
                     @endif
@@ -244,6 +259,9 @@
                         Diskon
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Tgl Berakhir
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Harga normal
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -279,14 +297,17 @@
                             {{ $product->discount->discount_value }}%
                         </td>
                         <td class="px-6 py-4">
+                            {{ $product->discount->end_date }}
+                        </td>
+                        <td class="px-6 py-4">
                             {{ number_format($product->price) }}
                         </td>
                         <td class="px-6 py-4">
                             {{ number_format($product->price - ($product->price * $product->discount->discount_value) / 100) }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <button id="openModalBtn2" type="button" data-name="{{ $product->product_name }}" data-diskonvalue="{{ $product->discount->discount_value }}" data-diskonexpire="{{ $product->discount->end_date }}" data-id="{{ $product->id }}"
+                                class="openModalBtn2 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                         </td>
                     </tr>
                 @endforeach
@@ -389,34 +410,126 @@
                 </button>
             </div>
         </div>
+        
     </div>
 
-
-                <x-speedDeal></x-speedDeal>
+    <!-- Modal 2-->
+    <div id="editDiscountModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-gray-50 p-8 rounded-lg shadow-lg w-full max-w-md md:max-w-lg lg:max-w-xl mx-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Edit Diskon Produk</h2>
+            
+            <!-- Form to generate diskon -->
+            <form action="/update-discount" method="POST">
+                @csrf
+                <div class="space-y-6">
+                    
+                    <!-- Input Nama Produk -->
+                    <div class="relative">
+                        <label for="product-name" class="block text-sm font-medium text-gray-700">Nama Produk</label>
+                        <div class="mt-1 relative">
+                            <!-- Input dengan Wrapper di dalamnya -->
+                            <input type="text" id="product-name-edit" disabled name="product-name2" required
+                                class="block w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm bg-gray-700 text-white"
+                                placeholder="Masukkan nama produk" autocomplete="off">
+                    
+                            <!-- Div untuk menampilkan nama produk yang terpilih dan tombol X -->
+                            <div id="product-wrapper" class="absolute inset-0 flex items-center px-3 text-white bg-gray-800 rounded-lg hidden">
+                                <span id="product-name" class="truncate text-white"></span>
+                                <button type="button" id="clear-btn" class="right-0 text-gray-400 hover:text-gray-200 ml-2"
+                                    onclick="clearSelection()">×</button>
+                            </div>
+                        </div>
+                    
+                        <!-- Dropdown Menu -->
+                        <div id="dropdown" class="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md hidden">
+                            <!-- Hasil pencarian akan dimasukkan di sini secara dinamis -->
+                        </div>
+                        
+                        <input type="hidden" id="selected-product-id2" name="selected-product-id2">
+                    
+                        @error('selected-product-id2')
+                        <p class="absolute text-sm text-red-500 mt-1 mb-4 left-0">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    
+                    
+                    
+                    
+    
+                <!-- Input Besar Diskon (Persentase) -->
+                <div>
+                    <label for="discount-value" class="block text-sm font-medium text-gray-700">Besar Diskon (%)</label>
+                    <select id="discount-value2" name="discount-value2" required
+                        class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm bg-gray-700 text-white">
+                        <option value="" selected>- Pilih Diskon -</option>
+                        <option value="50">50%</option>
+                        <option value="30">30%</option>
+                        <option value="25">25%</option>
+                        <option value="20">20%</option>
+                        <option value="10">10%</option>
+                        <option value="5">5%</option>
+                    </select>
+                    @error('discount-value2')
+                        <p class="absolute text-sm text-red-500 mt-1 mb-4 left-0">{{ $message }}</p>
+                    @enderror
+                </div>
+    
+                <!-- Input Tanggal Berakhir Diskon -->
+                <div>
+                    <label for="discount-expiry" class="block text-sm font-medium text-gray-700">Tanggal Berakhir
+                        Diskon</label>
+                    <input type="date" id="discount-expiry2" name="discount-expiry2" required
+                        class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm bg-gray-700 text-white">
+                        @error('discount-expiry2')
+                                <p class="absolute text-sm text-red-500 mt-1 mb-4">{{ $message }}</p>
+                        @enderror
+                </div>
+    
+                <!-- Submit Button -->
+                <div class="flex justify-center pt-2">
+                    <button type="submit"
+                        class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Terapkan Diskon
+                    </button>
+                </div>
             </div>
+        </form>
+    
+        <!-- Close Button -->
+        <div class="flex justify-center mt-4">
+            <button id="closeModalBtn2"
+                class="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Close
+            </button>
         </div>
     </div>
+    
+    
+    <x-speedDeal></x-speedDeal>
+</div>
+</div>
+</div>
 
 
-    {{-- js --}}
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#search-input').on('keyup', function() {
-                let keyword = $(this).val();
-                let category = '{{ $categorySlug ?? '' }}'; // Slug kategori dari server-side
-
-                // Jika input kosong, hapus parameter dari URL dan tampilkan ulang data default
-                if (keyword === '') {
-                    let url = new URL(window.location.href);
-                    url.searchParams.delete('search'); // Hapus parameter search
-                    window.history.pushState({}, '', url); // Perbarui URL tanpa reload halaman
-
-                    // Ambil data default (tanpa pencarian)
-                    $.ajax({
-                        url: "{{ route('diskon.search') }}",
-                        type: "GET",
+{{-- js --}}
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').on('keyup', function() {
+            let keyword = $(this).val();
+            let category = '{{ $categorySlug ?? '' }}'; // Slug kategori dari server-side
+            
+            // Jika input kosong, hapus parameter dari URL dan tampilkan ulang data default
+            if (keyword === '') {
+                let url = new URL(window.location.href);
+                url.searchParams.delete('search'); // Hapus parameter search
+                window.history.pushState({}, '', url); // Perbarui URL tanpa reload halaman
+                
+                // Ambil data default (tanpa pencarian)
+                $.ajax({
+                    url: "{{ route('diskon.search') }}",
+                    type: "GET",
                         data: {
                             category: category // Kirim kategori saja jika ada
                         },
@@ -449,27 +562,57 @@
         });
     </script>
     <script>
-    // Get modal element
+    // Ambil elemen modal dan tombol
     const modal = document.getElementById('discountModal');
     const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeModalBtn1 = document.getElementById('closeModalBtn');
 
-    // Show modal when button is clicked
+    const modal2 = document.getElementById('editDiscountModal');
+    const tableBody = document.getElementById('diskon-table-body')
+    const closeModalBtn2 = document.getElementById('closeModalBtn2');
+
+    // Menampilkan modal pertama
     openModalBtn.addEventListener('click', function () {
         modal.classList.remove('hidden');
     });
 
-    var diskonError = @json(session()->has('diskonError'));
+    // Menampilkan modal kedua
+    tableBody.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('openModalBtn2')) {
+            const productName = e.target.getAttribute('data-name');
+            const productDiskon = e.target.getAttribute('data-diskonvalue');
+            const diskonExpire = e.target.getAttribute('data-diskonexpire');
+            const productId = e.target.getAttribute('data-id');
 
-    if (diskonError){
-        modal.classList.remove('hidden');
-    }
+            // Isi form di modal dengan data produk
+            document.getElementById('product-name-edit').value = productName;
+            document.getElementById('discount-value2').value = productDiskon;
+            document.getElementById('discount-expiry2').value = diskonExpire;
+            document.getElementById('selected-product-id2').value = productId;
 
+            modal2.classList.remove('hidden');
+            // console.log('Testing: ', productId, productDiskon, diskonExpire);
+        }
+    });
 
-    // Close modal when close button is clicked
+    // Menutup modal pertama
     closeModalBtn.addEventListener('click', function () {
         modal.classList.add('hidden');
     });
+
+    // Menutup modal kedua
+    closeModalBtn2.addEventListener('click', function () {
+        modal2.classList.add('hidden');
+    });
+
+    var diskonError = @json(session()->has('diskonError'));
+    var diskonError2 = @json(session()->has('diskonError2'));
+
+    if (diskonError) {
+        modal2.classList.remove('hidden');
+    }else if (diskonError2) {
+        modal2.classList.remove('hidden');
+    }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

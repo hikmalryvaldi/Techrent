@@ -132,4 +132,36 @@ class DiskonAdminController extends Controller
         }
     }
     
+    public function update(Request $request)
+    {
+            try{
+            // Validasi inputan
+            $validated = $request->validate([
+                'product-name2' => '',
+                'discount-value2' => 'required|numeric|min:0|max:100',
+                'discount-expiry2' => 'required|date|after:today',  // pastikan tanggal lebih dari hari ini
+                'selected-product-id2' => 'required|exists:products,id',  // pastikan tanggal lebih dari hari ini
+            ]);
+
+            // Temukan produk berdasarkan nama
+            $product = Product::find($request->input('selected-product-id2'));
+
+            // Pastikan produk ditemukan
+            if (!$product) {
+                return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+            }
+
+            // Update data diskon produk
+            $product->discount->update([
+                'product_id' => $request->input('selected-product-id2'),
+                'discount_value' => $request->input('discount-value2'),
+                'end_date' => $request->input('discount-expiry2'),
+            ]);
+
+            // Kembali ke halaman sebelumnya dengan sukses
+            return redirect()->back()->with('success', 'Diskon berhasil diperbarui.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->with("diskonError2", "Registrasi gagal. Coba lagi.")->withErrors($e->errors())->withInput();
+        }
+    }
 }
