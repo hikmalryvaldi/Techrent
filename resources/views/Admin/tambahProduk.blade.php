@@ -28,6 +28,7 @@
                                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
                                 <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Foto Sampul Produk</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
                             <input id="image_1" name="image_path1" type="file" class="hidden"
@@ -46,7 +47,7 @@
                                         stroke-width="2"
                                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 2</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
                             <input id="image_2" name="image_path2" type="file" class="hidden"
@@ -65,7 +66,7 @@
                                         stroke-width="2"
                                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span></p>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 3</span></p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
                             <input id="image_3" name="image_path3" type="file" class="hidden"
@@ -84,7 +85,7 @@
                                         stroke-width="2"
                                         d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                 </svg>
-                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 1</span>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Image ke 4</span>
                                 </p>
                                 <p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
@@ -104,7 +105,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama
                             Produk</label>
                         <input type="text" name="product_name" id="name"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Type product name" required>
                     </div>
 
@@ -113,7 +114,7 @@
                         <label for="price"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Harga</label>
                         <input type="number" name="price" id="price"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Rp 1000" required>
                     </div>
 
@@ -122,7 +123,7 @@
                         <label for="category_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Kategori</label>
                         <select id="category_id" name="category_id"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             required>
                             <option value="" selected>Pilih Kategori</option>
                             @foreach ($categories as $category)
@@ -164,11 +165,11 @@
                     {{-- Deskripsi Produk --}}
                     <div class="col-span-2">
                         <label for="description"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Product
+                            class="form-label mb-2 text-sm font-medium text-gray-900 dark:text-black">Product
                             Description</label>
-                        <textarea id="description" name="description" rows="4"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Write product description here"></textarea>
+                            {{-- TRIK EDITOR --}}
+                            <input id="Pesan" type="hidden" name="Pesan">
+                            <trix-editor input="Pesan" class="trix-content w-full border border-black rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white"></trix-editor>
                     </div>
                 </div>
 
@@ -259,5 +260,11 @@
                     placeholder.classList.remove('hidden');
                 }
             }
+
+            // js trix
+            document.addEventListener('trix-file-accept', function (e) {
+                e.preventDefault();
+            })
+
         </script>
 </body>
