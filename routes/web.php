@@ -117,6 +117,10 @@ Route::get('/Admin/detailPesanan', function () {
     return view('/Admin/detailPesanan');
 });
 
+Route::get('/Admin/promosi', function () {
+    return view('/Admin/promosi');
+});
+
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
 Route::get('/Admin/produk/search', [ProductAdminController::class, 'search'])->name('produk.search');
 Route::get('/Admin/produk/pdf', [ProductAdminController::class, 'pdf'])->name('produk.pdf');
