@@ -66,15 +66,24 @@ class ProductAdminController extends Controller
     {
 
         $request->validate([
-            'image_path1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path3' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path4' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'product_name' => 'required|string|max:50',
             'price' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
             'stock' => 'required|integer|min:0',
             'description' => 'required|string|max:500'
+        ], [
+            'image_path1.image' => 'File pertama harus berupa gambar.',
+            'image_path2.image' => 'File kedua harus berupa gambar.',
+            'image_path3.image' => 'File ketiga harus berupa gambar.',
+            'image_path4.image' => 'File keempat harus berupa gambar.',
+            'image_path1.mimes' => 'Gambar pertama harus jpeg, png, jpg.',
+            'image_path2.mimes' => 'Gambar kedua harus jpeg, png, jpg.',
+            'image_path3.mimes' => 'Gambar ketiga harus jpeg, png, jpg.',
+            'image_path4.mimes' => 'Gambar keempat harus jpeg, png, jpg.'
         ]);
 
         // Simpan produk ke dalam database
@@ -141,10 +150,10 @@ class ProductAdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'image_path1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_path4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path1' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path2' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path3' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_path4' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'product_name' => 'required|string|max:50',
             'price' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',

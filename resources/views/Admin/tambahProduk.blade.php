@@ -16,6 +16,8 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Image</label>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {{-- Image ke 1 --}}
+                        <div>
+                            <div>
                         <label for="image_1"
                             class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <img id="preview_image_1" src="#" alt="Preview"
@@ -34,8 +36,22 @@
                             <input id="image_1" name="image_path1" type="file" class="hidden"
                                 onchange="previewImage(event, 'preview_image_1', 'placeholder_1')" />
                         </label>
+                    </div>
+                    <div>
+                        @if ($errors->has('image_path1'))
+                            <div class="mt-1 me-1 p-1 border border-red-400 bg-red-100 text-red-700 rounded-md">
+                                {{ $errors->first('image_path1') }}
+                            </div>
+                        @else
+                            <!-- Placeholder untuk menjaga tinggi tetap konsisten -->
+                            <div class="mt-2" style="height: 30px;"></div>
+                        @endif
+                    </div>
+                    </div>
 
                         {{-- image ke 2 --}}
+                        <div>
+                            <div class="me-1">
                         <label for="image_2"
                             class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <img id="preview_image_2" src="#" alt="Preview"
@@ -53,8 +69,22 @@
                             <input id="image_2" name="image_path2" type="file" class="hidden"
                                 onchange="previewImage(event, 'preview_image_2', 'placeholder_2')" />
                         </label>
+                    </div>
+                        <div>
+                            @if ($errors->has('image_path2'))
+                                <div class="mt-1 me-1 p-1 border border-red-400 bg-red-100 text-red-700 rounded-md">
+                                    {{ $errors->first('image_path2') }}
+                                </div>
+                            @else
+                                <!-- Placeholder untuk menjaga tinggi tetap konsisten -->
+                                <div class="mt-2" style="height: 30px;"></div>
+                            @endif
+                        </div>
+                    </div>
 
                         {{-- image ke 3 --}}
+                        <div>
+                            <div class="me-1">
                         <label for="image_3"
                             class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <img id="preview_image_3" src="#" alt="Preview"
@@ -72,8 +102,22 @@
                             <input id="image_3" name="image_path3" type="file" class="hidden"
                                 onchange="previewImage(event, 'preview_image_3', 'placeholder_3')" />
                         </label>
+                    </div>
+                        <div>
+                            @if ($errors->has('image_path3'))
+                                <div class="mt-1 me-1 p-1 border border-red-400 bg-red-100 text-red-700 rounded-md">
+                                    {{ $errors->first('image_path3') }}
+                                </div>
+                            @else
+                                <!-- Placeholder untuk menjaga tinggi tetap konsisten -->
+                                <div class="mt-2" style="height: 30px;"></div>
+                            @endif
+                        </div>
+                    </div>
 
                         {{-- image ke 4 --}}
+                        <div>
+                            <div class="me-1">
                         <label for="image_4"
                             class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                             <img id="preview_image_4" src="#" alt="Preview"
@@ -92,7 +136,18 @@
                             <input id="image_4" name="image_path4" type="file" class="hidden"
                                 onchange="previewImage(event, 'preview_image_4', 'placeholder_4')" />
                         </label>
-
+                    </div>
+                        <div>
+                            @if ($errors->has('image_path4'))
+                                <div class="mt-1 me-1 p-1 border border-red-400 bg-red-100 text-red-700 rounded-md">
+                                    {{ $errors->first('image_path4') }}
+                                </div>
+                            @else
+                                <!-- Placeholder untuk menjaga tinggi tetap konsisten -->
+                                <div class="mt-2" style="height: 30px;"></div>
+                            @endif
+                        </div>
+                    </div>
                     </div>
                 </div>
 
