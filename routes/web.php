@@ -30,9 +30,14 @@ Route::controller(HomeController::class)->group(function () {
 Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::get('/keranjang', [CartController::class, 'index']);
 
+Route::get('/Admin/promosi', function () {
+    return view('/Admin/promosi');
+});
+
 require __DIR__ . '/produk.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
+
 
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
