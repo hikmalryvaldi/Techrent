@@ -388,7 +388,7 @@
     </div>
 
 
-                <x-speedDeal></x-speedDeal>
+
             </div>
         </div>
     </div>
