@@ -57,3 +57,5 @@ Route::controller(DiskonAdminController::class)->group(function () {
     Route::post('/apply-discount', 'store')->name('discount.store');
     Route::post('/update-discount', 'update')->name('discount.update');
 });
+
+Route::match(['post', 'delete'],'/keranjang/hapus', [CartController::class, 'drop'])->name('keranjang.hapus');

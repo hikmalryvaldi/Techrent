@@ -50,6 +50,18 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke keranjang!');
     }
 
+    public function drop(Request $request)
+    {
+        $productIds = $request->input('product_ids');  // Ambil ID produk yang dipilih
+        $keranjang = Cart::where('user_id', Auth::id())->first();
+        
+        // Menghapus produk berdasarkan ID
+        $keranjang->items()->whereIn('product_id', $productIds)->delete();
+
+        return redirect()->back()->with('successDelete', 'Produk berhasil dihapus dari keranjang!');
+    }
+
+
     public function getCartItems()
     {
         // Ambil produk yang ada di dalam keranjang berdasarkan pengguna yang sedang login

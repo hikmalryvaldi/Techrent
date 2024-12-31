@@ -157,6 +157,7 @@
                             <div class="py-2 flex justify-between items-center">
                                 <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
                                 <div class="flex gap-2">
+                                    <button type="button" onclick="submitDeleteForm()" class="btn bg-red-500 text-white hover:bg-red-600">Hapus</button>
                                     <button type="submit" class="btn btn-primary text-white">Sewa Sekarang</button>
                                 </div>
                             </div>
@@ -272,6 +273,51 @@
         </div>
     @endauth
 @endif
+<script>
+function submitDeleteForm() {
+    const selectedProductIds = [];
+    
+    // Ambil semua checkbox yang dipilih
+    document.querySelectorAll('input[name="product_ids[]"]:checked').forEach(function(checkbox) {
+        selectedProductIds.push(checkbox.value);  // Tambahkan ID produk yang dipilih
+    });
+    
+    if (selectedProductIds.length === 0) {
+        alert('Pilih produk yang ingin dihapus.');
+        return;
+    }
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/keranjang/hapus';  // Rute penghapusan produk
+
+    // CSRF token
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = '_token';
+    csrfInput.value = '{{ csrf_token() }}';
+    form.appendChild(csrfInput);
+
+    // Simulasi metode DELETE
+    const methodInput = document.createElement('input');
+    methodInput.type = 'hidden';
+    methodInput.name = '_method';
+    methodInput.value = 'DELETE';
+    form.appendChild(methodInput);
+
+    // Menambahkan ID produk yang dipilih ke dalam form
+    const productIdsInput = document.createElement('input');
+    productIdsInput.type = 'hidden';
+    productIdsInput.name = 'product_ids[]';
+    productIdsInput.value = selectedProductIds.join(',');
+    form.appendChild(productIdsInput);
+
+    // Kirim form
+    document.body.appendChild(form);
+    form.submit();
+}
+
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     function liveSearch() {
