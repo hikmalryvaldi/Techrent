@@ -11,3 +11,4 @@ Route::get('/produk/detail', function () {
   return view('/produk/detail');
 });
 Route::get('/detailProduk/{product:id}', [detailProdukController::class, 'show']);
+Route::post('/detailProduk/{product:id}', [detailProdukController::class, 'cekOngkir']);

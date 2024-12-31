@@ -79,6 +79,98 @@
         <p class="text-sm text-gray-600">{{ $product->description }}</p>
         
     </div>
+
+    <div class="mt-6 flex">
+        <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-bold text-center mb-6 text-gray-700">Cek Ongkos Kirim</h2>
+    
+            <form action="" method="post">
+                @csrf
+                <div class="mb-4">
+                    <label for="origin" class="block text-sm font-medium text-gray-700">Asal Kota</label>
+                    <select name="origin" id="origin" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <option value="" disabled selected>Pilih Kota Asal</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city['city_id'] }}">{{ $city['city_name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+    
+                <div class="mb-4">
+                    <label for="destination" class="block text-sm font-medium text-gray-700">Kota Tujuan</label>
+                    <select name="destination" id="destination" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <option value="" disabled selected>Pilih Kota Tujuan</option>
+                        @foreach ($cities as $city)
+                        <option value="{{ $city['city_id'] }}">{{ $city['city_name'] }}</option>
+                    @endforeach
+                    </select>
+                </div>
+
+            <div class="mb-4">
+                <label for="weight" class="block text-sm font-medium text-gray-700">Berat Paket (gram)</label>
+                <input type="number" name="weight" id="weight" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Masukkan berat" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="courier" class="block text-sm font-medium text-gray-700">Kurir</label>
+                <select name="courier" id="courier" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <option value="" disabled selected>Kurir</option>
+                    <option value="jne">JNE</option>
+                    <option value="pos">POS</option>
+                    <option value="tiki">TIKI</option>
+                </select>
+            </div>
+    
+                <div class="flex justify-center">
+                    <button type="submit" name="cekOngkir" class="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 font-medium  focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        Cek Ongkir
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="max-w-md mt-10">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            @if ($ongkir != '')
+                <h2 class="text-xl font-bold mb-6 text-gray-700">Rincian Ongkos kirim</h2>
+                <div class="">
+                        <div class="border border-gray-300 rounded-lg bg-gray-50 p-4 shadow-sm">
+                            <p class="text-lg font-medium text-gray-900">Asal Kota : {{ $ongkir['origin_details']['city_name'] }}</p>
+                            <p class="text-lg font-medium text-gray-900">Kota Tujuan : {{ $ongkir['destination_details']['city_name'] }}</p>
+                            @foreach ($ongkir['results'] as $item)
+                            {{-- <label for="name" class="block text-sm font-semibold text-gray-700">
+                            </label> --}}
+                            <p class="text-lg font-medium text-gray-900">{{ $item['name'] }}</p>
+                            @endforeach
+
+                            @foreach ($item['costs'] as $cost)
+                            <p class="text-lg font-medium text-gray-900">Service : {{ $cost['service'] }}</p>
+
+                            @foreach ($cost['cost'] as $harga)
+                            <p class="text-lg font-medium text-gray-900">Harga: {{ $harga['value'] }} (est: {{ $harga['etd'] }} hari)</p>
+                        
+                        @endforeach
+                    @endforeach
+                </div>
+                </div>
+            @endif
+        </div>
+    </div>
+    
+    {{-- <div>
+        <div class="mt-5">
+            @if ($ongkir != '')
+                <h3>Rincian Ongkir</h3>
+                @foreach ($ongkir as $item)
+                    <div>
+                        <label for="name">Nama: {{ $item['name'] }}</label>
+                    </div>
+                @endforeach
+            @endif
+        </div>
+    </div> --}}
+    
+    
 </div>
 </div>
 </div> 

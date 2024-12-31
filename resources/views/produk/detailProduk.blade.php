@@ -51,7 +51,7 @@
             </div>
 
             <!-- Product Details -->
-            <x-pDetailProComponen :product="$product"></x-pDetailProComponen>
+            <x-pDetailProComponen :product="$product" :cities="$cities" :ongkir="$ongkir"></x-pDetailProComponen>
 
             {{-- produk lainnya --}}
             <x-pProduk :product="$product"></x-pProduk>
