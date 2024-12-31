@@ -55,4 +55,5 @@ Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGro
 Route::controller(DiskonAdminController::class)->group(function () {
     Route::get('/searchh', 'searchProduct')->name('diskon.search');
     Route::post('/apply-discount', 'store')->name('discount.store');
+    Route::post('/update-discount', 'update')->name('discount.update');
 });
