@@ -30,21 +30,21 @@
             <!-- Metode Pembayaran -->
             <div class="flex flex-wrap justify-center items-center mt-8 gap-4">
                 <img src="{{ asset('img/mandiri.png') }}" alt="Mandiri" class="h-24 object-contain">
-                <img src="{{ asset('img/Bni.png') }}" alt="BNI" class="h-24 object-contain">
+                <img src="{{ asset('img/bni.png') }}" alt="BNI" class="h-24 object-contain">
                 <img src="{{ asset('img/bca.png') }}" alt="BCA" class="h-24 object-contain">
-                <img src="{{ asset('img/Bri.png') }}" alt="BRI" class="h-24 object-contain">
-                <img src="{{ asset('img/dana.jpg') }}" alt="DANA" class="w-32 h-[68px] rounded-lg object-contain">
-                <img src="{{ asset('img/QRIS.png') }}" alt="QRIS" class="h-10 object-contain">
-                <img src="{{ asset('img/ovo.jpg') }}" alt="OVO" class="w-32 h-[68px] rounded-lg object-contain">
+                <img src="{{ asset('img/bri.png') }}" alt="BRI" class="h-24 object-contain">
+                <img src="{{ asset('img/qris.png') }}" alt="QRIS" class="h-24 object-contain">
+                <img src="{{ asset('img/ovo.png') }}" alt="OVO" class="h-24 object-contain">
+                <img src="{{ asset('img/Dana.png') }}" alt="Dana" class="h-24 object-contain">
             </div>
 
             <!-- Media Sosial -->
             <div class="flex justify-center mt-4 space-x-4">
-                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Intagram.png') }}" alt="Instagram"
+                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/instagram.png') }}" alt="Instagram"
                         class="h-6 object-contain"></a>
                 <a href="#" class="hover:opacity-75"><img src="{{ asset('img/x.png') }}" alt="Twitter"
                         class="h-6 object-contain"></a>
-                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/Facebook.png') }}" alt="Facebook"
+                <a href="#" class="hover:opacity-75"><img src="{{ asset('img/facebook.png') }}" alt="Facebook"
                         class="h-6 object-contain"></a>
             </div>
 
