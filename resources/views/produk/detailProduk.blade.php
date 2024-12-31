@@ -13,6 +13,13 @@
             </div>
         </div>
     @endif
+    @if (session('successDelete'))
+        <div id="popup-notification" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-red-400 text-gray-800 px-6 py-4 rounded-lg shadow-lg text-center">
+                <p>{{ session('successDelete') }}</p>
+            </div>
+        </div>
+    @endif
 
     {{-- Foto Produk --}}
     <div class="max-w-5xl mx-auto px-4 py-6">
