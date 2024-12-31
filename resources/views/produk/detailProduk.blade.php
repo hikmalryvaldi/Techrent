@@ -2,12 +2,12 @@
 
 <body class="bg-gray-100">
     {{-- Navbar --}}
-    <x-navbar></x-navbar>
+    <x-navbar :isProdukPage="true"></x-navbar>
 
 
-
+    <div class="container mx-auto p-6 mt-20">
     @if (session('success'))
-        <div id="popup-notification" class="hidden fixed inset-0 flex items-center justify-center z-50">
+        <div id="popup-notification" class="fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-green-400 text-gray-800 px-6 py-4 rounded-lg shadow-lg text-center">
                 <p>{{ session('success') }}</p>
             </div>
@@ -56,6 +56,7 @@
             {{-- produk lainnya --}}
             <x-pProduk :product="$product"></x-pProduk>
         </div>
+    </div>
 
 
         <x-footer></x-footer>
