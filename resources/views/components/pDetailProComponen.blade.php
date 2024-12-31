@@ -51,7 +51,7 @@
             <h2 class="text-gray-700 font-medium mb-2">Atur jumlah dan catatan</h2>
             <div class="flex items-center space-x-2">
                 <button type="button" onclick="adjustQuantity(-1)" class="px-4 py-2 border rounded-lg">-</button>
-                <input id="quantityInput" name="quantity" type="number" value="1" class="w-12 text-center border rounded-lg">
+                <input id="quantityInput" name="quantity" type="text" inputmode="numeric" value="1" class="w-12 text-center border rounded-lg">
                 <button type="button" onclick="adjustQuantity(1)" class="px-4 py-2 border rounded-lg">+</button>
             </div>
             <div class="text-sm text-gray-500 mt-2">Stok: 83</div>
