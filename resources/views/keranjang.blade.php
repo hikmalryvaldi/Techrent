@@ -42,14 +42,14 @@
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <div class="space-y-6">
                 <!-- Produk 1 -->
-                @foreach ($cartItems as $cartItem)
+                @foreach ($produkYangDipilih as $cartItem)
                 <div class="border-b pb-4">
                     <div
                         class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
                         <img src="https://via.placeholder.com/80" alt="Produk 1"
                             class="w-20 h-20 object-cover rounded-md">
                         <div class="flex flex-col w-full">
-                            <h3 class="text-lg font-semibold text-gray-800">{{ $cartItem->product->product_name }}</h3>
+                            <h3 class="text-lg font-semibold text-gray-800">{{ $cartItem->product_name }}</h3>
                             <p class="text-gray-600">Deskripsi produk.</p>
                             <div class="flex justify-between mt-2 w-full">
                                 <div class="flex items-center space-x-2">
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="flex flex-col text-right">
                                     <p class="text-gray-700">Durasi: 6 Hari</p>
-                                    <p class="text-gray-700 font-semibold">Rp {{ number_format($cartItem->product->price, 0, ',', '.') }}</p>
+                                    <p class="text-gray-700 font-semibold">Rp {{ number_format($cartItem->price, 0, ',', '.') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                 <!-- Subtotal Produk -->
                 <div class="flex justify-between">
                     <p class="text-gray-700">Subtotal Produk:</p>
-                    <p class="text-gray-800 font-semibold">Rp {{number_format($totalPrice, 0, ',', '.')}}</p>
+                    {{-- <p class="text-gray-800 font-semibold">Rp {{number_format($totalPrice, 0, ',', '.')}}</p> --}}
                 </div>
                 {{-- <!-- Subtotal Pengiriman -->
                 <div class="flex justify-between">
@@ -105,32 +105,38 @@
                 <!-- Total Pembayaran -->
                 <div class="flex justify-between text-lg font-semibold">
                     <p class="text-gray-800">Total Pembayaran:</p>
-                    <p class="text-red-600">Rp {{number_format($totalPrice, 0, ',', '.')}}</p>
+                    <p class="text-red-600">Rp {{ number_format($gross_amount, 0, ',', '.') }}</p>
                 </div>
             </div>
         </div>
 
         {{-- Midtrans Transaksi --}}
+
         <form id="payment-form">
             @csrf
-            {{-- <label for="gross_amount">Gross Amount:</label> --}}
-            <input type="hidden" value="{{ $totalPrice }}" id="gross_amount" name="gross_amount" readonly>
+    <!-- Hidden Input untuk total biaya dan informasi pelanggan -->
+    <input type="hidden" value="{{ $gross_amount }}" id="gross_amount" name="gross_amount" readonly>
 
-            {{-- <label for="first_name">First Name:</label> --}}
-            <input type="hidden" id="first_name" name="first_name" value="{{ Auth::user()->nama }}" required>
-          
+    <input type="hidden" id="first_name" name="first_name" value="{{ Auth::user()->nama }}" required>
+    
+    <!-- Static dummy user_id -->
+    <input type="hidden" id="user_id"  name="user_id" value="{{ Auth::user()->id }}" required>
 
-        <!-- Total dan Checkout -->
-        <div class="mt-6 flex flex-col sm:flex-row justify-end items-center space-y-4 sm:space-y-0">
-            <div class="tombol">
-                <a href="produk"
-                    class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
-                <button href="#" type="submit"
-                    class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>
-            </div>
-        </div>
+    @foreach ($produkYangDipilih as $product)
+        <input type="hidden" name="product_ids[]" value="{{ $product->id }}">
+        <input type="hidden" name="quantities[]" value="{{ $product->quantity }}">
+    @endforeach
 
+    <!-- Total dan Checkout -->
+    <div class="tombol">
+        <a href="produk"
+            class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
+        <button href="#" type="submit"
+            class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>
+    </div>
         </form>
+        
+        
 
         {{-- <form id="payment-form">
             @csrf
@@ -157,61 +163,89 @@
         
     </section>
     
+    
+<script>
+    fetch('/payment/notification', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': csrfToken, // CSRF token jika diperlukan
+    },
+    body: JSON.stringify({
+        // Data yang dikirim ke server (jika ada)
+    })
+})
+.then(response => response.json())
+.then(data => {
+    // Log ke console setelah menerima respons dari server
+    console.log("Midtrans Notification:", data.message); // Output: Notification received
+})
+.catch(error => {
+    console.error('Error:', error);
+});
 
+</script>
     <script type="text/javascript"
         src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ config('services.midtrans.client_key') }}"></script>
 
-<script type="text/javascript">
-  document.querySelector('#payment-form').addEventListener('submit', function(event) {
-      event.preventDefault(); 
-
-      let csrfToken = document.querySelector('input[name="_token"]').value;
-
-      fetch('/payment', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': csrfToken, 
-          },
-          body: JSON.stringify({
-              gross_amount: document.querySelector('#gross_amount').value,
-              first_name: document.querySelector('#first_name').value,
-          }),
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          if (data.snap_token) {
-
-              snap.pay(data.snap_token, {
-                  onSuccess: function(result) {
-                      console.log('Payment Success:', result);
-                      alert('Payment Success! Transaction ID: ' + result.transaction_id);
-                  },
-                  onPending: function(result) {
-                      console.log('Payment Pending:', result);
-                      alert('Payment Pending! Please complete the payment.');
-                  },
-                  onError: function(result) {
-                      console.error('Payment Error:', result);
-                      alert('Payment Error! Please try again.');
-                  },
-                  onClose: function() {
-                      console.log('Payment popup closed.');
-                      alert('You closed the payment popup.');
-                  }
-              });
-          } else {
-              alert('Failed to retrieve Snap Token');
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred while processing the payment.');
-      });
-  });
-</script>
+        <script type="text/javascript">
+            document.querySelector('#payment-form').addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                
+                // Ambil csrfToken
+                let csrfToken = document.querySelector('input[name="_token"]').value;
+                
+                // Ambil nilai gross_amount, first_name, dan user_id
+                let grossAmount = document.querySelector('#gross_amount').value;
+                let firstName = document.querySelector('#first_name').value;
+                let userId = document.querySelector('#user_id').value;
+        
+                // Kirim data dengan fetch API
+                fetch('/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken, 
+                    },
+                    body: JSON.stringify({
+                        gross_amount: document.querySelector('#gross_amount').value,
+                        first_name: document.querySelector('#first_name').value,
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.snap_token) {
+                        snap.pay(data.snap_token, {
+                            onSuccess: function(result) {
+                                console.log('Payment Success:', result);
+                                alert('Payment Success! Transaction ID: ' + result.transaction_id);
+                            },
+                            onPending: function(result) {
+                                console.log('Payment Pending:', result);
+                                alert('Payment Pending! Please complete the payment.');
+                            },
+                            onError: function(result) {
+                                console.error('Payment Error:', result);
+                                alert('Payment Error! Please try again.');
+                            },
+                            onClose: function() {
+                                console.log('Payment popup closed.');
+                                alert('You closed the payment popup.');
+                            }
+                        });
+                    } else {
+                        alert('Failed to retrieve Snap Token');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while processing the payment.');
+                });
+            });
+        </script>
+        
     
 
 </body>

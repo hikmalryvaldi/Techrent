@@ -119,8 +119,7 @@
                     <!-- Konten Dropdown -->
                     <form action="/keranjang/checkout" method="GET">
                         @csrf
-                        <ul id="dropdownCart"
-                            class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
+                        <ul id="dropdownCart" class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
                             @if ($keranjang && $keranjang->items->isNotEmpty())
                                 @foreach ($keranjang->items as $item)
                                     <li class="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
@@ -139,14 +138,8 @@
                                         </label>
                                         <!-- Durasi dan Harga -->
                                         <div class="flex items-center space-x-2">
-                                            <!-- Durasi -->
-                                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                                3 Hari
-                                            </span>
-                                            <!-- Harga -->
-                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">
-                                                Rp 50.000
-                                            </span>
+                                            <span class="text-sm text-gray-500 dark:text-gray-400">3 Hari</span>
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
                                         </div>
                                     </li>
                                 @endforeach
@@ -162,7 +155,7 @@
                                 </div>
                             </div>
                         </ul>
-                    </form>
+                    </form>                    
                 </div>
 
 
