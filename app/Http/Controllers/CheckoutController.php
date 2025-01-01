@@ -2,11 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
+    public function checkout(Request $request)
+    {
+        // Ambil ID produk yang dicentang dari request
+        $productIds = $request->input('product_ids', []);
+    
+        // Validasi jika tidak ada produk yang dipilih
+        if (empty($productIds)) {
+            return redirect('/keranjang')->with('error', 'Tidak ada produk yang dipilih');
+        }
+    
+        // Ambil cart milik user
+        $cart = Cart::where('user_id', auth()->id())->with(['items.product'])->first();
+    
+        // Ambil produk berdasarkan ID yang dipilih dan gabungkan dengan quantity
+        $produkYangDipilih = Product::whereIn('id', $productIds)->get();
+    
+        // Gabungkan produk dengan quantity yang ada di dalam CartItem
+        foreach ($produkYangDipilih as $produk) {
+            // Cari CartItem yang sesuai dengan produk ini dalam Cart
+            $cartItem = $cart->items->firstWhere('product_id', $produk->id);
+    
+            // Jika CartItem ditemukan, tambahkan quantity ke produk
+            if ($cartItem) {
+                $produk->quantity = $cartItem->quantity;
+            } else {
+                $produk->quantity = 0; // Jika produk tidak ditemukan di Cart, set quantity ke 0
+            }
+        }
+    
+        // Panggil function calculateGrossAmount untuk menghitung gross_amount
+        $grossAmountData = $this->calculateGrossAmount($request, $cart);
+    
+        // Kirim data produk yang dipilih dan gross_amount ke view
+        return view('keranjang', [
+            'produkYangDipilih' => $produkYangDipilih,
+            'gross_amount' => $grossAmountData['gross_amount'], // Kirim gross_amount ke view
+            'cartItems' => $cart->items, // Kirim cartItems ke view untuk ditampilkan
+        ]);
+    }
+    
+
     public function keranjangCheckout(Request $request)
     {
         $user = auth()->user();
@@ -38,37 +80,49 @@ class CheckoutController extends Controller
     }
 
 
-        public function calculateGrossAmount(Request $request)
-    {
-        $selectedProductIds = $request->input('product_ids', []);
-        $quantities = $request->input('quantities', []);
+    public function calculateGrossAmount(Request $request, $cart)
+{
+    $selectedProductIds = $request->input('product_ids', []);
+    
+    // Ambil produk berdasarkan ID yang dipilih
+    $products = Product::whereIn('id', $selectedProductIds)->get();
 
-        $products = Product::whereIn('id', $selectedProductIds)->get();
+    // Gabungkan produk dengan quantity yang ada di dalam CartItem
+    $items = $products->map(function ($product) use ($cart) {
+        // Cari CartItem yang sesuai dengan produk ini dalam Cart
+        $cartItem = $cart->items->firstWhere('product_id', $product->id);
+        
+        // Jika CartItem ditemukan, tambahkan quantity ke produk
+        $quantity = $cartItem ? $cartItem->quantity : 0;
+        
+        return [
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $quantity,
+        ];
+    })->toArray();
 
-        $items = $products->map(function ($product) use ($quantities) {
-            return [
-                'name' => $product->name,
-                'price' => $product->price,
-                'quantity' => $quantities[$product->id] ?? 1,
-            ];
-        })->toArray();
+    // Hitung total price
+    $totalPrice = array_reduce($items, function ($carry, $item) {
+        return $carry + ($item['price'] * $item['quantity']);
+    }, 0);
 
-        $totalPrice = array_reduce($items, function ($carry, $item) {
-            return $carry + ($item['price'] * $item['quantity']);
-        }, 0);
+    // Diskon 10%
+    $discount = 0 * $totalPrice;
 
-        $discount = 0.1 * $totalPrice;
+    // Ongkos kirim
+    $shippingFee = 0;
 
-        $shippingFee = 15000;
+    // Hitung gross amount
+    $grossAmount = $totalPrice - $discount + $shippingFee;
 
-        $grossAmount = $totalPrice - $discount + $shippingFee;
-
-        return response()->json([
-            'gross_amount' => $grossAmount,
-            'items' => $items,
-            'total_price' => $totalPrice,
-            'discount' => $discount,
-            'shipping_fee' => $shippingFee,
-        ]);
-    }
+    // Kembalikan data ke controller checkout
+    return [
+        'gross_amount' => $grossAmount,
+        'items' => $items,
+        'total_price' => $totalPrice,
+        'discount' => $discount,
+        'shipping_fee' => $shippingFee,
+    ];
+}
 }

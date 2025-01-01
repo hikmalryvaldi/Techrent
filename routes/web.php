@@ -48,7 +48,7 @@ Route::post('/addemail', [NewsletterController::class, 'subscribe']);
 Route::post('/send-custom-email', [NewsletterController::class, 'newsletter']);
 Route::post('/keranjang/tambah/{product}', [CartController::class, 'add'])->name('keranjang.add');
 Route::get('/navbar/cart', [CartController::class, 'getCartItems'])->name('navbar.cart');
-Route::get('/keranjang/checkout', [CheckoutController::class, 'keranjangCheckout']);
+Route::get('/keranjang/checkout', [CheckoutController::class, 'checkout']);
 Route::post('/payment', [PaymentController::class, 'createTransaction']);
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount']);
 
@@ -59,3 +59,7 @@ Route::controller(DiskonAdminController::class)->group(function () {
 });
 
 Route::match(['post', 'delete'],'/keranjang/hapus', [CartController::class, 'drop'])->name('keranjang.hapus');
+
+Route::post('/payment/notification', [PaymentController::class, 'handleMidtransNotification'])->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
+
+Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount'])->name('calculateGrossAmount');
