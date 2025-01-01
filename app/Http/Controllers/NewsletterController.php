@@ -23,7 +23,6 @@ class NewsletterController extends Controller
         foreach ($subscribers as $subscriber) {
             Mail::to($subscriber->email)->send(new Newsletter($request->subject, $request->message));
         }
-        
     }
 
     public function subscribe(Request $request)
@@ -38,23 +37,24 @@ class NewsletterController extends Controller
             'email' => $request->email,
         ]);
 
+        // Redirect ke halaman utama
+        return redirect('/')->with('success', 'Email berhasil dikirim!');
     }
 
     public function search(Request $request)
-{
+    {
 
-    $search = $request->input('search');
+        $search = $request->input('search');
 
-    if (empty($search)) {
-        return response()->json([]);
+        if (empty($search)) {
+            return response()->json([]);
+        }
+
+        // Cari produk berdasarkan nama
+        $products = Product::where('product_name', 'like', '%' . $search . '%')
+            ->limit(5)
+            ->get();
+
+        return response()->json($products);
     }
-
-    // Cari produk berdasarkan nama
-    $products = Product::where('product_name', 'like', '%' . $search . '%')
-        ->limit(5)
-        ->get();
-
-    return response()->json($products);
-}
-
 }
