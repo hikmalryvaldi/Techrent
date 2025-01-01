@@ -55,3 +55,12 @@
         </div>
     </footer>
 </div>
+
+{{-- Menampilkan popup jika ada pesan sukses --}}
+@if (session('success'))
+    <script>
+        window.onload = function() {
+            alert("{{ session('success') }}");
+        };
+    </script>
+@endif
