@@ -18,6 +18,9 @@ Route::delete('/Admin/produk/{id}', [ProductAdminController::class, 'destroy'])-
 Route::get('/Admin/diskon', [DiskonAdminController::class, 'index'])->name('Admin.diskon');
 Route::get('/Admin/diskon/search', [DiskonAdminController::class, 'search'])->name('diskon.search');
 Route::view('/Admin/nNewsletterDiskon', '/Admin/nNewsletterDiskon');
+Route::view('/Admin/nNewsletterCustom', '/Admin/nNewsletterCustom');
+Route::view('/Admin/mpengembalianSelesai', '/Admin/mpengembalianSelesai');
+Route::view('/Admin/mpengembalian', '/Admin/mpengembalian');
 Route::view('/Admin/mperluDikirim', '/Admin/mperluDikirim');
 Route::view('/Admin/mdikirim', '/Admin/mdikirim');
 Route::view('/Admin/mpesananSemua', '/Admin/mpesananSemua');
