@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskonAdminController;
 use App\Http\Controllers\ProductAdminController;
@@ -22,10 +23,16 @@ Route::view('/Admin/nNewsletterCustom', '/Admin/nNewsletterCustom');
 Route::view('/Admin/mpengembalianSelesai', '/Admin/mpengembalianSelesai');
 Route::view('/Admin/mpengembalian', '/Admin/mpengembalian');
 Route::view('/Admin/mperluDikirim', '/Admin/mperluDikirim');
-Route::view('/Admin/mdikirim', '/Admin/mdikirim');
-Route::view('/Admin/mpesananSemua', '/Admin/mpesananSemua');
 Route::view('/Admin/mSelesai', '/Admin/mSelesai');
 Route::view('/Admin/mpengembalian', '/Admin/mpengembalian');
 Route::view('/Admin/dikirim', '/Admin/dikirim');
 Route::view('/Admin/voucher', '/Admin/voucher');
 Route::view('/Admin/detailPesanan', '/Admin/detailPesanan');
+
+// Route::view('/Admin/mpesananSemua', '/Admin/mpesananSemua');
+Route::get('/Admin/mperluDikirim', [PesananController::class, 'indexPerluDikirim']);
+Route::get('/Admin/mDikemas', [PesananController::class, 'indexDikemas']);
+Route::get('/Admin/mDikirim', [PesananController::class, 'indexDikirim']);
+
+Route::post('/transactions/update-status/kemas', [PesananController::class, 'kemasPesanan']);
+Route::post('/transactions/update-status/kirim', [PesananController::class, 'kirimPesanan']);

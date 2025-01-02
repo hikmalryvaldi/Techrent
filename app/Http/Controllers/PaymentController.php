@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+    public function lol(Request $request){
+        dd($request);
+    }
 public function createTransaction(Request $request)
 {
     // Set konfigurasi Midtrans
@@ -56,6 +59,7 @@ public function createTransaction(Request $request)
     $transaction->user_id = $userId; // Relasikan transaksi dengan user yang sedang login
     $transaction->gross_amount = $grossAmount;
     $transaction->status = 'pending'; // Status awal adalah pending
+    $transaction->status_pengiriman = 'Menunggu konfirmasi'; // Status awal adalah pending
     $transaction->save(); // Simpan transaksi ke database
 
     // Data transaksi yang akan dikirim ke Midtrans
