@@ -84,8 +84,14 @@
              {{-- ALAMAT --}}
              <div class="flex flex-col gap-2 sm:w-[50%]">
                 <label for="address" class="text-sm font-medium text-gray-700">Alamat</label>
-                <textarea id="address" class="textarea textarea-bordered w-full bg-[#282828] text-white h-24 rounded"></textarea>
+                <textarea id="address" name="address" class="textarea textarea-bordered w-full bg-[#282828] text-white h-24 rounded"></textarea>
             </div>
+
+            {{-- LATITUDE --}}
+            <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude', $user->latitude ?? '') }}">
+
+            {{-- LONGITUDE --}}
+            <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude', $user->longitude ?? '') }}">
 
             {{-- GANTI PASSWORD --}}
             <div class="mt-10">
@@ -237,19 +243,30 @@
 <script>
     // Initialize the map
     var map;
+    var marker;
+    var initialLat = {{ old('latitude', $user->latitude) ?: -6.914744 }};  // Default to a fallback latitude
+    var initialLon = {{ old('longitude', $user->longitude) ?: 107.609810 }};  // Default to a fallback longitude
+
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize the map when the DOM is fully loaded
-        map = L.map('map').setView([-6.914744, 107.609810], 13); // Default center(London)
+        map = L.map('map').setView([initialLat, initialLon], 13); // Use initialLat and initialLon for default center
 
         // Add OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
 
-        // Create a marker variable
-        var marker;
+        // Check if there is a saved marker (if latitude and longitude are available)
+        if (initialLat && initialLon) {
+            // Set the marker at the stored coordinates
+            marker = L.marker([initialLat, initialLon]).addTo(map);
+            // Optionally, zoom into the marker's position
+            map.setView([initialLat, initialLon], 13);
+            // Call the function to update the address field based on the initial coordinates
+            getAddressFromLatLng({ lat: initialLat, lng: initialLon });
+        }
 
-        // When the user clicks on the map, place a marker
+        // When the user clicks on the map, place a marker and update latitude and longitude
         map.on('click', function(e) {
             var latLng = e.latlng;
 
@@ -260,6 +277,10 @@
 
             // Place a new marker at the clicked location
             marker = L.marker(latLng).addTo(map);
+
+            // Update the hidden latitude and longitude inputs with the new coordinates
+            document.getElementById('latitude').value = latLng.lat;
+            document.getElementById('longitude').value = latLng.lng;
 
             // Call geocoding service to get the address for the clicked location
             getAddressFromLatLng(latLng);
