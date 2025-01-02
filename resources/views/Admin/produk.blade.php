@@ -110,8 +110,31 @@
                                         </td>
                                         <td class="p-4">
                                             @foreach ($product->images as $image)
+                                                {{-- @foreach ($product->images as $image)
                                                 <img src="{{ asset('storage/' . $image->image_path1) }}"
                                                     alt="Product Image" class="w-20 h-20 object-cover">
+                                            @endforeach --}}
+                                                {{-- @foreach ($product->images as $image)
+                                            @if ($image->image_path1 && file_exists(public_path($image->image_path1)))
+                                                <img src="{{ asset($image->image_path1) }}" 
+                                                     alt="Seeder Image" class="w-20 h-20 object-cover">
+                                            @elseif (Storage::exists('storage/' . $image->image_path1))
+                                                <img src="{{ asset('storage/' . $image->image_path1) }}" 
+                                                     alt="Storage Image" class="w-20 h-20 object-cover">
+                                            @else
+                                                <p>No image available</p>
+                                            @endif
+                                        @endforeach --}}
+                                                @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
+                                                    <img src="{{ asset(ltrim($image->image_path1, '/')) }}"
+                                                        alt="Seeder Image" class="w-20 h-20 object-cover">
+                                                @else
+                                                @foreach ($product->images as $image)
+                                                <img src="{{ asset('storage/' . $image->image_path1) }}"
+                                                    alt="Product Image" class="w-20 h-20 object-cover">
+                                                @endforeach
+                                                @endif
+                                
                                             @endforeach
                                         </td>
                                         <th scope="row"

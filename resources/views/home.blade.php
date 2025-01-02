@@ -200,8 +200,18 @@
                 @foreach ($topProducts as $topProduct)
                     <div class="card1 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                            @foreach ($topProduct->images as $image) <img src="{{ asset('storage/' . $image->image_path1) }}" class="w-full h-full object-contain"> 
-                            @endforeach
+                            @foreach ($topProduct->images as $image)
+                        @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
+                            {{-- Gambar dari Seeder --}}
+                            <img src="{{ asset(ltrim($image->image_path1, '/')) }}" 
+                                class="w-full h-full object-contain">
+                        @else
+                            {{-- Gambar dari Storage --}}
+                            <img src="{{ asset('storage/' . $image->image_path1) }}" 
+                                class="w-full h-full object-contain">
+                        @endif
+                        @endforeach
+
                         </div>
                         <p class="text-black text-center text-xl font-bold mt-4">
                             {{ $topProduct->product_name }}</p>

@@ -36,9 +36,17 @@
             @foreach ($products as $product)
                 <div class="bg-white shadow-md rounded-lg overflow-hidden">
                     @foreach ($product->images as $image)
-                        <img src="{{ asset('storage/' . $image->image_path1) }}" alt="{{ $product->product_name }}"
-                            class="w-full h-64 object-cover">
-                    @endforeach
+                    @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
+                        {{-- Gambar dari Seeder --}}
+                        <img src="{{ asset(ltrim($image->image_path1, '/')) }}"
+                             alt="{{ $product->product_name }}" class="w-full h-64 object-cover">
+                    @else
+                        {{-- Gambar dari Storage --}}
+                        <img src="{{ asset('storage/' . $image->image_path1) }}"
+                             alt="{{ $product->product_name }}" class="w-full h-64 object-cover">
+                    @endif
+                @endforeach
+                
 
                     <div class="p-4">
                         <h2 class="text-xl font-semibold">{{ $product->product_name }}</h2>
