@@ -68,3 +68,4 @@ Route::get('statusBarang', function () {
 Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
 Route::post('/pesanann', [PaymentController::class, 'lol'])->name('pesanan.index');
 
+Route::view('/otw', '/pengiriman')->name('diskon.search');
