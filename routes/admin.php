@@ -33,6 +33,8 @@ Route::view('/Admin/detailPesanan', '/Admin/detailPesanan');
 Route::get('/Admin/mperluDikirim', [PesananController::class, 'indexPerluDikirim']);
 Route::get('/Admin/mDikemas', [PesananController::class, 'indexDikemas']);
 Route::get('/Admin/mDikirim', [PesananController::class, 'indexDikirim']);
+Route::get('/Admin/mSelesai', [PesananController::class, 'indexSelesai']);
 
 Route::post('/transactions/update-status/kemas', [PesananController::class, 'kemasPesanan']);
 Route::post('/transactions/update-status/kirim', [PesananController::class, 'kirimPesanan']);
+Route::post('/transactions/update-status/selesai', [PesananController::class, 'doneBang']);

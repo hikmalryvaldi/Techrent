@@ -38,19 +38,19 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI')  
+        'redirect' => env('GOOGLE_REDIRECT_URI')
     ],
 
     'facebook' => [
         'client_id' => env('FB_CLIENT_ID'),
         'client_secret' => env('FB_CLIENT_SECRET'),
-        'redirect' => env('FB_REDIRECT_URI')  
+        'redirect' => env('FB_REDIRECT_URI')
     ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('TWITTER_REDIRECT_URI')  
+        'redirect' => env('TWITTER_REDIRECT_URI')
     ],
 
     'github' => [

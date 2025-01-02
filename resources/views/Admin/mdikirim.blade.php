@@ -193,9 +193,13 @@
                                     <div id="status" class="hidden"></div>
                                 </div>
                                 <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                    <button data-modal-hide="default-modal" type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                        Tutup
-                                    </button>
+                                    <form method="POST" action="/transactions/update-status/selesai">
+                                        @csrf
+                                        <input type="hidden" name="transaction_id" id="modal-transaction-id" value="">
+                                        <button data-modal-hide="default-modal" type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            Selesai
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -203,6 +207,19 @@
 
                 </div>
 
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const openModalButtons = document.querySelectorAll('.open-modal');
+                        const transactionIdInput = document.getElementById('modal-transaction-id');
+                
+                        openModalButtons.forEach(button => {
+                            button.addEventListener('click', () => {
+                                const transactionId = button.getAttribute('data-id');
+                                transactionIdInput.value = transactionId; // Set value input hidden
+                            });
+                        });
+                    });
+                </script>
                 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {

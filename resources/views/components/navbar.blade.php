@@ -12,7 +12,9 @@
                     class="max-h-20 h-auto w-auto hidden sm:block" alt=""></a>
         </div>
         <div class="navbar-end hidden lg:flex">
-            @auth
+            <a href="keranjang" class="btn btn-ghost btn-circle ml-5">
+                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
+            </a>
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn m-1">
                     <div>{{ Auth::user()->nama }}</div>
@@ -42,16 +44,6 @@
                     @endauth
                 </ul>
             </div>
-
-            @else
-            <a href="{{ route('auth') }}" class="auth btn btn-ghost btn-circle ml-5">
-                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
-            </a>
-
-            <a class="auth btn btn-ghost btn-circle" href="{{ route('auth') }}">
-                <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
-            </a>
-            @endauth
         </div>
     </div>
 @else
