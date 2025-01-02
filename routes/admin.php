@@ -5,6 +5,7 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskonAdminController;
 use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\PromosiAdminController;
 
 Route::get('/Admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin');
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
@@ -29,7 +30,6 @@ Route::view('/Admin/dikirim', '/Admin/dikirim');
 Route::view('/Admin/voucher', '/Admin/voucher');
 Route::view('/Admin/detailPesanan', '/Admin/detailPesanan');
 
-// Route::view('/Admin/mpesananSemua', '/Admin/mpesananSemua');
 Route::get('/Admin/mperluDikirim', [PesananController::class, 'indexPerluDikirim']);
 Route::get('/Admin/mDikemas', [PesananController::class, 'indexDikemas']);
 Route::get('/Admin/mDikirim', [PesananController::class, 'indexDikirim']);

@@ -223,8 +223,8 @@
                             class="form-label mb-2 text-sm font-medium text-gray-900 dark:text-black">Product
                             Description</label>
                             {{-- TRIK EDITOR --}}
-                            <input id="Pesan" type="hidden" name="Pesan">
-                            <trix-editor input="Pesan" class="trix-content w-full border border-black rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white"></trix-editor>
+                            <input id="description" name="description" type="hidden">
+                            <trix-editor input="description" class="trix-content w-full border border-black rounded-lg bg-gray-50 dark:bg-gray-700 dark:text-white"></trix-editor>
                     </div>
                 </div>
 
