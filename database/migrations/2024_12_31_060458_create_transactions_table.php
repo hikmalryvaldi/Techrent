@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Foreign key ke tabel users
             $table->string('transaction_id')->unique(); // ID transaksi unik dari Midtrans
             $table->decimal('gross_amount', 15, 2); // Total pembayaran
+            $table->string('status_pengiriman')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('status'); // Status transaksi (success, pending, failed) // Link pembayaran (optional, jika diperlukan)
             $table->timestamps();
