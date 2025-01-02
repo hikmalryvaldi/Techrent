@@ -24,17 +24,17 @@
     <!-- Leaflet Geocoding -->
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     {{-- END FROM BACKEND --}}
-    
+
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
     <title>{{ $slot }}</title>
 
     {{-- trix --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
     <script type="text/javascript" src="/js/trix.js"></script>
-    
+
     {{-- css edit --}}
     <style>
-        trix-toolbar [data-trix-button-group = "file-tools"]{
+        trix-toolbar [data-trix-button-group = "file-tools"] {
             display: none;
         }
     </style>

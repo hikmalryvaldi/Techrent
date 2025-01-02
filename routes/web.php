@@ -1,25 +1,15 @@
 <?php
 
-use App\Models\Product;
-use App\Models\Carousel;
-use App\Models\FeaturedProduct;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Routing\Router;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\DiskonAdminController;
-use App\Http\Controllers\detailProdukController;
-use App\Http\Controllers\LupaPasswordController;
-use App\Http\Controllers\ProductAdminController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'homeFeatures');
@@ -27,7 +17,12 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/produk/{id}', 'show')->name('produk.show');
 });
 
-Route::get('/profile', [UserController::class, 'index'])->name('profile');
+Route::middleware(['auth'])->group(function () {
+    Route::put('/profile', [UserController::class, 'update'])->name('update');
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+});
+
+
 Route::get('/keranjang', [CartController::class, 'index']);
 
 Route::get('/Admin/promosi', function () {
@@ -37,7 +32,6 @@ Route::get('/Admin/promosi', function () {
 require __DIR__ . '/produk.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
-
 
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
@@ -60,8 +54,18 @@ Route::controller(DiskonAdminController::class)->group(function () {
     Route::post('/update-discount', 'update')->name('discount.update');
 });
 
-Route::match(['post', 'delete'],'/keranjang/hapus', [CartController::class, 'drop'])->name('keranjang.hapus');
+Route::match(['post', 'delete'], '/keranjang/hapus', [CartController::class, 'drop'])->name('keranjang.hapus');
 
 Route::post('/payment/notification', [PaymentController::class, 'handleMidtransNotification'])->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount'])->name('calculateGrossAmount');
+
+
+Route::get('statusBarang', function () {
+    return view('statusBarang');
+});
+
+Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
+Route::post('/pesanann', [PaymentController::class, 'lol'])->name('pesanan.index');
+
+Route::view('/otw', '/pengiriman')->name('diskon.search');
