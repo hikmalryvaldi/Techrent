@@ -16,26 +16,18 @@
     <div class="max-w-4xl mx-auto mt-10 p-5" x-data="tabs()" x-cloak>
         <!-- Tabs Navigation -->
         <div class="flex border-b">
-            <button class="px-4 py-2 text-sm font-medium border-b-2"
-                :class="activeTab === 'tab1' ? 'border-blue-500 text-blue-500' : 'text-gray-500 border-transparent'"
-                @click="setActive('tab1')">
+            <a href="/profile" class="px-4 py-2 text-sm font-medium border-b-2 border-blue-500 text-blue-500">
                 Informasi Pribadi
-            </button>
-            <button class="px-4 py-2 text-sm font-medium border-b-2"
-                :class="activeTab === 'tab2' ? 'border-blue-500 text-blue-500' : 'text-gray-500 border-transparent'"
-                @click="setActive('tab2')">
+            </a>
+            <a href="/user/perlukirim" class="px-4 py-2 text-sm font-medium border-b-2">
+                Barang Sedang Dikemas
+            </a>
+            <a href="/user/dikirim" class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Sedang Dikirim
-            </button>
-            <button class="px-4 py-2 text-sm font-medium border-b-2"
-                :class="activeTab === 'tab3' ? 'border-blue-500 text-blue-500' : 'text-gray-500 border-transparent'"
-                @click="setActive('tab3')">
-                Barang Sedang Dikembalikan
-            </button>
-            <button class="px-4 py-2 text-sm font-medium border-b-2"
-                :class="activeTab === 'tab4' ? 'border-blue-500 text-blue-500' : 'text-gray-500 border-transparent'"
-                @click="setActive('tab4')">
+            </a>
+            <a class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Yang Telah Disewa
-            </button>
+            </a>
         </div>
 
         <!-- Tabs Content -->
@@ -100,49 +92,7 @@
     </div>
     
             {{-- end --}}
-            <!-- Tab 2: BARANG OTW CUST -->
-            <div x-show="activeTab === 'tab2'" class="space-y-6 bg-white p-5 rounded text-gray-500">
-                <h2 class="text-lg font-bold">Barang Sedang Dikirim</h2>
-                <!-- Tabel Barang yang Sedang Dikirim -->
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full border-collapse border border-gray-200 rounded-lg">
-                        <thead class="bg-gray-100">
-                            <tr>
-                                <th class="px-4 py-2 text-left border border-gray-200">No</th>
-                                <th class="px-4 py-2 text-left border border-gray-200">Nama Barang</th>
-                                <th class="px-4 py-2 text-left border border-gray-200">Tanggal Pengiriman</th>
-                                <th class="px-4 py-2 text-left border border-gray-200">Kurir</th>
-                                <th class="px-4 py-2 text-center border border-gray-200">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Contoh Data Barang -->
-                            <tr>
-                                <td class="px-4 py-2 border border-gray-200 text-center">1</td>
-                                <td class="px-4 py-2 border border-gray-200">Kamera DSLR Canon 5D</td>
-                                <td class="px-4 py-2 border border-gray-200">2024-01-10</td>
-                                <td class="px-4 py-2 border border-gray-200">JNE</td>
-                                <td class="px-4 py-2 border border-gray-200 text-center">
-                                    <button class="px-2 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded-md">
-                                        Lihat Perjalanan
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2 border border-gray-200 text-center">2</td>
-                                <td class="px-4 py-2 border border-gray-200">Lensa Sony 85mm</td>
-                                <td class="px-4 py-2 border border-gray-200">2024-02-12</td>
-                                <td class="px-4 py-2 border border-gray-200">SiCepat</td>
-                                <td class="px-4 py-2 border border-gray-200 text-center">
-                                    <button class="px-2 py-1 text-white bg-blue-600 hover:bg-blue-700 rounded-md">
-                                        Lihat Perjalanan
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
             {{-- Tab3: BARANG SEDANG DIKEMBALIKAN --}}
             <div x-show="activeTab === 'tab3'" class="space-y-6 bg-white p-5 rounded text-gray-500">
                 <h2 class="text-lg font-bold">Barang Sedang Dikirim</h2>

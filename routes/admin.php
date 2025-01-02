@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskonAdminController;
@@ -38,3 +39,8 @@ Route::get('/Admin/mSelesai', [PesananController::class, 'indexSelesai']);
 Route::post('/transactions/update-status/kemas', [PesananController::class, 'kemasPesanan']);
 Route::post('/transactions/update-status/kirim', [PesananController::class, 'kirimPesanan']);
 Route::post('/transactions/update-status/selesai', [PesananController::class, 'doneBang']);
+
+Route::get('/user/perlukirim', [UserController::class, 'indexPerluDikirim']);
+Route::get('/user/dikirim', [UserController::class, 'indexDikirim']);
+
+Route::post('/user/loll', [PesananController::class, 'lol']);
