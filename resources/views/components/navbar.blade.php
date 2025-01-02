@@ -12,9 +12,54 @@
                     class="max-h-20 h-auto w-auto hidden sm:block" alt=""></a>
         </div>
         <div class="navbar-end hidden lg:flex">
-            <a href="keranjang" class="btn btn-ghost btn-circle ml-5">
-                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
-            </a>
+                            {{-- navbar kranjang --}}
+                            <div class="relative group">
+                                <!-- Tombol Keranjang -->
+                                <button onclick="toggleDropdown()" class="btn btn-ghost btn-circle ml-5">
+                                    <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 w-auto h-auto" alt="Keranjang">
+                                </button>
+            
+                                <!-- Konten Dropdown -->
+                                <form action="/keranjang/checkout" method="GET">
+                                    @csrf
+                                    <ul id="dropdownCart" class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
+                                        @if ($keranjang && $keranjang->items->isNotEmpty())
+                                            @foreach ($keranjang->items as $item)
+                                                <li class="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <!-- Checkbox -->
+                                                    <input type="checkbox" name="product_ids[]" value="{{ $item->product->id }}"
+                                                           id="checkbox-item-{{ $item->product->id }}"
+                                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                    <!-- Gambar -->
+                                                    @foreach ($item->product->images as $image)
+                                                        <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
+                                                    @endforeach
+                                                    <!-- Label -->
+                                                    <label for="checkbox-item-{{ $item->product->id }}"
+                                                           class="flex-1 ml-2 truncate text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        {{ $item->product->product_name }}
+                                                    </label>
+                                                    <!-- Durasi dan Harga -->
+                                                    <div class="flex items-center space-x-2">
+                                                        <span class="text-sm text-gray-500 dark:text-gray-400">3 Hari</span>
+                                                        <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            <p>Keranjang Anda kosong</p>
+                                        @endif
+                                        <hr class="my-2">
+                                        <div class="py-2 flex justify-between items-center">
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
+                                            <div class="flex gap-2">
+                                                <button type="button" onclick="submitDeleteForm()" class="btn bg-red-500 text-white hover:bg-red-600">Hapus</button>
+                                                <button type="submit" class="btn btn-primary text-white">Sewa Sekarang</button>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </form>                    
+                            </div>
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn m-1">
                     <div>{{ Auth::user()->nama }}</div>
@@ -119,27 +164,30 @@
                     <!-- Konten Dropdown -->
                     <form action="/keranjang/checkout" method="GET">
                         @csrf
-                        <ul id="dropdownCart" class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
+                        <ul id="dropdownCart"
+                            class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
                             @if ($keranjang && $keranjang->items->isNotEmpty())
                                 @foreach ($keranjang->items as $item)
-                                    <li class="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                    <li
+                                        class="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                         <!-- Checkbox -->
                                         <input type="checkbox" name="product_ids[]" value="{{ $item->product->id }}"
-                                               id="checkbox-item-{{ $item->product->id }}"
-                                               class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                            id="checkbox-item-{{ $item->product->id }}"
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
                                         <!-- Gambar -->
                                         @foreach ($item->product->images as $image)
-                                            <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
+                                            <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2"
+                                                alt="Produk">
                                         @endforeach
                                         <!-- Label -->
                                         <label for="checkbox-item-{{ $item->product->id }}"
-                                               class="flex-1 ml-2 truncate text-sm font-medium text-gray-900 dark:text-gray-300">
+                                            class="flex-1 ml-2 truncate text-sm font-medium text-gray-900 dark:text-gray-300">
                                             {{ $item->product->product_name }}
                                         </label>
                                         <!-- Durasi dan Harga -->
                                         <div class="flex items-center space-x-2">
                                             <span class="text-sm text-gray-500 dark:text-gray-400">3 Hari</span>
-                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp {{  number_format($item->product->price, 0, ",", ".");}}</span>
                                         </div>
                                     </li>
                                 @endforeach
@@ -150,12 +198,13 @@
                             <div class="py-2 flex justify-between items-center">
                                 <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
                                 <div class="flex gap-2">
-                                    <button type="button" onclick="submitDeleteForm()" class="btn bg-red-500 text-white hover:bg-red-600">Hapus</button>
+                                    <button type="button" onclick="submitDeleteForm()"
+                                        class="btn bg-red-500 text-white hover:bg-red-600">Hapus</button>
                                     <button type="submit" class="btn btn-primary text-white">Sewa Sekarang</button>
                                 </div>
                             </div>
                         </ul>
-                    </form>                    
+                    </form>
                 </div>
 
 
@@ -163,7 +212,7 @@
 
 
                 <div class="dropdown">
-                    <div tabindex="0" role="button" class="btn m-1">
+                    <div tabindex="0" role="button" class="btn m-1" id="dropdown-toggle">
                         <div>{{ Auth::user()->nama }}</div>
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -172,7 +221,8 @@
                         </svg>
                     </div>
                     <ul tabindex="0"
-                        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0">
+                        class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow absolute right-0"
+                        id="dropdown-menu" style="display: none;">
                         @if (Auth::check() && Auth::user()->is_admin !== null)
                             <li>
                                 <a href="{{ route('admin.dashboard') }}">Dashboard </a>
@@ -267,49 +317,48 @@
     @endauth
 @endif
 <script>
-function submitDeleteForm() {
-    const selectedProductIds = [];
-    
-    // Ambil semua checkbox yang dipilih
-    document.querySelectorAll('input[name="product_ids[]"]:checked').forEach(function(checkbox) {
-        selectedProductIds.push(checkbox.value);  // Tambahkan ID produk yang dipilih
-    });
-    
-    if (selectedProductIds.length === 0) {
-        alert('Pilih produk yang ingin dihapus.');
-        return;
+    function submitDeleteForm() {
+        const selectedProductIds = [];
+
+        // Ambil semua checkbox yang dipilih
+        document.querySelectorAll('input[name="product_ids[]"]:checked').forEach(function(checkbox) {
+            selectedProductIds.push(checkbox.value); // Tambahkan ID produk yang dipilih
+        });
+
+        if (selectedProductIds.length === 0) {
+            alert('Pilih produk yang ingin dihapus.');
+            return;
+        }
+
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/keranjang/hapus'; // Rute penghapusan produk
+
+        // CSRF token
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = '_token';
+        csrfInput.value = '{{ csrf_token() }}';
+        form.appendChild(csrfInput);
+
+        // Simulasi metode DELETE
+        const methodInput = document.createElement('input');
+        methodInput.type = 'hidden';
+        methodInput.name = '_method';
+        methodInput.value = 'DELETE';
+        form.appendChild(methodInput);
+
+        // Menambahkan ID produk yang dipilih ke dalam form
+        const productIdsInput = document.createElement('input');
+        productIdsInput.type = 'hidden';
+        productIdsInput.name = 'product_ids[]';
+        productIdsInput.value = selectedProductIds.join(',');
+        form.appendChild(productIdsInput);
+
+        // Kirim form
+        document.body.appendChild(form);
+        form.submit();
     }
-
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = '/keranjang/hapus';  // Rute penghapusan produk
-
-    // CSRF token
-    const csrfInput = document.createElement('input');
-    csrfInput.type = 'hidden';
-    csrfInput.name = '_token';
-    csrfInput.value = '{{ csrf_token() }}';
-    form.appendChild(csrfInput);
-
-    // Simulasi metode DELETE
-    const methodInput = document.createElement('input');
-    methodInput.type = 'hidden';
-    methodInput.name = '_method';
-    methodInput.value = 'DELETE';
-    form.appendChild(methodInput);
-
-    // Menambahkan ID produk yang dipilih ke dalam form
-    const productIdsInput = document.createElement('input');
-    productIdsInput.type = 'hidden';
-    productIdsInput.name = 'product_ids[]';
-    productIdsInput.value = selectedProductIds.join(',');
-    form.appendChild(productIdsInput);
-
-    // Kirim form
-    document.body.appendChild(form);
-    form.submit();
-}
-
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -379,6 +428,28 @@ function submitDeleteForm() {
         if (!dropdown.contains(event.target) && !button) {
             dropdown.classList.add('hidden');
             dropdownVisible = false;
+        }
+    });
+
+
+    // NAVBAR (DROPDOWN USER)
+    const dropdownToggle = document.getElementById('dropdown-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+
+    // Toggle dropdown menu saat tombol dropdown diklik
+    dropdownToggle.addEventListener('click', function(event) {
+        if (dropdownMenu.style.display === 'none' || dropdownMenu.style.display === '') {
+            dropdownMenu.style.display = 'block'; // Menampilkan menu dropdown
+        } else {
+            dropdownMenu.style.display = 'none'; // Menyembunyikan menu dropdown
+        }
+        event.stopPropagation();
+    });
+
+    // Menutup dropdown jika klik di luar dropdown
+    document.addEventListener('click', function(event) {
+        if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.style.display = 'none'; // Menyembunyikan dropdown jika klik di luar
         }
     });
 </script>

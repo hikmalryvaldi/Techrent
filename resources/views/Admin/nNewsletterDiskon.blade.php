@@ -31,9 +31,12 @@
                         </div>
 
                         <!-- Hidden input untuk menyimpan ID produk yang dipilih -->
-                        <input type="hidden" id="selected-product-id" name="message" value="TEST" />
-                        <input type="hidden" id="selected-product-id" name="subject" value="TEST" />
+                        {{-- <input type="hidden" id="selected-product-id" name="message" value="TEST" />
+                        <input type="hidden" id="selected-product-id" name="subject" value="TEST" /> --}}
                         <input type="hidden" id="selected-product-id" name="product_id" />
+                        <input type="hidden" id="selected-product-productName" name="product_name">
+                        <input type="hidden" id="selected-product-discount" name="discount_value">
+                        <input type="hidden" id="selected-product-image" name="images">
                     </div>
 
                     <button type="submit"
@@ -98,60 +101,71 @@
         </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            function liveSearch() {
-                var searchQuery = document.getElementById('search-input').value;
+  function liveSearch() {
+    const searchQuery = document.getElementById('search-input').value;
 
-                // Sembunyikan dropdown jika input kosong
-                if (searchQuery === '') {
-                    document.getElementById('dropdown').classList.add('hidden');
-                    return;
-                }
+    if (searchQuery === '') {
+        document.getElementById('dropdown').classList.add('hidden');
+        return;
+    }
 
-                // AJAX request untuk pencarian
-                $.ajax({
-                    url: '/search', // Route untuk pencarian
-                    type: 'GET',
-                    data: {
-                        search: searchQuery
-                    }, // Kirim parameter pencarian
-                    success: function(response) {
-                        var dropdown = $('#dropdown');
-                        dropdown.empty(); // Kosongkan dropdown sebelum mengisi
+    $.ajax({
+        url: '/search',
+        type: 'GET',
+        data: { search: searchQuery },
+        success: function (response) {
+            console.log(response); // Memeriksa respons dari server
+            const dropdown = $('#dropdown');
+            dropdown.empty();
 
-                        if (response.length > 0) {
-                            response.forEach(function(product) {
-                                dropdown.append(`
-                            <div class="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-200"
-                                onclick="selectProduct(${product.id}, '${product.product_name}')">
-                                ${product.product_name}
-                            </div>
-                        `);
-                            });
-                        } else {
-                            dropdown.append(`
-                        <div class="px-4 py-2 text-gray-500">No results found</div>
+            if (response.length > 0) {
+                response.forEach(function (product) {
+                    let imagesHtml = '';
+                    product.images.forEach(function (image) {
+                        imagesHtml += `<img src="${image.image_url}" width="50" height="50" class="mr-2">`;
+                    });
+                    dropdown.append(`
+                        <div class="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-200 flex items-center" onclick='selectProduct(${product.id}, "${product.product_name.replace(/"/g, '&quot;')}", ${product.discount_value}, ${JSON.stringify(product.images).replace(/'/g, "&#39;")})'>
+                            ${imagesHtml}
+                            <span>${product.product_name} - Diskon: ${product.discount_value}%</span>
+                        </div>
                     `);
-                        }
-
-                        dropdown.removeClass('hidden'); // Tampilkan dropdown
-                    }
                 });
+            } else {
+                dropdown.append(`
+                    <div class="px-4 py-2 text-gray-500">Tidak ada hasil</div>
+                `);
             }
 
-            // Fungsi untuk menangani klik produk
-            function selectProduct(id, productName) {
-                // Isi input dengan nama produk
-                document.getElementById('search-input').value = productName;
+            dropdown.removeClass('hidden');
+        },
+        error: function (xhr, status, error) {
+            console.error('Error fetching search results:', xhr.responseText);
+        }
+    });
+}
 
-                // Simpan ID produk ke dalam hidden input
-                document.getElementById('selected-product-id').value = id;
+function selectProduct(id, productName, discount, images) {
+    try {
+        console.log("selectProduct called with:", { id, productName, discount, images });
 
-                // Sembunyikan dropdown
-                document.getElementById('dropdown').classList.add('hidden');
+        // Isi input dengan nama produk
+        document.getElementById('search-input').value = productName;
 
-                // (Opsional) Log ID produk yang dipilih untuk debugging
-                console.log('Produk terpilih: ', id, productName);
-            }
+        // Simpan ID produk ke dalam hidden input
+        document.getElementById('selected-product-id').value = id;
+        document.getElementById('selected-product-productName').value = productName;
+        document.getElementById('selected-product-discount').value = discount;
+        document.getElementById('selected-product-image').value = JSON.stringify(images);
+
+        // Sembunyikan dropdown
+        document.getElementById('dropdown').classList.add('hidden');
+
+    } catch (error) {
+        console.error('Error in selectProduct function:', error);
+    }
+}
+
         </script>
 
 </body>

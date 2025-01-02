@@ -122,6 +122,7 @@
                         <p
                             class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             KAMERA</p>
+                            <a href="{{ route('produk.index', ['category' => 'kamera']) }}">
                         <img src="{{ asset('img/halamanhome/kategori/kamera.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg">
                     </div>
@@ -133,6 +134,7 @@
                         <p
                             class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             LENSA</p>
+                            <a href="{{ route('produk.index', ['category' => 'lensa']) }}">
                         <img src="{{ asset('img/halamanhome/kategori/Lensa.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg" style="object-position: 20% 30%;">
                     </div>
@@ -144,6 +146,7 @@
                         <p
                             class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             CONSOL</p>
+                            <a href="{{ route('produk.index', ['category' => 'konsol']) }}">
                         <img src="{{ asset('img/halamanhome/kategori/Playstation.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg">
                     </div>
@@ -154,6 +157,7 @@
                         <p
                             class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
                             SPEAKER</p>
+                            <a href="{{ route('produk.index', ['category' => 'speaker']) }}">
                         <img src="{{ asset('img/halamanhome/kategori/Sound.jpg') }}" alt=""
                             class="w-full h-full object-cover rounded-lg">
                     </div>
@@ -196,17 +200,16 @@
                 @foreach ($topProducts as $topProduct)
                     <div class="card1 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                            @foreach ($topProduct->images as $image)
-                                <img src="{{ $image->image_path1 }}" alt="Image of {{ $topProduct->name }}"
-                                    class="w-full h-full object-contain">>
+                            @foreach ($topProduct->images as $image) <img src="{{ asset('storage/' . $image->image_path1) }}" class="w-full h-full object-contain"> 
                             @endforeach
                         </div>
                         <p class="text-black text-center text-xl font-bold mt-4">
                             {{ $topProduct->product_name }}</p>
-                        <button
+                            <a href="/detailProduk/{{ $topProduct->id }}" class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shadow-lg hover:bg-gray-300 hover:scale-105 transform transition duration-300"> SEWA SEKARANG </a>
+                        {{-- <button
                             class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
                             SEWA SEKARANG
-                        </button>
+                        </button> --}}
                     </div>
                 @endforeach
                 {{-- <div class="card2 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">

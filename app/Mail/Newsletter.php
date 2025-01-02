@@ -14,14 +14,21 @@ class Newsletter extends Mailable
     use Queueable, SerializesModels;
 
     public $subject;
-    public $emailMessage;
+    public $message;
+    public $product_name;
+    public $discount_value;
+    public $images;
+
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $emailMessage)
+    public function __construct($subject, $message, $product_name = null, $discount_value = null, $images = null)
     {
         $this->subject = $subject;
-        $this->emailMessage = $emailMessage;
+        $this->message = $message;
+        $this->product_name = $product_name;
+        $this->discount_value = $discount_value;
+        $this->images = $images;
     }
 
     /**
@@ -42,7 +49,11 @@ class Newsletter extends Mailable
         return new Content(
             view: 'mail.newsletter',
             with: [
-                'emailMessage' => $this->emailMessage,
+                'subject' => $this->subject, 
+                'message' => $this->message,
+                'product_name' => $this->product_name,
+                'discount_value' => $this->discount_value,
+                'images' => $this->images,
             ],
         );
     }

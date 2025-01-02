@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\FeaturedProduct;
 use Illuminate\Database\Seeder;
+use Database\Seeders\CarouselsSeeder;
 
 
 class DatabaseSeeder extends Seeder

@@ -97,26 +97,32 @@
 
         <!-- Gambar Promo -->
         <div class="gambar">
-            <img src="https://cdn.shopify.com/s/files/1/1260/1319/files/NewCanon_grande.png?v=1472116183"
-                alt="Kamera Diskon" class="promo-image">
+            @if ($images)
+                <div class="gambar">
+                    @foreach ($images as $image)
+                        <img src="{{ $image['image_url'] }}"  class="promo-image">
+                    @endforeach
+                </div>
+                @endif
+                {{-- <img src="https://cdn.shopify.com/s/files/1/1260/1319/files/NewCanon_grande.png?v=1472116183"
+                alt="Kamera Diskon" class="promo-image"> --}}
         </div>
 
         <!-- Konten Teks -->
         <div class="content">
-            <h1>Promo Kamera Canon Hingga 40%!</h1>
-            <p>
-                Jangan lewatkan kesempatan langka ini! Dapatkan diskon hingga <strong>40%</strong> untuk berbagai jenis
-                kamera mulai dari DSLR hingga Mirrorless.
-                Kami menawarkan kamera berkualitas dengan harga yang sangat terjangkau.
-            </p>
+            @if($product_name)
+            <h1>Promo {{ $product_name }} Hingga {{ $discount_value }}%!</h1> <p> Jangan lewatkan kesempatan langka ini! Dapatkan diskon hingga <strong>{{ $discount_value }}%</strong> untuk produk ini. Kami menawarkan produk berkualitas dengan harga yang sangat terjangkau. </p> 
+            @else 
+            <h1>{{ $subject }}</h1> 
+            <p> {{$message}}</p>
+            @endif
 
             <p>
-                Promo ini hanya berlaku untuk waktu terbatas. Segera pilih kamera favorit Anda dan nikmati foto dan
-                video berkualitas tinggi dengan harga spesial!
+                Promo ini hanya berlaku untuk waktu terbatas. Segera pilih product favorit Anda dan nikmati product berkualitas tinggi dengan harga spesial!
             </p>
 
             <p class="ajak">
-                Segera pesan dan dapatkan kamera impian Anda dengan harga diskon sebelum promo berakhir!
+                Segera pesan dan dapatkan product impian Anda dengan harga diskon sebelum promo berakhir!
             </p>
             <div class="container-button"
                 style="display: flex;
@@ -124,8 +130,8 @@
             align-items: center;
             margin-top: 20px;
             text-decoration: none;">
-                <a href="facebook.com" class="ajak-button">
-                    Lihat Kamera Diskon
+                <a href="#" class="ajak-button" style="text-decoration: none">
+                    Lihat Diskon
                 </a>
             </div>
         </div>
