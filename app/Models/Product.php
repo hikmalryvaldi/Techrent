@@ -23,9 +23,9 @@ class Product extends Model
 
     public function discount()
     {
-    return $this->hasOne(Discount::class, 'product_id');
+        return $this->hasOne(Discount::class, 'product_id');
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
@@ -45,4 +45,9 @@ class Product extends Model
     {
         return $this->hasMany(CartItem::class);
     }
+
+    // public function carousels()
+    // {
+    //     return $this->hasMany(Carousel::class);
+    // }
 }

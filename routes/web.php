@@ -46,6 +46,8 @@ Route::controller(SocialiteController::class)->group(function () {
 
 Route::post('/addemail', [NewsletterController::class, 'subscribe']);
 Route::post('/send-custom-email', [NewsletterController::class, 'newsletter']);
+Route::post('/send-custom-email', [NewsletterController::class, 'sendCustomEmail']);
+Route::get('/search', [NewsletterController::class, 'search']);
 Route::post('/keranjang/tambah/{product}', [CartController::class, 'add'])->name('keranjang.add');
 Route::get('/navbar/cart', [CartController::class, 'getCartItems'])->name('navbar.cart');
 Route::get('/keranjang/checkout', [CheckoutController::class, 'checkout']);

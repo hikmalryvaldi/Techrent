@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskonAdminController;
 use App\Http\Controllers\ProductAdminController;
+use App\Http\Controllers\PromosiAdminController;
 
 Route::get('/Admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard')->middleware('admin');
 Route::get('/Admin/produk', [ProductAdminController::class, 'index'])->name('Admin.produk');
@@ -29,3 +30,7 @@ Route::view('/Admin/mpengembalian', '/Admin/mpengembalian');
 Route::view('/Admin/dikirim', '/Admin/dikirim');
 Route::view('/Admin/voucher', '/Admin/voucher');
 Route::view('/Admin/detailPesanan', '/Admin/detailPesanan');
+
+// Route::get('/carousel/create', [PromosiAdminController::class, 'create'])->name('carousel.create');
+// Route::post('/carousel', [PromosiAdminController::class, 'store'])->name('carousel.store');
+// Route::get('/search', [PromosiAdminController::class, 'search'])->name('carousel.search');
