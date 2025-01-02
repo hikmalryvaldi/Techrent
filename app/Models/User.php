@@ -26,10 +26,10 @@ class User extends Authenticatable
         'is_admin',
         'otp',
         'otp_expires_at',
-        // 'address',
+        'address',
         // 'detail_alamat',
-        // 'latitude',
-        // 'longitude',
+        'latitude',
+        'longitude',
     ];
 
     /**

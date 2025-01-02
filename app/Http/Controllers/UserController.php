@@ -22,6 +22,9 @@ class UserController extends Controller
             'nama' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
             'phone' => 'required|numeric|unique:users,phone,' . auth()->id(),
+            'address' => 'string|max:255',
+            'latitude' => 'string|max:255',
+            'longitude' => 'string|max:255',
         ]);
 
         $user = auth()->user(); // Ambil user yang sedang login
@@ -29,6 +32,9 @@ class UserController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'phone' => $request->phone,
+            'address' => $request->address,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
         return redirect()->route('profile')->with('success', 'Profile berhasil diperbarui.');
