@@ -60,8 +60,12 @@ Route::post('/payment/notification', [PaymentController::class, 'handleMidtransN
 
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount'])->name('calculateGrossAmount');
 
-Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
 
+Route::get('statusBarang', function () {
+    return view('statusBarang');
+});
+
+Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
 Route::post('/pesanann', [PaymentController::class, 'lol'])->name('pesanan.index');
 
 Route::view('/otw', '/pengiriman')->name('diskon.search');
