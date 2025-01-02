@@ -5,9 +5,19 @@
         </td>
         <td class="p-4">
             @foreach ($product->images as $image)
-                <img src="{{ asset('storage/' . $image->image_path1) }}" alt="Product Image"
-                    class="w-20 h-20 object-cover">
-            @endforeach
+            @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
+                {{-- Gambar dari Seeder --}}
+                <img src="{{ asset(ltrim($image->image_path1, '/')) }}" 
+                     alt="Product Image" 
+                     class="w-20 h-20 object-cover">
+            @else
+                {{-- Gambar dari Storage --}}
+                <img src="{{ asset('storage/' . $image->image_path1) }}" 
+                     alt="Product Image" 
+                     class="w-20 h-20 object-cover">
+            @endif
+        @endforeach
+        
         </td>
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {{ $product->product_name }}

@@ -17,22 +17,22 @@ class NewsletterController extends Controller
     public function newsletter(Request $request)
     {
 
-        $request->validate(['message' => 'required|string', 'subject' => 'required|string',]);
-        $subscribers = Subscriber::all(); // Kirim email ke setiap subscriber
-        foreach ($subscribers as $subscriber) {
-            Mail::to($subscriber->email)->send(new Newsletter($request->subject, $request->message));
-        }
-        return redirect('/Admin/nNewsletterCustom')->with('success', 'Email berhasil dikirim!');
-        // $request->validate([
-        //     'message' => 'required|string',
-        // ]);
-
-        // $subscribers = Subscriber::all();
-
-        // // Kirim email ke setiap subscriber
+        // $request->validate(['message' => 'required|string', 'subject' => 'required|string',]);
+        // $subscribers = Subscriber::all(); // Kirim email ke setiap subscriber
         // foreach ($subscribers as $subscriber) {
         //     Mail::to($subscriber->email)->send(new Newsletter($request->subject, $request->message));
         // }
+        // return redirect('/Admin/nNewsletterCustom')->with('success', 'Email berhasil dikirim!');
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        $subscribers = Subscriber::all();
+
+        // Kirim email ke setiap subscriber
+        foreach ($subscribers as $subscriber) {
+            Mail::to($subscriber->email)->send(new Newsletter($request->subject, $request->message));
+        }
     }
 
     public function subscribe(Request $request)

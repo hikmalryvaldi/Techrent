@@ -280,9 +280,16 @@
                             <div class="flex items-center">
                                 <div class="mask mask-squircle h-12 w-12 bg-white">
                                     @foreach ($product->images as $image)
+                                    @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
+                                        {{-- Gambar dari Seeder --}}
+                                        <img src="{{ asset(ltrim($image->image_path1, '/')) }}"
+                                             alt="{{ $product->product_name }}" class="w-full h-64 object-cover">
+                                    @else
+                                        {{-- Gambar dari Storage --}}
                                         <img src="{{ asset('storage/' . $image->image_path1) }}"
-                                            alt="Product Image" alt="Avatar Tailwind CSS Component" />
-                                    @endforeach
+                                             alt="{{ $product->product_name }}" class="w-full h-64 object-cover">
+                                    @endif
+                                @endforeach
                                 </div>
                             </div>
                         </td>
