@@ -199,8 +199,7 @@
                                         <!-- Durasi dan Harga -->
                                         <div class="flex items-center space-x-2">
                                             <span class="text-sm text-gray-500 dark:text-gray-400">3 Hari</span>
-                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp
-                                                50.000</span>
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp {{  number_format($item->product->price, 0, ",", ".");}}</span>
                                         </div>
                                     </li>
                                 @endforeach
