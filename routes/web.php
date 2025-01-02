@@ -10,7 +10,6 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\DiskonAdminController;
-use App\Http\Controllers\UpdateProfileController;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'homeFeatures');
@@ -33,7 +32,6 @@ Route::get('/Admin/promosi', function () {
 require __DIR__ . '/produk.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
-
 
 Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/redirection/{provider}', 'providerLogin')->name('auth.redirection');
