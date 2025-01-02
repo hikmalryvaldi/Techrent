@@ -86,11 +86,25 @@
         <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Rincian Pembayaran</h2>
             <div class="space-y-2">
-                <!-- Subtotal Produk -->
-                <div class="flex justify-between">
-                    <p class="text-gray-700">Subtotal Produk:</p>
-                    {{-- <p class="text-gray-800 font-semibold">Rp {{number_format($totalPrice, 0, ',', '.')}}</p> --}}
+                {{-- rumus untuk pengurangan dari jumlah pemesanan --}}
+                {{-- harga produk - diskon produk - voucer produk + ongkir  --}}
+                <div class="flex justify-between text-lg font-semibold">
+                    <p class="text-gray-700">Harga Produk:</p>
+                    <p class="text-gray-700">Rp {{ number_format($gross_amount, 0, ',', '.') }}</p>
                 </div>
+                <div class="flex justify-between text-lg font-semibold">
+                    <p class="text-gray-700">Diskon Produk:</p> 
+                    <p class="text-gray-700">Rp 3000</p>
+                </div>
+                <div class="flex justify-between text-lg font-semibold">
+                    <p class="text-gray-700">Voucher Diskon:</p>
+                    <p class="text-gray-700">Rp 2000</p>
+                </div>
+                <div class="flex justify-between text-lg font-semibold">
+                    <p class="text-gray-700">Gratis Ongkir:</p>
+                    <p class="text-gray-700">Rp 15000</p>
+                </div>
+
                 {{-- <!-- Subtotal Pengiriman -->
                 <div class="flex justify-between">
                     <p class="text-gray-700">Subtotal Pengiriman:</p>
@@ -105,7 +119,7 @@
                 <!-- Total Pembayaran -->
                 <div class="flex justify-between text-lg font-semibold">
                     <p class="text-gray-800">Total Pembayaran:</p>
-                    <p class="text-red-600">Rp {{ number_format($gross_amount, 0, ',', '.') }}</p>
+                    <p class="text-red-600">Rp 760000</p>
                 </div>
             </div>
         </div>
