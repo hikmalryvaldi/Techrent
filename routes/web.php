@@ -58,3 +58,7 @@ Route::match(['post', 'delete'], '/keranjang/hapus', [CartController::class, 'dr
 Route::post('/payment/notification', [PaymentController::class, 'handleMidtransNotification'])->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount'])->name('calculateGrossAmount');
+
+Route::get('statusBarang', function () {
+    return view('statusBarang');
+});
