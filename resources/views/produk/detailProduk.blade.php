@@ -32,20 +32,20 @@
             <div class="w-full lg:w-1/2">
                 @foreach ($product->images as $image)
                     <img id="mainImage" src="{{ asset('storage/' . $image->image_path1) }}" alt="Product"
-                        class="rounded-lg shadow-md w-full">
+                        class="mainImg rounded-lg shadow-md w-full">
                     <div class="flex mt-4 space-x-2">
-                        <img onclick="updateMainImage('{{ asset('storage/' . $image->image_path1) }}')"
+                        <img
                             src="{{ asset('storage/' . $image->image_path1) }}" alt="Thumbnail"
-                            class="w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img onclick="updateMainImage('{{ asset('storage/' . $image->image_path2) }}')"
+                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
+                        <img 
                             src="{{ asset('storage/' . $image->image_path2) }}" alt="Thumbnail"
-                            class="w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img onclick="updateMainImage('{{ asset('storage/' . $image->image_path3) }}')"
+                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
+                        <img 
                             src="{{ asset('storage/' . $image->image_path3) }}" alt="Thumbnail"
-                            class="w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img onclick="updateMainImage('{{ asset('storage/' . $image->image_path4) }}')"
+                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
+                        <img 
                             src="{{ asset('storage/' . $image->image_path4) }}" alt="Thumbnail"
-                            class="w-16 h-16 rounded-lg shadow-md cursor-pointer">
+                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
                     </div>
                 @endforeach
             </div>
@@ -108,6 +108,14 @@
         </script>
 
         <script>
+            const image = document.querySelectorAll('.clickImg');
+            const mainImage = document.querySelector('.mainImg');
+            for (let i = 0; i < image.length; i++) {
+                image[i].addEventListener('click', function () {
+                    mainImage.src = image[i].src;
+                })
+            }
+
             document.addEventListener("DOMContentLoaded", function() {
                 const popup = document.getElementById('popup-notification');
                 if (popup) {

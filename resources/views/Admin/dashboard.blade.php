@@ -37,7 +37,7 @@
                             <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2">Pesanan</h5>
                             <div class="mt-5">
                                 <h5 class="leading-none text-3xl text-gray-900 dark:text-white pb-2"><span
-                                        class="font-bold">100</span> <span class="text-xl">Pcs</span></h5>
+                                        class="font-bold">{{ $completedOrders }}</span> <span class="text-xl">Pcs</span></h5>
                                 <p class="text-base font-normal text-gray-500 dark:text-gray-400">Jumlah Semua Pesanan</p>
                             </div>
                         </div>
