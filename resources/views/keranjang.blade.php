@@ -128,7 +128,7 @@
         <!-- Total dan Checkout -->
         <div class="mt-6 flex flex-col sm:flex-row justify-end items-center space-y-4 sm:space-y-0">
             <div class="tombol">
-                <a href="produk"
+                <a href="/"
                     class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
                 <button href="#" type="submit"
                     class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>

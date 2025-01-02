@@ -13,6 +13,55 @@
         </div>
         <div class="navbar-end hidden lg:flex">
             @auth
+                            {{-- navbar kranjang --}}
+                            <div class="relative group">
+                                <!-- Tombol Keranjang -->
+                                <button onclick="toggleDropdown()" class="btn btn-ghost btn-circle ml-5">
+                                    <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 w-auto h-auto" alt="Keranjang">
+                                </button>
+            
+                                <!-- Konten Dropdown -->
+                                <form action="/keranjang/checkout" method="GET">
+                                    @csrf
+                                    <ul id="dropdownCart" class="hidden absolute bg-base-100 rounded-box z-[1] w-96 p-3 shadow-lg left-1/2 transform -translate-x-1/2 mt-3">
+                                        @if ($keranjang && $keranjang->items->isNotEmpty())
+                                            @foreach ($keranjang->items as $item)
+                                                <li class="flex items-center justify-between p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                    <!-- Checkbox -->
+                                                    <input type="checkbox" name="product_ids[]" value="{{ $item->product->id }}"
+                                                           id="checkbox-item-{{ $item->product->id }}"
+                                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                    <!-- Gambar -->
+                                                    @foreach ($item->product->images as $image)
+                                                        <img src="{{ $image->image_path1 }}" class="h-8 w-8 rounded ml-2" alt="Produk">
+                                                    @endforeach
+                                                    <!-- Label -->
+                                                    <label for="checkbox-item-{{ $item->product->id }}"
+                                                           class="flex-1 ml-2 truncate text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        {{ $item->product->product_name }}
+                                                    </label>
+                                                    <!-- Durasi dan Harga -->
+                                                    <div class="flex items-center space-x-2">
+                                                        <span class="text-sm text-gray-500 dark:text-gray-400">3 Hari</span>
+                                                        <span class="text-sm font-bold text-gray-700 dark:text-gray-300">Rp 50.000</span>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            <p>Keranjang Anda kosong</p>
+                                        @endif
+                                        <hr class="my-2">
+                                        <div class="py-2 flex justify-between items-center">
+                                            <span class="text-sm font-bold text-gray-700 dark:text-gray-300">3 pcs</span>
+                                            <div class="flex gap-2">
+                                                <button type="button" onclick="submitDeleteForm()" class="btn bg-red-500 text-white hover:bg-red-600">Hapus</button>
+                                                <button type="submit" class="btn btn-primary text-white">Sewa Sekarang</button>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </form>                    
+                            </div>
+                            
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn m-1">
                     <div>{{ Auth::user()->nama }}</div>
