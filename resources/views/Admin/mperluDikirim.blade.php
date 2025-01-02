@@ -90,7 +90,7 @@
                                                         <button type="button"
                                                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 open-modal"
                                                             data-modal-target="#default-modal" data-id="{{ $transaction->transaction_id }}">
-                                                            Kirim
+                                                            Kemas
                                                         </button>
                                                     </td>                                                    
                                                 </tr>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="p-6 space-y-6">
                                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                        Apakah Anda yakin untuk mengirim pesanan ini?
+                                        Apakah Anda yakin untuk mengemas pesanan ini?
                                     </p>
                                 </div>
                                 <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
