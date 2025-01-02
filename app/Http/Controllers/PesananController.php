@@ -135,4 +135,8 @@ class PesananController extends Controller
 
         return redirect()->back()->with('success', 'Status "Selesai".');
     }
+
+    public function lol(Request $request){
+        dd($request);
+    }
 }
