@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('otp')->nullable();
             $table->timestamp('otp_expires_at')->nullable();
+            // $table->string('detail_alamat')->nullable();
+            // $table->string('address')->nullable();
+            // $table->string('latitude')->nullable();
+            // $table->string('longitude')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
