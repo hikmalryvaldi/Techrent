@@ -192,7 +192,19 @@
                         });
                     });
                 </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const openModalButtons = document.querySelectorAll('.open-modal');
+                        const transactionIdInput = document.getElementById('modal-transaction-id');
                 
+                        openModalButtons.forEach(button => {
+                            button.addEventListener('click', () => {
+                                const transactionId = button.getAttribute('data-id');
+                                transactionIdInput.value = transactionId; // Set value input hidden
+                            });
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>

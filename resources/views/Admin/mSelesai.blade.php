@@ -14,7 +14,7 @@
                 <div
                     class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 rounded-t">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Detail Pesanan
+                        Modal
                     </h3>
                     <button type="button"
                         class="text-gray-500 hover:text-gray-900 dark:hover:text-white rounded-lg text-sm w-8 h-8 flex justify-center items-center"

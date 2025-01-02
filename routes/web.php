@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\NewsletterController;
@@ -59,6 +60,11 @@ Route::post('/payment/notification', [PaymentController::class, 'handleMidtransN
 
 Route::post('/calculate-gross-amount', [CheckoutController::class, 'calculateGrossAmount'])->name('calculateGrossAmount');
 
+
 Route::get('statusBarang', function () {
     return view('statusBarang');
 });
+
+Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
+Route::post('/pesanann', [PaymentController::class, 'lol'])->name('pesanan.index');
+

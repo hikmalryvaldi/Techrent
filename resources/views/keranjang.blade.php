@@ -112,28 +112,29 @@
 
         {{-- Midtrans Transaksi --}}
 
+        {{-- Midtrans Transaksi --}}
         <form id="payment-form">
             @csrf
-    <!-- Hidden Input untuk total biaya dan informasi pelanggan -->
-    <input type="hidden" value="{{ $gross_amount }}" id="gross_amount" name="gross_amount" readonly>
+            {{-- <label for="gross_amount">Gross Amount:</label> --}}
+            <input type="hidden" value="123123" id="gross_amount" name="gross_amount" readonly>
 
-    <input type="hidden" id="first_name" name="first_name" value="{{ Auth::user()->nama }}" required>
-    
-    <!-- Static dummy user_id -->
-    <input type="hidden" id="user_id"  name="user_id" value="{{ Auth::user()->id }}" required>
+            {{-- <label for="first_name">First Name:</label> --}}
+            <input type="hidden" id="first_name" name="first_name" value="john" required>
+            <input type="hidden" id="last_name" name="last_name" value="johnlast" required>
+            <input type="hidden" id="email" name="email" value="johnlast@gmail.com" required>
+            <input type="hidden" id="phone" name="phone" value="504968787" required>
+          
 
-    @foreach ($produkYangDipilih as $product)
-        <input type="hidden" name="product_ids[]" value="{{ $product->id }}">
-        <input type="hidden" name="quantities[]" value="{{ $product->quantity }}">
-    @endforeach
+        <!-- Total dan Checkout -->
+        <div class="mt-6 flex flex-col sm:flex-row justify-end items-center space-y-4 sm:space-y-0">
+            <div class="tombol">
+                <a href="produk"
+                    class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
+                <button href="#" type="submit"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>
+            </div>
+        </div>
 
-    <!-- Total dan Checkout -->
-    <div class="tombol">
-        <a href="produk"
-            class="bg-gray-700 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition mr-2">Kembali</a>
-        <button href="#" type="submit"
-            class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Checkout</button>
-    </div>
         </form>
         
         
@@ -192,16 +193,9 @@
         <script type="text/javascript">
             document.querySelector('#payment-form').addEventListener('submit', function(event) {
                 event.preventDefault(); 
-                
-                // Ambil csrfToken
+          
                 let csrfToken = document.querySelector('input[name="_token"]').value;
-                
-                // Ambil nilai gross_amount, first_name, dan user_id
-                let grossAmount = document.querySelector('#gross_amount').value;
-                let firstName = document.querySelector('#first_name').value;
-                let userId = document.querySelector('#user_id').value;
-        
-                // Kirim data dengan fetch API
+          
                 fetch('/payment', {
                     method: 'POST',
                     headers: {
@@ -211,12 +205,16 @@
                     body: JSON.stringify({
                         gross_amount: document.querySelector('#gross_amount').value,
                         first_name: document.querySelector('#first_name').value,
+                        last_name: document.querySelector('#last_name').value,
+                        email: document.querySelector('#email').value,
+                        phone: document.querySelector('#phone').value,
                     }),
                 })
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
                     if (data.snap_token) {
+          
                         snap.pay(data.snap_token, {
                             onSuccess: function(result) {
                                 console.log('Payment Success:', result);
@@ -244,7 +242,7 @@
                     alert('An error occurred while processing the payment.');
                 });
             });
-        </script>
+          </script>
         
     
 
