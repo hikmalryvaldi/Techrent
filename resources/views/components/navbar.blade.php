@@ -13,6 +13,7 @@
         </div>
         <div class="navbar-end hidden lg:flex">
                             {{-- navbar kranjang --}}
+                            @auth
                             <div class="relative group">
                                 <!-- Tombol Keranjang -->
                                 <button onclick="toggleDropdown()" class="btn btn-ghost btn-circle ml-5">
@@ -60,9 +61,21 @@
                                     </ul>
                                 </form>                    
                             </div>
+
+                            @else
+                            <a href="{{ route('auth') }}" class="btn btn-ghost btn-circle ml-5">
+                                <img src="{{ asset('img/navbar/keranjang.png') }}" class="max-h-20 h-auto w-auto" alt="">
+                            </a>
+                            @endauth
+
+                            
+                            @auth
             <div class="dropdown">
                 <div tabindex="0" role="button" class="btn m-1">
-                    <div>{{ Auth::user()->nama }}</div>
+                    
+                    <div>{{ Auth::user()->nama }}</div> 
+                    {{-- opsi1 --}}
+                    
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -89,6 +102,13 @@
                     @endauth
                 </ul>
             </div>
+
+            @else
+
+            <a class="btn btn-ghost btn-circle" href="{{ route('auth') }}">
+                <img src="{{ asset('img/navbar/profile.png') }}" class="max-h-20 h-auto w-auto" alt="">
+            </a>
+            @endauth
         </div>
     </div>
 @else
