@@ -5,6 +5,7 @@
         height: 200px;
         width: 300px;
     }
+
     [x-cloak] {
         display: none;
     }
@@ -22,9 +23,9 @@
             <a href="/user/perlukirim" class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Sedang Dikemas
             </a>
-            <a href="/user/dikirim" class="px-4 py-2 text-sm font-medium border-b-2">
+            {{-- <a href="/user/dikirim" class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Sedang Dikirim
-            </a>
+            </a> --}}
             <a class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Yang Telah Disewa
             </a>
@@ -33,66 +34,72 @@
         <!-- Tabs Content -->
         <div class="mt-5">
             <!-- Tab 1: Informasi Pribadi -->
-            @if(session('success'))
-    <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-      <span class="font-medium">{{ session("success") }}
-    </div>
-    @endif
-    <div x-show="activeTab === 'tab1'" class="space-y-6 bg-white p-5 rounded">
-        <h2 class="text-lg font-bold text-gray-500">Informasi Pribadi</h2>
-    
-        <form action="{{ route('update') }}" method="POST" class="space-y-6">
-            @method('PUT')
-            @csrf
-            {{-- NAMA --}}
-            <div class="flex items-center gap-2 w-full sm:w-[50%]">
-                <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
-                    <input type="text" name="nama" class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
-                        placeholder="Nama Lengkap" value="{{ old('nama', $user->nama) }}">
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert">
+                    <span class="font-medium">{{ session('success') }}
                 </div>
-            </div>
-            {{-- EMAIL --}}
-            <div class="flex items-center gap-2 w-full sm:w-[50%]">
-                <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
-                    <input type="email" name="email" class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
-                        placeholder="Alamat Email" value="{{ old('email', $user->email) }}">
-                </div>
-            </div>
-            
-            {{-- NOMOR TELEPON --}}
-            <div class="flex items-center gap-2 w-full sm:w-[50%]">
-                <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
-                    <input type="text" name="phone" class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
-                        placeholder="Nomor Telepon" value="{{ old('phone', $user->phone) }}">
-                </div>
-            </div>
-            {{-- FROM BACKEND --}}
-            <div id="map"></div>
-            {{-- END FROM BACKEND --}}
-             {{-- ALAMAT --}}
-             <div class="flex flex-col gap-2 sm:w-[50%]">
-                <label for="address" class="text-sm font-medium text-gray-700">Alamat</label>
-                <textarea id="address" name="address" class="textarea textarea-bordered w-full bg-[#282828] text-white h-24 rounded"></textarea>
+            @endif
+            <div x-show="activeTab === 'tab1'" class="space-y-6 bg-white p-5 rounded">
+                <h2 class="text-lg font-bold text-gray-500">Informasi Pribadi</h2>
+
+                <form action="{{ route('update') }}" method="POST" class="space-y-6">
+                    @method('PUT')
+                    @csrf
+                    {{-- NAMA --}}
+                    <div class="flex items-center gap-2 w-full sm:w-[50%]">
+                        <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
+                            <input type="text" name="nama"
+                                class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
+                                placeholder="Nama Lengkap" value="{{ old('nama', $user->nama) }}">
+                        </div>
+                    </div>
+                    {{-- EMAIL --}}
+                    <div class="flex items-center gap-2 w-full sm:w-[50%]">
+                        <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
+                            <input type="email" name="email"
+                                class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
+                                placeholder="Alamat Email" value="{{ old('email', $user->email) }}">
+                        </div>
+                    </div>
+
+                    {{-- NOMOR TELEPON --}}
+                    <div class="flex items-center gap-2 w-full sm:w-[50%]">
+                        <div class="flex items-center w-full bg-[#282828] text-white px-3 rounded h-10">
+                            <input type="text" name="phone"
+                                class="bg-transparent border-none w-full placeholder-white-100 text-white focus:outline-none h-full"
+                                placeholder="Nomor Telepon" value="{{ old('phone', $user->phone) }}">
+                        </div>
+                    </div>
+                    {{-- FROM BACKEND --}}
+                    <div id="map"></div>
+                    {{-- END FROM BACKEND --}}
+                    {{-- ALAMAT --}}
+                    <div class="flex flex-col gap-2 sm:w-[50%]">
+                        <label for="address" class="text-sm font-medium text-gray-700">Alamat</label>
+                        <textarea id="address" name="address" class="textarea textarea-bordered w-full bg-[#282828] text-white h-24 rounded"></textarea>
+                    </div>
+
+                    {{-- LATITUDE --}}
+                    <input type="hidden" id="latitude" name="latitude"
+                        value="{{ old('latitude', $user->latitude ?? '') }}">
+                    {{-- LONGITUDE --}}
+                    <input type="hidden" id="longitude" name="longitude"
+                        value="{{ old('longitude', $user->longitude ?? '') }}">
+                    {{-- GANTI PASSWORD --}}
+                    <div class="mt-10">
+                        <a href="ubahPassword" class="text-blue-500">Ubah Password</a>
+                    </div>
+
+                    <div class="flex justify-end">
+                        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Simpan</button>
+                    </div>
+                </form>
+
             </div>
 
-            {{-- LATITUDE --}}
-            <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude', $user->latitude ?? '') }}">
-            {{-- LONGITUDE --}}
-            <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude', $user->longitude ?? '') }}">
-            {{-- GANTI PASSWORD --}}
-            <div class="mt-10">
-                <a href="ubahPassword" class="text-blue-500">Ubah Password</a>
-            </div>
-
-            <div class="flex justify-end">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Simpan</button>
-            </div>
-        </form>
-        
-    </div>
-    
             {{-- end --}}
-            
+
             {{-- Tab3: BARANG SEDANG DIKEMBALIKAN --}}
             <div x-show="activeTab === 'tab3'" class="space-y-6 bg-white p-5 rounded text-gray-500">
                 <h2 class="text-lg font-bold">Barang Sedang Dikirim</h2>
@@ -181,11 +188,12 @@
     // Initialize the map
     var map;
     var marker;
-    var initialLat = {{ old('latitude', $user->latitude) ?: -6.914744 }};  // Default to a fallback latitude
-    var initialLon = {{ old('longitude', $user->longitude) ?: 107.609810 }};  // Default to a fallback longitude
+    var initialLat = {{ old('latitude', $user->latitude) ?: -6.914744 }}; // Default to a fallback latitude
+    var initialLon = {{ old('longitude', $user->longitude) ?: 107.60981 }}; // Default to a fallback longitude
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize the map when the DOM is fully loaded
-        map = L.map('map').setView([initialLat, initialLon], 13); // Use initialLat and initialLon for default center
+        map = L.map('map').setView([initialLat, initialLon],
+        13); // Use initialLat and initialLon for default center
         // Add OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -197,7 +205,10 @@
             // Optionally, zoom into the marker's position
             map.setView([initialLat, initialLon], 13);
             // Call the function to update the address field based on the initial coordinates
-            getAddressFromLatLng({ lat: initialLat, lng: initialLon });
+            getAddressFromLatLng({
+                lat: initialLat,
+                lng: initialLon
+            });
         }
         // When the user clicks on the map, place a marker and update latitude and longitude
         map.on('click', function(e) {
@@ -234,6 +245,7 @@
                 });
         }
     });
+
     function tabs() {
         return {
             activeTab: 'tab1', // Default active tab
