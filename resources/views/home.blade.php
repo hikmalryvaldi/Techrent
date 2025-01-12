@@ -103,73 +103,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-    {{-- Kategori --}}
-    <div class="flex justify-center items-center">
-        <div class="barang mt-12 w-[94%] ">
-            <p class="font-bold text-center text-4xl text-black">MEMINJAM SESUAI KEBUTUHAN</p>
-            <div class="cards flex flex-wrap justify-around  mt-10">
-
-                <div
-                    class="card1 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
-                    <div class="relative w-full h-full overflow-hidden">
-                        <p
-                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
-                            KAMERA</p>
-                            <a href="{{ route('produk.index', ['category' => 'kamera']) }}">
-                        <img src="{{ asset('img/halamanhome/kategori/kamera.jpg') }}" alt=""
-                            class="w-full h-full object-cover rounded-lg">
-                    </div>
-                </div>
-
-                <div
-                    class="card2 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
-                    <div class="relative w-full h-full overflow-hidden">
-                        <p
-                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
-                            LENSA</p>
-                            <a href="{{ route('produk.index', ['category' => 'lensa']) }}">
-                        <img src="{{ asset('img/halamanhome/kategori/Lensa.jpg') }}" alt=""
-                            class="w-full h-full object-cover rounded-lg" style="object-position: 20% 30%;">
-                    </div>
-                </div>
-
-                <div
-                    class="card3 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
-                    <div class="relative w-full h-full overflow-hidden">
-                        <p
-                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
-                            CONSOL</p>
-                            <a href="{{ route('produk.index', ['category' => 'konsol']) }}">
-                        <img src="{{ asset('img/halamanhome/kategori/Playstation.jpg') }}" alt=""
-                            class="w-full h-full object-cover rounded-lg">
-                    </div>
-                </div>
-                <div
-                    class="card4 h-[300px] w-[300px] rounded-lg flex flex-col items-center mb-4 shadow-lg transform transition duration-300 hover:scale-105">
-                    <div class="relative w-full h-full overflow-hidden">
-                        <p
-                            class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">
-                            SPEAKER</p>
-                            <a href="{{ route('produk.index', ['category' => 'speaker']) }}">
-                        <img src="{{ asset('img/halamanhome/kategori/Sound.jpg') }}" alt=""
-                            class="w-full h-full object-cover rounded-lg">
-                    </div>
-                </div>
-
-
-
-
-            </div>
-        </div>
-    </div>
-
     <!-- Persegi Panjang -->
 
     <div class="flex-grow flex items-center justify-center mt-24 px-3">
@@ -202,11 +135,9 @@
                         <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
                             @foreach ($topProduct->images as $image)
                         @if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/'))))
-                            {{-- Gambar dari Seeder --}}
                             <img src="{{ asset(ltrim($image->image_path1, '/')) }}" 
                                 class="w-full h-full object-contain">
                         @else
-                            {{-- Gambar dari Storage --}}
                             <img src="{{ asset('storage/' . $image->image_path1) }}" 
                                 class="w-full h-full object-contain">
                         @endif
@@ -216,34 +147,8 @@
                         <p class="text-black text-center text-xl font-bold mt-4">
                             {{ $topProduct->product_name }}</p>
                             <a href="/detailProduk/{{ $topProduct->id }}" class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shadow-lg hover:bg-gray-300 hover:scale-105 transform transition duration-300"> SEWA SEKARANG </a>
-                        {{-- <button
-                            class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
-                            SEWA SEKARANG
-                        </button> --}}
-                    </div>
+                        </div>
                 @endforeach
-                {{-- <div class="card2 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-2 shadow-xl">
-                    <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                        <img src="{{ asset('img/halamanhome/barangunggulan/sony.png') }}" alt=""
-                            class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-black text-center text-xl font-bold mt-4">Sony Alpha 7 Mark III</p>
-                    <button
-                        class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
-                        Sewa Sekarang
-                    </button>
-                </div>
-                <div class="card3 h-[400px] w-64 bg-[#C8C4CA] rounded-xl flex flex-col items-center mb-4 shadow-xl">
-                    <div class="cardimg h-64 w-[90%] bg-white bg-opacity-70 mt-6 rounded-xl overflow-hidden">
-                        <img src="{{ asset('img/halamanhome/promo/speaker.png') }}" alt=""
-                            class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-black text-center text-xl font-bold mt-4">Polytron Paspro</p>
-                    <button
-                        class="mt-4 mb-4 px-6 py-2 bg-gray-200 text-black font-semibold rounded-xl shaodw-lg  hover:bg-gray-300 hover:scale-105 transform transition duration-300">
-                        Sewa Sekarang
-                    </button>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -255,7 +160,7 @@
     </div>
 
 
-
+<div><a href="/auth/lupaPassword">CIBA</a></div>
     {{-- FAQ --}}
 
     <div class="mt-24">

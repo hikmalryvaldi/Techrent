@@ -13,6 +13,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/ubahPassword', [UbahPasswordController::class, 'UbahPass'])->name('password.reset');
 Route::post('/lupaPassword', [RegisterController::class, 'lupaPassword']);
+Route::get('/lupaPassword', [RegisterController::class, 'view']);
 Route::get('/ubahLupaPassword', [UbahPasswordController::class, 'UbahLupaPass']);
 
 Route::post('/updateLupaPassword', [LupaPasswordController::class, 'updatePassword'])->name('update.password');

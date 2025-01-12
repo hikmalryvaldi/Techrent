@@ -17,6 +17,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/produk/{id}', 'show')->name('produk.show');
 });
 
+Route::post('/postCheckout', [CheckoutController::class, 'postCheckout'])->name('postCheckout');
+
 Route::middleware(['auth'])->group(function () {
     Route::put('/profile', [UserController::class, 'update'])->name('update');
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
