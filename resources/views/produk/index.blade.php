@@ -70,7 +70,7 @@
                 let keyword = $(this).val();
                 let category = '{{ $currentCategory ?? '' }}';
                 $.ajax({
-                    url: "{{ route('produk.search') }}", // Gunakan route helper
+                    url: "/produk/index/search", // Gunakan route helper
                     type: "GET",
                     data: {
                         search: keyword,
