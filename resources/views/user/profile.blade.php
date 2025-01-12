@@ -21,12 +21,9 @@
                 Informasi Pribadi
             </a>
             <a href="/user/perlukirim" class="px-4 py-2 text-sm font-medium border-b-2">
-                Barang Sedang Dikemas
-            </a>
-            {{-- <a href="/user/dikirim" class="px-4 py-2 text-sm font-medium border-b-2">
                 Barang Sedang Dikirim
-            </a> --}}
-            <a class="px-4 py-2 text-sm font-medium border-b-2">
+            </a>
+            <a class="px-4 py-2 text-sm font-medium border-b-2 cursor-pointer">
                 Barang Yang Telah Disewa
             </a>
         </div>

@@ -77,7 +77,7 @@
                                                     <td class="px-6 py-4">Rp {{ number_format($item->product->price, 0, ',', '.') }}</td>
                                                     <td class="px-6 py-4">{{ $item->quantity }}</td>
                                                     <td class="px-6 py-4">Rp {{ number_format($subtotal, 0, ',', '.') }}</td>
-                                                    <td class="px-6 py-4">Gojek/Gosen</td>
+                                                    <td class="px-6 py-4">Si Cepatzzz</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

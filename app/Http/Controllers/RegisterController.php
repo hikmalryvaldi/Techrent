@@ -15,6 +15,11 @@ class RegisterController extends Controller
         return view('auth.index');
     }
 
+    public function view()
+    {
+        return view('auth.lupaPassword');
+    }
+
     public function store(Request $request)
     {
         try {

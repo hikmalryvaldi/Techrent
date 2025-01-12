@@ -7,33 +7,10 @@
         <span class="text-gray-500 text-sm ml-4">Penyewa 30+</span>
     </div>
 
-    <!-- Shipping Options -->
-    <div class="mb-4 relative">
-        <h2 class="text-gray-700 font-medium mb-2">Jasa Kirim:</h2>
-        <div class="relative">
-            <button class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white shadow-md text-left" id="shippingDropdownButton">Pilih Jasa Kirim</button>
-            <div id="shippingDropdown" class="absolute hidden mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-md z-10">
-                <div class="p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-gray-600">Garansi Tepat Waktu</span>
-                        <span class="text-green-500 text-sm">Dapatkan Voucher s/d Rp10.000 jika pesanan terlambat.</span>
-                    </div>
-                    <ul class="divide-y divide-gray-200">
-                        <li class="py-2 flex justify-between">
-                            <span class="text-gray-700">Instant</span>
-                            <button class="text-gray-400 font-bold">Rp 30.000</button>
-                        </li>
-                        <li class="py-2 flex justify-between">
-                            <span class="text-gray-700">Same Day</span>
-                            <button class="text-gray-400 font-bold" disabled>Rp 30.000</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-3xl font-bold text-gray-900 mb-4">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+    <div class="harga text-3xl font-bold text-gray-900 mb-4">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
+    {{-- <div class="harga text-3xl font-bold text-gray-900 mb-4" id="priceDisplay" data-price="{{ $product->price }}">
+        Rp{{ number_format($product->price, 0, ',', '.') }}
+    </div> --}}
 
     <!-- Color Options -->
     <div class="mb-4">
@@ -48,13 +25,13 @@
     <!-- Stock and Purchase -->
     <div class="flex items-center space-x-4 mb-4">
         <div>
-            <h2 class="text-gray-700 font-medium mb-2">Atur jumlah dan catatan</h2>
+            <h2 class="text-gray-700 font-medium mb-2">Atur jumlah</h2>
             <div class="flex items-center space-x-2">
                 <button type="button" onclick="adjustQuantity(-1)" class="px-4 py-2 border rounded-lg">-</button>
                 <input id="quantityInput" name="quantity" type="text" inputmode="numeric" value="1" class="w-12 text-center border rounded-lg">
                 <button type="button" onclick="adjustQuantity(1)" class="px-4 py-2 border rounded-lg">+</button>
             </div>
-            <div class="text-sm text-gray-500 mt-2">Stok: 83</div>
+            <div class="text-sm text-gray-500 mt-2">Stok: {{ $product->stock }}</div>
         </div>
         <div class="flex flex-col lg:flex-row gap-4 mt-6">
             <form id="cart-form" action="{{ route('keranjang.add', $product->id) }}" method="POST">
@@ -77,7 +54,6 @@
         
         <h2 class="text-gray-700 font-medium mb-2">Detail</h2>
         <p class="text-sm text-gray-600">{{ $product->description }}</p>
-        
     </div>
 
     <div class="mt-6 flex">
@@ -174,3 +150,8 @@
 </div>
 </div>
 </div> 
+
+<script> 
+    const productPrice = {{ $product->price }}; 
+</script>
+<script src="{{ asset('js/halCheckout.js') }}"></script>

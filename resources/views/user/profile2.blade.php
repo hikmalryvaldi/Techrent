@@ -10,11 +10,11 @@
             <a href="/profile" class="px-4 py-2 text-sm font-medium border-b-2">
                 Informasi Pribadi
             </a>
-            <a class="px-4 py-2 text-sm font-medium border-b-2 border-blue-500 text-blue-500">
-                Barang Sedang Dikemas
+            <a class="px-4 py-2 text-sm font-medium border-b-2 border-blue-500 text-blue-500 cursor-pointer">
+                Barang Sedang Dikirim
             </a>
-            <a class="px-4 py-2 text-sm font-medium border-b-2">
-                Barang Yang Telah Disewa
+            <a class="px-4 py-2 text-sm font-medium border-b-2 cursor-pointer">
+                Barang Yang Telah Disewaa
             </a>
         </div>
 

@@ -85,27 +85,6 @@
                     @endforeach
                 </div>
 
-                {{-- <div class="w-full lg:w-1/2">
-                @foreach ($product->images as $image)
-                    <img id="mainImage" src="{{ asset('storage/' . $image->image_path1) }}" alt="Product"
-                        class="mainImg rounded-lg shadow-md w-full">
-                    <div class="flex mt-4 space-x-2">
-                        <img
-                            src="{{ asset('storage/' . $image->image_path1) }}" alt="Thumbnail"
-                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img 
-                            src="{{ asset('storage/' . $image->image_path2) }}" alt="Thumbnail"
-                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img 
-                            src="{{ asset('storage/' . $image->image_path3) }}" alt="Thumbnail"
-                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                        <img 
-                            src="{{ asset('storage/' . $image->image_path4) }}" alt="Thumbnail"
-                            class="clickImg w-16 h-16 rounded-lg shadow-md cursor-pointer">
-                    </div>
-                @endforeach
-            </div> --}}
-
                 <!-- Product Details -->
                 <x-pDetailProComponen :product="$product" :cities="$cities" :ongkir="$ongkir"></x-pDetailProComponen>
 
