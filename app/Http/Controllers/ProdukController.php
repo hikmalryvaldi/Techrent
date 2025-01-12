@@ -85,10 +85,19 @@ public function search(Request $request)
 
                 // Menampilkan gambar produk
                 foreach ($product->images as $image) {
-                    $output .= '
-                    <img src="' . asset('storage/' . $image->image_path1) . '" 
-                         alt="' . $product->product_name . '" 
-                         class="w-full h-64 object-cover">';
+                    if ($image->image_path1 && file_exists(public_path(ltrim($image->image_path1, '/')))) {
+                        // Gambar dari Seeder
+                        $output .= '
+                        <img src="' . asset(ltrim($image->image_path1, '/')) . '" 
+                             alt="' . $product->product_name . '" 
+                             class="w-full h-64 object-cover">';
+                    } else {
+                        // Gambar dari Storage
+                        $output .= '
+                        <img src="' . asset('storage/' . $image->image_path1) . '" 
+                             alt="' . $product->product_name . '" 
+                             class="w-full h-64 object-cover">';
+                    }
                     break; // Tampilkan hanya 1 gambar pertama
                 }
 
